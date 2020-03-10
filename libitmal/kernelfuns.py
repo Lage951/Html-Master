@@ -10,13 +10,14 @@ def UsesGPU():
     except:
         print("WARNING: could not import from tensorflow"); 
               
-    try:
-        # confirm Keras sees the GPU
-        from keras import backend
-        if len(backend.tensorflow_backend._get_available_gpus()) > 0:
-            K_gpu = True
-    except:
-        print("WARNING: could not import from keras");
+    # NOTE: will not work under some keras/TF versions..
+    #try:
+    #    # confirm Keras sees the GPU
+    #    from keras import backend
+    #    if len(backend.tensorflow_backend._get_available_gpus()) > 0:
+    #        K_gpu = True
+    #except:
+    #    print("WARNING: could not import from keras");
     
     return TF_gpu, K_gpu
 
