@@ -24,8 +24,8 @@ hasDAV:
 
 diff: hasDAV
 	diff -dwqr -x '*~' -x '.git*' -x 'Makefile' -x 'Solutions' -x 'Old' -x 'Src' -x 'datasets' . $(DIR) || echo "DIFFS(1)!"
-	diff  $(TEXDIR)/lesson01.pdf L01/lesson01.pdf || echo "DIFFS(2)!"
-	diff  $(TEXDIR)/lesson02.pdf L02/lesson02.pdf || echo "DIFFS(3)!"
+	@#diff  $(TEXDIR)/lesson01.pdf L01/lesson01.pdf || echo "DIFFS(2)!"
+	@#diff  $(TEXDIR)/lesson02.pdf L02/lesson02.pdf || echo "DIFFS(3)!"
 	@ echo "OK"
 
 #lessons:
@@ -34,6 +34,7 @@ diff: hasDAV
 clean:
 	find . -iname '.ipynb_checkpoints' -exec rm -rf {} \; || true
 	find . -iname '__pycache__' -exec rm -rf {} \; || true
+	find . -iname '*~' -exec rm -rf {} \; || true
 	find $(DIR) -iname '.ipynb_checkpoints' -exec rm -rf {} \; || true
 	find $(DIR) -iname '__pycache__' -exec rm -rf {} \; || true
 	find $(DIR) -iname '*~' -exec rm -rf {} \; || true
