@@ -11,7 +11,7 @@ pub: hasDAV
 	@ cp -v -u -r L?? $(DIR)
 	@# rsync -avr $(EXCLUDEPAT) L?? $(DIR)
 	@ echo "CP libitmal, remote.."
-	@ cp -v -u -r libitmal $(DIR)
+	@ cp -v -u -r Etc libitmal $(DIR)
 	@# rsync -avr $(EXCLUDEPAT) libitmal $(DIR)
 
 update:
