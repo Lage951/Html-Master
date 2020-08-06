@@ -1,5 +1,5 @@
 DAV = /mnt/Dav/ITMAL
-DIR = $(DAV)/"File Sharing"
+DIR = $(DAV)/Fildeling
 TEXDIR=/home/cef/ASE/ITMAL/TeX
 EXCLUDEPAT=--exclude='*~' --exclude='.ipynb*' --exclude='__pycache__'
 
