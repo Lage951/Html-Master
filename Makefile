@@ -9,10 +9,8 @@ pub: hasDAV
 	@ #cp -v -u $(TEXDIR)/lesson02.pdf L02/lesson02.pdf
 	@ echo "CP lessons, remote.."
 	@ cp -v -u -r L?? $(DIR)
-	@# rsync -avr $(EXCLUDEPAT) L?? $(DIR)
 	@ echo "CP libitmal, remote.."
 	@ cp -v -u -r Etc libitmal $(DIR)
-	@# rsync -avr $(EXCLUDEPAT) libitmal $(DIR)
 
 update:
 	@ git status
