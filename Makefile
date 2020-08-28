@@ -3,14 +3,15 @@ DIR = $(DAV)/Fildeling
 TEXDIR=/home/cef/ASE/ITMAL/TeX
 EXCLUDEPAT=--exclude='*~' --exclude='.ipynb*' --exclude='__pycache__'
 
-pub: hasDAV
+pub: hasDAV clean
 	@ #echo "CP lessons, local.."
-	@ #cp -v -u $(TEXDIR)/lesson01.pdf L01/lesson01.pdf
+	@ cp -v -u $(TEXDIR)/lesson01.pdf L01/lesson01.pdf
 	@ #cp -v -u $(TEXDIR)/lesson02.pdf L02/lesson02.pdf
 	@ echo "CP lessons, remote.."
 	@ cp -v -u -r L?? $(DIR)
+	@ #echo  cp -v -u -r `ls L??| grep -v ".ipynb" | grep -v "__pychache__"` $(DIR)
 	@ echo "CP libitmal, remote.."
-	@ cp -v -u -r Etc libitmal $(DIR)
+	@ #cp -v -u -r Etc libitmal $(DIR)
 
 update:
 	@ git status
@@ -30,12 +31,12 @@ diff: hasDAV
 #	cp -u $(TEXDIR)/lesson01.pdf L01/lesson01.pdf
 
 clean:
-	find . -iname '.ipynb_checkpoints' -exec rm -rf {} \; || true
-	find . -iname '__pycache__' -exec rm -rf {} \; || true
-	find . -iname '*~' -exec rm -rf {} \; || true
-	find $(DIR) -iname '.ipynb_checkpoints' -exec rm -rf {} \; || true
-	find $(DIR) -iname '__pycache__' -exec rm -rf {} \; || true
-	find $(DIR) -iname '*~' -exec rm -rf {} \; || true
+	@ find . -iname '.ipynb_checkpoints' -exec rm -rf {} \; || true
+	@ find . -iname '__pycache__' -exec rm -rf {} \; || true
+	@ find . -iname '*~' -exec rm -rf {} \; || true
+	@ find $(DIR) -iname '.ipynb_checkpoints' -exec rm -rf {} \; || true
+	@ find $(DIR) -iname '__pycache__' -exec rm -rf {} \; || true
+	@ find $(DIR) -iname '*~' -exec rm -rf {} \; || true
 	
 #cp lessons..
 #'L01/demo.ipynb' -> '/mnt/Dav/ITMAL/File Sharing/Src/L01/demo.ipynb'
