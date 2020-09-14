@@ -6,7 +6,8 @@ EXCLUDEPAT=--exclude='*~' --exclude='.ipynb*' --exclude='__pycache__'
 pub: clean
 	@ echo "CP lessons, local.."
 	@ #cp -v -u $(TEXDIR)/lesson01.pdf L01/lesson01.pdf
-	@ cp -v -u $(TEXDIR)/lesson02.pdf L02/lesson02.pdf
+	@ #cp -v -u $(TEXDIR)/lesson02.pdf L02/lesson02.pdf
+	@ cp -v -u $(TEXDIR)/lesson03.pdf L03/
 	@ echo "CP lessons, remote.."
 	@ cp -v -u -r L?? $(DIR)
 	@ #echo  cp -v -u -r `ls L??| grep -v ".ipynb" | grep -v "__pychache__"` $(DIR)
