@@ -1,3 +1,5 @@
+# F21
+
 DAV = /mnt/Dav/ITMAL
 DIR = $(DAV)/Fildeling
 TEXDIR=/home/cef/ASE/ITMAL/TeX
@@ -45,4 +47,5 @@ clean: cleanremote
 	@ find . -iname '.ipynb_checkpoints' -exec rm -rf {} \; || true
 	@ find . -iname '__pycache__' -exec rm -rf {} \; || true
 	@ find . -iname '*~' -exec rm -rf {} \; || true
+
 		
