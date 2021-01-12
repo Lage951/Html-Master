@@ -4,6 +4,7 @@ DAV = /mnt/Dav/ITMAL
 DIR = $(DAV)/Fildeling
 TEXDIR=/home/cef/ASE/ITMAL/TeX
 EXCLUDEPAT=--exclude='*~' --exclude='.ipynb*' --exclude='__pycache__'
+VERBOSE=
 
 pub: clean
 	@ echo "CP lessons, local.."
@@ -18,15 +19,16 @@ pub: clean
 	@ echo "CP libitmal, remote.."
 	@ cp -v -u -r Etc libitmal $(DIR)
 
-update:
-	@ git status
-	@ echo -n "Server itu git pull.." && (ssh itu "cd F20_itmal && git pull") || echo "failed"
-	@ echo "ALL OK"
+#update:
+#	@ git status
+#	@ echo -n "Server itu git pull.." && (ssh itu "cd F20_itmal && git pull") || echo "failed"
+#	@ echo "ALL OK"
 
 check:
-	@ grep itundervisining L??/* -R || echo "OK, no itundervisining.."
+	@ grep itundervisining     L??/* -R || echo "OK, no 'itundervisining'.."   $(VERBOSE)
+	@ grep "BB-Cou-UUVA-91831" L??/* -R || echo "OK, no 'BB-Cou-UUVA-91831'.." $(VERBOSE)
 	@#grep "blackboard.au.dk" L??/* -R	
-	grep "p\." L02/*.ipynb -R
+	@#grep "p\." L01/*.ipynb -R
 
 hasDAV:
 	@ cat /proc/mounts | grep $(DAV) >/dev/null || mount $(DAV) 
@@ -47,5 +49,4 @@ clean: cleanremote
 	@ find . -iname '.ipynb_checkpoints' -exec rm -rf {} \; || true
 	@ find . -iname '__pycache__' -exec rm -rf {} \; || true
 	@ find . -iname '*~' -exec rm -rf {} \; || true
-
 		
