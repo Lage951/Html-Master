@@ -11,8 +11,8 @@ pub: clean
 	@ #cp -v -u $(TEXDIR)/lesson01.pdf L01/lesson01.pdf
 	@ #cp -v -u $(TEXDIR)/lesson02.pdf L02
 	@ #cp -v -u $(TEXDIR)/lesson03.pdf L03/
-	@ cp -v -u $(TEXDIR)/lesson07.pdf L07/
-	@ #cp -v -u $(TEXDIR)/lesson08.pdf L08/
+	@ #cp -v -u $(TEXDIR)/lesson07.pdf L07/
+	@ cp -v -u $(TEXDIR)/lesson08.pdf L08/
 	@ echo "CP lessons, remote.."
 	@ cp -v -u -r L?? $(DIR)
 	@ #echo  cp -v -u -r `ls L??| grep -v ".ipynb" | grep -v "__pychache__"` $(DIR)
