@@ -6,6 +6,9 @@ TEXDIR=/home/cef/ASE/ITMAL/TeX
 EXCLUDEPAT=--exclude='*~' --exclude='.ipynb*' --exclude='__pycache__'
 VERBOSE=
 
+tree:
+	Etc/MkHtmlFileTree.py
+
 pub: clean
 	@ echo "CP lessons, local.."
 	@ #cp -v -u $(TEXDIR)/lesson01.pdf L01/lesson01.pdf
