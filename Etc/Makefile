@@ -9,7 +9,8 @@ test:
 	@ cd .. && Etc/$(F) -plain
 
 plan:
-	@ $(P) 
+	@ $(P)
+	diff -dw index.html plan.ref
 	
 itmal:
 	@ rm -f index.html
