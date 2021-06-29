@@ -1,0 +1,73 @@
+COURSE
+LESSON L01
+
+\h5{Formål}
+
+Opsamlingslektion: vi tager et genblik på \em{§ 2 "End-to-End Machine Learning
+Project"}, og samler op på dette brede kapitel.
+
+Vi går først igang med at gennemgå \bf{K-fold Cross-validation} (eller K-fold CV),
+for derefter at bruge "The Map" til at komme igennem alle grundliggende
+koncepter i § 2.
+
+Da alle kerne-koncepter i supervised ML nu kendes, kan det hele konkret
+sammensættes i en samlet processerings-pipeline.  Programmerings-teknisk ser vi
+derfor til sidst på Scikit-learns Pipelines.
+
+\itemize{
+	\item{\link{Oversigtskortet for Supervised learning:, }
+}
+
+LESSON L02
+
+REFS 
+	[1] sdf
+	[2] sfd zdf
+END
+
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body style="font-family: Lato;font-size: 12pt;color: #494c4e;">
+<h5>Form&aring;l</h5>
+<p>Opsamlingslektion: vi tager et genblik p&aring; <em>&sect; 2 <em>"End-to-End Machine Learning Project",</em></em> og samler op p&aring; dette brede kapitel.</p>
+<p>Vi g&aring;r f&oslash;rst igang med at gennemg&aring; <em><strong>K-fold Cross-validation</strong></em> (eller K-fold CV), for derefter at bruge "The Map" til at komme igennem alle grundliggende koncepter i <em>&sect; 2. </em><em><br /></em></p>
+<p>Da alle kerne-koncepter i supervised ML nu kendes, kan det hele konkret sammens&aelig;ttes i en samlet processerings-<em><strong>pipeline</strong>.</em> Programmerings-teknisk ser vi derfor til sidst p&aring; Scikit-learns Pipelines.</p>
+<ul>
+<li><a rel="noopener" href="https://blackboard.au.dk/bbcswebdav/pid-2931054-dt-content-rid-10655397_1/xid-10655397_1" target="_blank" title="ml_supervised_map.pdf">Oversigtskortet for Supervised learning</a>:</li>
+</ul>
+<p style="margin-left: 60px;"><a rel="noopener" href="https://blackboard.au.dk/bbcswebdav/pid-2931054-dt-content-rid-10655397_1/xid-10655397_1" target="_blank" title="ml_supervised_map.pdf"><img src="https://blackboard.au.dk/bbcswebdav/pid-2931054-dt-content-rid-10655394_1/xid-10655394_1" alt="ml_supervised_map.pdf" title="ml_supervised_map.pdf" width="512" height="499" /></a></p>
+<h5>Indhold</h5>
+<ul>
+<li>Generel genl&aelig;sning og repetition af <em>&sect; 2</em></li>
+<li>K-fold Cross-validation</li>
+<li>Pipelines<em></em></li>
+</ul>
+<h5>Litteratur</h5>
+<p style="margin-left: 30px;"><em>Genl&aelig;s: &sect; 2 <em>"End-to-End Machine Learning Project" </em></em>[HOML]</p>
+<p style="margin-left: 60px;">(eksklusiv <em>"Create the Workspace" </em>og <em>"Download the Data")</em></p>
+<p style="margin-left: 30px;"><span style="color: #800000;"><span style="font-family: courier new, courier; color: #000000;"><a rel="noopener" href="https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.KFold.html?highlight=k%20fold#sklearn.model_selection.KFold" target="_blank"><span style="color: #000000;">Scikit's dokumentations-side vdr. k-fold CV</span></a></span><em> </em></span></p>
+<h6>Forberedelse inden lektionen</h6>
+<ul>
+<li>L&aelig;s litteraturen.<em><br /></em></li>
+</ul>
+<h6>P&aring; klassen</h6>
+<ol>
+<li><span style="text-decoration: line-through;">'</span>Sp&oslash;rge-minutter'</li>
+<li>Almindelig forel&aelig;sning
+<ul>
+<li>ekstra materiale: <span style="font-family: courier new, courier;"><a rel="noopener" href="https://blackboard.au.dk/bbcswebdav/pid-2931054-dt-content-rid-10655399_1/xid-10655399_1" target="_blank">k-fold_demo.ipynb</a></span></li>
+</ul>
+</li>
+<li>Exercise: <span style="font-family: courier new, courier;"><a rel="noopener" href="https://blackboard.au.dk/bbcswebdav/pid-2931054-dt-content-rid-10655389_1/xid-10655389_1" target="_blank">pipelines.ipynb</a> <br /></span>
+<ul>
+<li><span style="color: #800000;"><span style="color: #000000;">Data til pipelines opgaven (b&oslash;r lige i L07/Data/</span>)</span>: <span style="font-family: courier new, courier;"><a rel="noopener" href="https://blackboard.au.dk/bbcswebdav/pid-2931054-dt-content-rid-10656401_1/xid-10656401_1" class="event_clickFileName" target="_blank">itmal_l01_data.pkl</a> </span></li>
+<li>(Du har allerede denne data-fil, hvis du pull'er fra GITMAL)</li>
+</ul>
+</li>
+</ol>
+<h5>Slides</h5>
+<p style="margin-left: 30px;"><span style="font-family: courier new, courier;"><a rel="noopener" href="https://blackboard.au.dk/bbcswebdav/pid-2931054-dt-content-rid-10655390_1/xid-10655390_1" target="_blank">lesson03.pdf</a></span></p>
+</body>
+</html>

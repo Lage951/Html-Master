@@ -3,9 +3,9 @@
 from Utils.dbg import 	DiagStdErr, PrettyPrintTracebackDiagnostics
 from sys import stdout, stderr
 
-def isStr(t):
+def isStr(t, checknonempty=False):
 	assert isinstance(t, str)
-	#assert len(t)>0
+	#assert (not checknonempty) or (len(t)>0)
 	return t
 
 def isBool(t):
@@ -25,6 +25,23 @@ def isTuple(t, expectedlen=2):
 	assert isinstance(t, tuple)
 	assert len(t)==isInt(expectedlen, 1)
 	return t
+
+def Check(expr, msg):
+	isStr(msg)
+	if not expr:
+		Err("EXPRESSION NOT FULLFILLED: " + msg)
+
+def Trim(s):
+	s = isStr(s).replace("\t"," ")
+	s = s.strip()
+	return s
+
+def Dbg(verbose, msg, level=1):
+	isInt(verbose)
+	isStr(msg)
+	isInt(level)
+	if level <= verbose:
+		print(msg, file=stderr)
 
 def Print(msg, outputfile):
 	assert isinstance(msg, str)
@@ -47,13 +64,6 @@ def LoadText(filename, timeout=4000, split=True):
 		if split:
 			c= c.split("\n")
 		return c
-
-def Dbg(verbose, msg, level=1):
-	isInt(verbose)
-	isStr(msg)
-	isInt(level)
-	if level <= verbose:
-		print(msg, file=stderr)
 
 def HandleException(ex):
 	try:
