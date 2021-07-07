@@ -4,25 +4,29 @@ from Utils.dbg import 	DiagStdErr, PrettyPrintTracebackDiagnostics
 from sys import stdout, stderr
 
 def isStr(t, checknonempty=False):
-	assert isinstance(t, str)
+	assert isinstance(t, str),  f"exected string but got type='{type(t)}'"
 	#assert (not checknonempty) or (len(t)>0)
 	return t
 
 def isBool(t):
-	assert isinstance(t, bool)
+	assert isinstance(t, bool), f"exected bool but got type='{type(t)}'"
 	return t
 
 def isInt(t, minval=0):
-	assert isinstance(t, int)
+	assert isinstance(t, int), f"exected int but got type='{type(t)}'"
 	assert t>=minval
 	return t
 	
 def isList(t):
-	assert isinstance(t, list)
+	assert isinstance(t, list), f"exected list but got type='{type(t)}'"
+	return t
+
+def isDict(t):
+	assert isinstance(t, dict), f"exected dict but got type='{type(t)}'"
 	return t
 
 def isTuple(t, expectedlen=2):
-	assert isinstance(t, tuple)
+	assert isinstance(t, tuple),f"exected tuple but got type='{type(t)}'"
 	assert len(t)==isInt(expectedlen, 1)
 	return t
 
@@ -44,7 +48,7 @@ def Dbg(verbose, msg, level=1):
 		print(msg, file=stderr)
 
 def Print(msg, outputfile):
-	assert isinstance(msg, str)
+	assert isStr(msg)
 	#assert outputfile is None or isinstance(outputfile, _io.TextIOWrapper)
 	#print(msg, file=(stdout if outputfile is None else outputfile))
 	print(msg, file=outputfile)

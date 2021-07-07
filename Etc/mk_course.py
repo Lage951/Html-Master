@@ -7,7 +7,7 @@ from Utils.mkutils import *
 from sys import argv
 from argparse import ArgumentParser
 from html import escape
- 
+
 if __name__ == '__main__':
 	
 	class Cmd:
@@ -168,6 +168,30 @@ if __name__ == '__main__':
 		return txt
 		
 	def ParseStructure(courselist):
+
+		def ParseRefs(refs):
+			r = {}
+			for i in refs.split("\n"):					
+				if len(isStr(i).strip())>0:						
+					n = isStr(i).find(']')
+					
+					if n<=0 or i[0]!='[':
+						ERR(f"refs need to be of the form '[key] value', got='{i}'")
+					
+					key = i[0:n+1].strip()
+					val = i[n+1:].strip()
+					
+					if len(key)==0:
+						ERR(f"empty key in ref element='{i}'")
+					if len(val)==0:
+						ERR(f"empty value in ref element='{i}'")
+						
+					Dbg(verbose, f"    ParseRef(): found '{key}' => '{val}'", 2)
+					assert not r.get(key)
+					r[key]=val
+				
+			return r
+
 		N = len(isList(courselist))
 		
 		if N<=0:
@@ -193,30 +217,71 @@ if __name__ == '__main__':
 			else:
 				curr.append(t)
 		
-		html = "" 
+		htmlstructure = {}
+		
 		for i in s:
 			h = ParseToHtml(s[i])
-			html += h	
-			Dbg(verbose, f"{Col('YELLOW')}found '{i}' {ColEnd()} => '{h}'", 2)
+			assert not htmlstructure.get(i)
+			htmlstructure[i] = h	
+			Dbg(verbose, f"  {Col('YELLOW')}FOUND '{i}' {ColEnd()} {' => ' + h if verbose>2 else ''}", 2)
+
+		refs = {} 
+		if isDict(htmlstructure).get("REFS"):
+			r = htmlstructure["REFS"]
+			del htmlstructure["REFS"]			
+			refs = ParseRefs(r)
 		
-		return html
+		for i in htmlstructure:
+			html = isStr(htmlstructure[isStr(i)])
+			for key in refs:
+				assert isStr(key)[0]=='[' and key[-1]==']'			
+				val = isStr(refs[key])
+				html = html.replace(key, val)			
+			htmlstructure[i] = isStr(html)
+					
+		return htmlstructure
 						
 	try:
 		def HtmlEncode(s):
 			return escape(isStr(s))    
 
-		f = "some { test \\call(a, b) fun end } end"
+		def MkHtml(htmlstructure, addhtmlheaders, filenamebase):
+			
+			def MkHtmlPage(htmlcontent):
+				assert isStr(htmlcontent).find("DOCTYPE")<0 and htmlcontent.find("<html>")<=0 and htmlcontent.find("<body>")<=0
+				#bodystyle = "style='font-family: Verdana;font-size: 12pt;color: #494c4e;'"
+				bodystyle = "style='font-family: times new roman, times, serif;font-size: 13pt;color: #424222;'"
+				return f"<!DOCTYPE html>\n<html>\n<body {bodystyle}>\n" + htmlcontent + "\n</body>\n</html>"
+						
+				
+							
+			for i in htmlstructure:
+				assert isStr(i).find("LESSON")==0
+				
+				sublesson = i[6:].strip()
+				if len(sublesson)<=0:
+					ERR("sublesson name empty (or just whitespace)")
+				
+				outputfilename = isStr(filenamebase) + sublesson + ".html" 
+				htmlcontent = isStr(htmlstructure[i]) 
+				
+				Dbg(verbose, f"  {Col('YELLOW')}WRITING '{i}' => '{outputfilename}'{ColEnd()}", 1)
+				html = MkHtmlPage(htmlcontent) if isBool(addhtmlheaders) else htmlcontentl 
+				
+				with Outputfile(outputfilename) as f:
+					f.write(html)				
+							
+		f = "some ( test \\call{a, b} fun ) end"
 		assert f==HtmlEncode(f)
 		
 		verbose = 0
 		coursefile = "course.txt"
-		outputfile= None
 	
 		parser = ArgumentParser(prog=argv[0], epilog="version 0.1")
 		parser.add_argument("-v", default=verbose,    action="count",      help= "increase output verbosity, default={verbose}\n")
 		parser.add_argument("-t", default=False,      action="store_true", help=f"generate simple html (witouth <html> <body> etc tags), default=False\n")
 		parser.add_argument("-p", default=coursefile, type=str,            help=f"coursefile, default='{coursefile}'\n")
-		parser.add_argument("-o", default=outputfile, type=str,            help=f"outputfilt, default='{outputfile}\n")
+		parser.add_argument("-o", default="",         type=str,            help=f"outputfilt, default=''\n")
 		args = parser.parse_args()
 				
 		verbose = isInt(args.v)				
@@ -224,19 +289,9 @@ if __name__ == '__main__':
 		Dbg(verbose, f"{Col('PURPLE')}GENERATING course file '{coursefile}'..{ColEnd()}")
 
 		htmlencoded = [HtmlEncode(i) for i in LoadText(coursefile)]
-		html = ParseStructure(htmlencoded)				
-		#html = html.replace("\n\n","<br>\n")
+		htmlstructure = ParseStructure(htmlencoded)				
 	
-		if not args.t:
-			bodystyle = "style='font-family: Verdana;font-size: 12pt;color: #494c4e;'"
-			bodystyle = "style='font-family: times new roman, times, serif;font-size: 13pt;color: #424222;'"
-			html = f"<!DOCTYPE html>\n<html>\n<body {bodystyle}>\n" + html + "\n</body>\n</html>"
-		
-		if args.o is None or len(args.o)<=0:
-			print(html)
-		else:
-			with Outputfile(args.o) as f:
-				f.write(html)		
+		MkHtml(htmlstructure, not args.t, args.o)		
 		
 		Dbg(verbose, f"{Col('PURPLE')}DONE{ColEnd()}")
 		

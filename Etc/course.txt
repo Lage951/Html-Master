@@ -132,15 +132,13 @@ kick-start.}
 \h5{Slides}
 
 \px{
-	\link{lesso01.pdf,http://itundervisning/lesson01.pdf}
+	\link{lesso01.pdf,[ITU]/L01.pdf}
 }
 
-END
-
-
 REFS 
-	[1] sdf
+	[ITU]http://itundervisning
 	[2] sfd zdf
+END
 
 
 <!DOCTYPE html>

@@ -1,7 +1,7 @@
 PYCOURSE=mk_course.py
 
 all:
-	$(PYCOURSE) -v -o out.html
+	$(PYCOURSE) -v 
 
 edit:
 	joe $(PYCOURSE)
@@ -52,4 +52,4 @@ edit:
 #	sudo tail -f /var/log/apache2/error.log
 
 clean:
-	@ rm -f index.html
+	@ rm -f out.html L??.html
