@@ -1,14 +1,14 @@
 PYCOURSE=mk_course.py
 
 all:
-	$(PYCOURSE) -v 
+	$(PYCOURSE) -v -o ../Html/
 
 edit:
 	joe $(PYCOURSE)
 
 sync:
-	scp L??.html si:Itmal_E21/
-	ssh si "cd Itmal_E21 && git pull"	
+	cd .. && scp -r Html si:ITMAL_E21/
+	ssh si "cd ITMAL_E21 && git pull"	
 	
 clean:
 	@ rm -f out.html L??.html

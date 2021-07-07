@@ -1,5 +1,5 @@
 COURSE
-LESSON L01
+LESSON L0X
 
 \h5{Formål}
 
@@ -19,7 +19,7 @@ derfor til sidst på Scikit-learns Pipelines.
 	\li{næste item}
 }
 
-LESSON L02
+LESSON L01
 
 \h1{Introduktion}
 
@@ -132,12 +132,12 @@ kick-start.}
 \h5{Slides}
 
 \px{
-	\link{lesso01.pdf,[ITU]/L01.pdf}
+	\link{,[GITMAL]/L01/lesson01.pdf}
 }
 
 REFS 
-	[ITU]http://itundervisning
-	[2] sfd zdf
+	[ITU]    https://itundervisning.ase.au.dk/ITMAL_E21/Html
+	[GITMAL] https://itundervisning.ase.au.dk/ITMAL_E21
 END
 
 

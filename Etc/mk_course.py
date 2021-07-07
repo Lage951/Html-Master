@@ -78,7 +78,24 @@ if __name__ == '__main__':
 			elif c=="link":
 				args = a.split(",")
 				assert len(args)==2
-				v = f"{left}span style='font-family: courier new, courier;'{right}{left}a href='{args[1]}'{right}{args[0]}{left}/a{right}{left}/span{right}"
+				
+				arg0 = isStr(args[0])
+				arg1 = isStr(args[1])
+				
+				if len(arg1)==0:
+					ERR("need second link argument, currently empty")
+				
+				if len(arg0)==0:
+					n = arg1.rfind('/')
+					if n<=0:
+						ERR(f"if first argument to link is empty, second arg='{arg1}' must contain at least one slash '/'")
+					
+					arg0 = arg1[n+1:]
+					if len(arg0)==0:
+						ERR("second arg still empty, this was not expected")
+				
+										
+				v = f"{left}span style='font-family: courier new, courier;'{right}{left}a href='{arg1}'{right}{arg0}{left}/a{right}{left}/span{right}"
 			elif c=="px":
 				c = "p"
 				v = f"{left}{c} style='margin-left: 30px'{right}{a}{left}/{c}{right}"
@@ -251,9 +268,8 @@ if __name__ == '__main__':
 				assert isStr(htmlcontent).find("DOCTYPE")<0 and htmlcontent.find("<html>")<=0 and htmlcontent.find("<body>")<=0
 				#bodystyle = "style='font-family: Verdana;font-size: 12pt;color: #494c4e;'"
 				bodystyle = "style='font-family: times new roman, times, serif;font-size: 13pt;color: #424222;'"
-				return f"<!DOCTYPE html>\n<html>\n<body {bodystyle}>\n" + htmlcontent + "\n</body>\n</html>"
-						
-				
+				meta = "<meta http-equiv='Content-Type' content='text/html; charset=utf-8'/>"
+				return f"<!DOCTYPE html>\n<html>\n{meta}\n<body {bodystyle}>\n" + htmlcontent + "\n</body>\n</html>"										
 							
 			for i in htmlstructure:
 				assert isStr(i).find("LESSON")==0
