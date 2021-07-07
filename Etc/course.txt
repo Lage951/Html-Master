@@ -3,7 +3,7 @@ LESSON L01
 
 \h5{Formål}
 
-Opsamlingslektion: vi tager et genblik på \em{§ 2 "End-to-End Machine Learning
+Opsamlingslektion <>: vi tager et genblik på \em{§ 2 "End-to-End Machine Learning
 Project"}, og samler op på dette brede kapitel.
 
 Vi går først igang med at gennemgå \bf{K-fold Cross-validation} (eller K-fold CV),
@@ -14,16 +14,134 @@ Da alle kerne-koncepter i supervised ML nu kendes, kan det hele konkret
 sammensættes i en samlet processerings-pipeline.  Programmerings-teknisk ser vi
 derfor til sidst på Scikit-learns Pipelines.
 
-\itemize{
-	\item{\link{Oversigtskortet for Supervised learning:, }
+\ul{
+	\li{\link{Oversigtskortet< for Supervised learning:,https://ing.dk}}
+	\li{næste item}
 }
 
 LESSON L02
 
+\h1{Introduktion}
+
+\h2{Formål}
+
+Denne lektion har til formål at give indledende information om kurset.  Dvs. 
+at vi præsentere de formelle rammer vdr.
+
+\ul{
+    \li{ITMAL gruppetilmelding,}
+    \li{opgavesæt og journalafleveringer,}
+    \li{eksamensform,}
+    \li{Blackboard opbygning og fildeling.}
+}
+
+\p{Herefter vil vi præsentere machine learning [ML] som koncept overordnet, og
+kort ridse lektionsplanen for kurset op.}
+
+
+\p{Software til brug for kurset introduceres og skal installeres på jeres PC'er,
+se 'L00: Forberedelse' for en installationsguide.  Vi anvender python
+distributionen anaconda og i henter og installere den sidste nye version.  På
+klassen vil der blive givet en kort demo af jupyter notebooks, dvs.  et at de
+udviklingsværktøjer til python vi vil bruge.}
+
+\p{Vi kigge på Scikit-learn, det primære eksterne web-sted vi vil bruge i kurset,
+samt forsøge os med et par små programmer i python.}
+
+\p{Til slut kigger vi på supervised learning og at kunne predicte
+'life-satisfactory' via demo projektet i [HOML], og vi ser på pythons modul- og
+klassebegreber (modules, classes), så vi kan genbruge kode i senere
+lektioner..}
+
+\h2{Indhold}
+
+\ul{
+    \li{Formelle rammer vdr. kurset.}
+    \li{Eksamensform, godkendelsesfag via:}
+    \ul{
+       	\li{et sæt obligatoriske skriftlige gruppe-journaler med afleveringsdeadlines,}
+       	\li{en poster-session, med aflevering af poster og mundtlig præsentation af poster,}
+       	\li{en mundtlig gennemgang af den sidste journal med alle medlemmer i ITMAL gruppen, samt evaluering af hver gruppemedlems bidrag.}
+		\li{=> Endelig godkendelse af kurset sker på en samlet vurdering af de tre punkter ovenfor.}
+	}
+    \li{Læringsmål.}
+    \li{Litteratur.}
+    \li{Intro til software, der bruges i ITMAL:}
+    \ul{
+       	\li{python generelt (link til mini python intro: demo.ipynb Click for more options)}
+		\li{anaconda python distribution:}
+		\ul{
+           	\li{jupyter notebooks,}
+           	\li{spyder developer environment.}
+		}
+		\li{Scikit-learn,}
+		\li{opgave med python modul og klasser.}
+	}
+    \li{Intro til machine learning:}
+    \ul{
+        \li{Supervised learning (regression): 'life-satisfactory' [HOML].}
+	}
+}
+
+\h2{Litteratur}
+
+	\px{§ Preface, p. xv [HOML] (eksklusiv fra Using Code Examples...og resten af intro	kapitlet)}
+
+	\px{§ 1 The machine Learning Landscape [HOML]}
+
+	\px{§ 2 End-to-End Machine Learning Project [HOML]}
+
+\p{Dette kapitel indeholder mange nye koncepter og en del kode.  Vi vender
+senere tilbage til kapitlet senere, så læs det og prøv at danne dig et overblik
+(dvs.  nærlæs ikke).}
+
+\p{Når du har installeret anaconda (se L00):}
+
+	\px{§ Scientific Python tutorials: NumPy}
+	
+	\px{tools_numpy.ipynb [GITHOML]}
+
+\p{Læs blot, hvad du finder relevant så som 'iteration', men spring blot over
+emner, der er for komplekse eller for 'pythoniske', så som 'Stacking arrays' og
+'QR decomposition'.}
+
+\h2{Opgaver}
+
+\p{Forberedelse inden lektionen}
+
+\ul{
+	\li{Meld dig ind i en ITMAL working-group [G].}
+	\li{Følg installation processen givet i lektion nul ('L00: Forberedelse').}
+	\li{Læs pensum.}
+}
+
+\h5{På klassen}
+
+\ul{
+	\li{Diskussion om ML (indlejret i forelæsningen).}
+	\li{Opgave: intro.ipynb}
+	\li{HUSK DATA til intro'en (download og udpak så "dataset" dir ligger sammen med intro.ipynb): datasets.zip Click for more options}
+	\li{Opgave: modules_and_classes.ipynb}
+}
+
+\h5{Optionelle opgaver}
+
+\p{Se 'Ekstra materiale til forberedelse' i lektion 'nul', specielt hvis du har brug for en python og lineær algebra
+kick-start.}
+
+\h5{Slides}
+
+\px{
+	\link{lesso01.pdf,http://itundervisning/lesson01.pdf}
+}
+
+END
+
+
 REFS 
 	[1] sdf
 	[2] sfd zdf
-END
+
 
 <!DOCTYPE html>
 <html>

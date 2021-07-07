@@ -62,7 +62,7 @@ def LoadText(filename, timeout=4000, split=True):
 	with open(isStr(filename), 'r', timeout) as f:
 		c = f.read()
 		if split:
-			c= c.split("\n")
+			c = c.split("\n")
 		return c
 
 def HandleException(ex):
