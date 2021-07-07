@@ -5,7 +5,13 @@ all:
 
 edit:
 	joe $(PYCOURSE)
+
+sync:
+	scp L??.html si:Itmal_E21/
+	ssh si "cd Itmal_E21 && git pull"	
 	
+clean:
+	@ rm -f out.html L??.html
 
 #JSFILES = $(wildcard JS/*.js)
 #PYFILE  = $(wildcard Py/*.py) $(wildcard Py/Utils/*.py)
@@ -51,5 +57,3 @@ edit:
 #ae:
 #	sudo tail -f /var/log/apache2/error.log
 
-clean:
-	@ rm -f out.html L??.html
