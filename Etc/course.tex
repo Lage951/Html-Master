@@ -1,23 +1,87 @@
 COURSE
-LESSON L0X
+LESSON L00
+
+\h4{Forberedelse inden kursusstart}
 
 \h5{Formål}
 
-Opsamlingslektion <>: vi tager et genblik på \em{§ 2 "End-to-End Machine Learning
-Project"}, og samler op på dette brede kapitel.
+\p{Gruppe tilmelding: tilmeld dig til en ITMAL gruppe (se Blackboard link
+ovenfor).}
 
-Vi går først igang med at gennemgå \bf{K-fold Cross-validation} (eller K-fold CV),
-for derefter at bruge "The Map" til at komme igennem alle grundliggende
-koncepter i § 2.
+\p{Installation: de obligatoriske værktøjer til ITMAL inden kursusstart (dvs.
+L01).}
 
-Da alle kerne-koncepter i supervised ML nu kendes, kan det hele konkret
-sammensættes i en samlet processerings-pipeline.  Programmerings-teknisk ser vi
-derfor til sidst på Scikit-learns Pipelines.
+\p{Forberedelse til L01: Hent GIT repositories til litteraturen [GITHOML], prøv at
+kører et par Jupyter Notebooks [JPYNB], og læs mere om pythons NumPy
+bibliotek.}
+
+\p{Ekstra materiale til forberedelse: optionelle python opgaver, hvis du vil sætte
+dig mere ind i sproget.}
+
+\h5{Installation}
 
 \ul{
-	\li{\link{Oversigtskortet< for Supervised learning:,https://ing.dk}}
-	\li{næste item}
+	\li{Installer Anaconda på din PC:}
+	\ul{
+	\li{\link{www.anaconda.com/products/individual,https://www.anaconda.com/products/individual}}
+		\li{vælg 'Download' (downloader direkte for Windows),}
+		\li{eller vælg Linux eller Mac, 32 eller 64 bit (dit valg),} 
+		\li{nværende nyeste Anaconda3 version er \bf{2021.05}}
+	}
+	\ul{
+		\li{ALTERNATIV 1:}
+		\ul{
+			\li{brug vores ASE GPU Cluster som jupyter hub server,}
+			\li{se info in Kursusinfo | GPU Cluster.}
+		}
+		\li{ALTERNATIV 2:}
+		\ul{
+			\li{Lav en konto på Google's Colaboratory,}
+			\li{\link{colab.research.google.co, https://colab.research.google.com}}
+		}
+	}
+	\li{Test at du kan køre jupyter notebooks [JYPYNB] fra [GITHOML], prøv f.eks.:}
+	\ul{
+		\li{index.ipynb}
+	}
 }
+
+\h5{Forberedelse til Lektion 01}
+
+\ul{
+	\li{Læs kursusinfo via Blackboard-linket ovenfor.
+	\li{Få fat i litteratur til kurset.
+	\li{Clone [GITHOML] til din egen PC, se how-to under kursusinfo | kursusforkortelser.
+	\li{Skim disse tutorials igennem:}
+	\ul{
+		\li{§ Scientific Python tutorials: NumPy}
+		\li{tools_numpy.ipynb [GITHOML]}
+}
+
+\p{Læs blot, hvad du finder relevant så som 'iteration', men spring blot over
+emner, der er for komplekse eller for 'pythoniske', så som 'Stacking arrays' og
+'QR decomposition'.  Note vdr.  kildekritik og 'informations-overload'}
+
+\p{Vi vil i dette kurset tit kunne blive overvældet af for meget ekstern
+information (informations-overload), så du skal danne dig en metode til at
+kunne selektere og navigere i materialet.}
+
+\p{Vi vil primært holde os til [HOML], [GITHOML] og Scikit-learn, med en note
+om, at nettet flyder over med ekstra (til tider ubrugelig/ufiltreret)
+information: en kildekritiks holdning er vigtig!  Ekstra materiale til
+forberedelse}
+
+Hvis du har brug for at opfriske dit lineær algebra matematik eller er helt ny
+til python, så kan du f.eks.  læse/skimme følgende notebooks, i prioriteret
+rækkefølge:
+
+	   [OPTIONAL] Python og vectors/matrices math: math_linear_algebra.ipynb [GITHOML]
+	   [OPTIONAL] Python og grafisk plotting: tools_matplotlib.ipynb [GITHOML]
+	   [OPTIONAL] Ekstra, Python og dataværktøjet 'Pandas' : tools_pandas.ipynb [GITHOML]
+	   [OPTIONAL] Ekstra, mest for de matematik intereserede:  math_differential_calculus.ipynb [GITHOML]
+
+\p{Pandas er et meget populært databehandlingsværktøj, men vi kommer ikke til at
+bruge Pandas i dette kursus.}
 
 LESSON L01
 
@@ -29,10 +93,10 @@ Denne lektion har til formål at give indledende information om kurset.  Dvs.
 at vi præsentere de formelle rammer vdr.
 
 \ul{
-    \li{ITMAL gruppetilmelding,}
-    \li{opgavesæt og journalafleveringer,}
-    \li{eksamensform,}
-    \li{Blackboard opbygning og fildeling.}
+	   \li{ITMAL gruppetilmelding,}
+	   \li{opgavesæt og journalafleveringer,}
+	   \li{eksamensform,}
+	   \li{Blackboard opbygning og fildeling.}
 }
 
 \p{Herefter vil vi præsentere machine learning [ML] som koncept overordnet, og
@@ -56,30 +120,30 @@ lektioner..}
 \h2{Indhold}
 
 \ul{
-    \li{Formelle rammer vdr. kurset.}
-    \li{Eksamensform, godkendelsesfag via:}
-    \ul{
-       	\li{et sæt obligatoriske skriftlige gruppe-journaler med afleveringsdeadlines,}
-       	\li{en poster-session, med aflevering af poster og mundtlig præsentation af poster,}
-       	\li{en mundtlig gennemgang af den sidste journal med alle medlemmer i ITMAL gruppen, samt evaluering af hver gruppemedlems bidrag.}
+	   \li{Formelle rammer vdr. kurset.}
+	   \li{Eksamensform, godkendelsesfag via:}
+	   \ul{
+	      	\li{et sæt obligatoriske skriftlige gruppe-journaler med afleveringsdeadlines,}
+	      	\li{en poster-session, med aflevering af poster og mundtlig præsentation af poster,}
+	      	\li{en mundtlig gennemgang af den sidste journal med alle medlemmer i ITMAL gruppen, samt evaluering af hver gruppemedlems bidrag.}
 		\li{=> Endelig godkendelse af kurset sker på en samlet vurdering af de tre punkter ovenfor.}
 	}
-    \li{Læringsmål.}
-    \li{Litteratur.}
-    \li{Intro til software, der bruges i ITMAL:}
-    \ul{
-       	\li{python generelt (link til mini python intro: demo.ipynb Click for more options)}
+	   \li{Læringsmål.}
+	   \li{Litteratur.}
+	   \li{Intro til software, der bruges i ITMAL:}
+	   \ul{
+	      	\li{python generelt (link til mini python intro: demo.ipynb Click for more options)}
 		\li{anaconda python distribution:}
 		\ul{
-           	\li{jupyter notebooks,}
-           	\li{spyder developer environment.}
+	          	\li{jupyter notebooks,}
+	          	\li{spyder developer environment.}
 		}
 		\li{Scikit-learn,}
 		\li{opgave med python modul og klasser.}
 	}
-    \li{Intro til machine learning:}
-    \ul{
-        \li{Supervised learning (regression): 'life-satisfactory' [HOML].}
+	   \li{Intro til machine learning:}
+	   \ul{
+	       \li{Supervised learning (regression): 'life-satisfactory' [HOML].}
 	}
 }
 

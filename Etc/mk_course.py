@@ -291,17 +291,18 @@ if __name__ == '__main__':
 		assert f==HtmlEncode(f)
 		
 		verbose = 0
-		coursefile = "course.txt"
+		coursefile = "course.tex"
 	
-		parser = ArgumentParser(prog=argv[0], epilog="version 0.1")
-		parser.add_argument("-v", default=verbose,    action="count",      help= "increase output verbosity, default={verbose}\n")
-		parser.add_argument("-t", default=False,      action="store_true", help=f"generate simple html (witouth <html> <body> etc tags), default=False\n")
-		parser.add_argument("-p", default=coursefile, type=str,            help=f"coursefile, default='{coursefile}'\n")
-		parser.add_argument("-o", default="",         type=str,            help=f"outputfilt, default=''\n")
+		parser = ArgumentParser(prog=argv[0], epilog="version 0.2")
+		parser.add_argument("-v", default=verbose,     action="count",      help= "increase output verbosity, default={verbose}\n")
+		parser.add_argument("-t", default=False,       action="store_true", help=f"generate simple html (witouth <html> <body> etc tags), default=False\n")
+		parser.add_argument("-o", default="",          type=str,            help=f"outputfilt, default=''\n")
+		parser.add_argument("-c", default=coursefile,  type=str,            help="cause file to be parsed, default='{coursefile}'\n")
+		
 		args = parser.parse_args()
 				
 		verbose = isInt(args.v)				
-		coursefile = args.p
+		coursefile = isStr(args.c)
 		Dbg(verbose, f"{Col('PURPLE')}GENERATING course file '{coursefile}'..{ColEnd()}")
 
 		htmlencoded = [HtmlEncode(i) for i in LoadText(coursefile)]
