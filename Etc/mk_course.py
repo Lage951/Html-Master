@@ -273,7 +273,7 @@ if __name__ == '__main__':
 				curr = []
 				assert not s.get(t)
 				s[t] = curr
-			elif t=="REFS":
+			elif t=="DEFS":
 				curr = []
 				assert not s.get(t)
 				s[t] = curr				
@@ -289,9 +289,9 @@ if __name__ == '__main__':
 			Dbg(verbose, f"  {Col('YELLOW')}FOUND '{i}' {ColEnd()} {' => ' + h if verbose>2 else ''}", 2)
 
 		refs = {} 
-		if isDict(htmlstructure).get("REFS"):
-			r = unescape(htmlstructure["REFS"])
-			del htmlstructure["REFS"]			
+		if isDict(htmlstructure).get("DEFS"):
+			r = unescape(htmlstructure["DEFS"])
+			del htmlstructure["DEFS"]			
 			refs = ParseRefs(r)
 		
 		for i in htmlstructure:

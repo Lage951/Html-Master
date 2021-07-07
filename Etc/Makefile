@@ -1,11 +1,19 @@
-PYCOURSE=mk_course.py
+PYCOURSE    = mk_course.py
+PYFILETREE  = mk_htlm_filetree.py
+PYPLAN      = mk_course_plan.py
+
+build:
+	@ $(PYCOURSE) -v                  -o ../Html/
+	@ cd .. && $ Etc/$(PYFILETREE) -v -o Html/filetree.html
+	@ $(PYPLAN) -v                    -o ../Html/plan.html
+
+test:
+	@ $(PYPLAN) -v -v -o index.html
+	@ colordiff -dw Refs/plan.ref index.html 
 
 sync: build
 	cd .. && scp -r Html/*.html si:ITMAL_E21/Html
-	ssh si "cd ITMAL_E21 && git pull"	
-
-build:
-	$(PYCOURSE) -v -o ../Html/
+	ssh si "cd ITMAL_E21 && git pull"
 
 edit:
 	joe $(PYCOURSE)
