@@ -1,66 +1,87 @@
 COURSE
+REFS 
+	[HOMEHTML] https://itundervisning.ase.au.dk/ITMAL_E21/Html
+	[HOME]     https://itundervisning.ase.au.dk/ITMAL_E21
+	[HOML]    <span style='font-family: courier new, courier;'>[HOML]</span>
+	[GITMAL]  <span style='font-family: courier new, courier;'>[GITMAL]</span>
+	[GITHOML] <span style='font-family: courier new, courier;'>[GITHOML]</span>
+	[JPYNB]   <span style='font-family: courier new, courier;'>[JPYNB]</span>
+	[OPTIONAL] (OPTIONEL)
+
+	[KURSUSINFORMATION]  <a href='https://brightspace.au.dk/d2l/le/lessons/27524/units/244588'>kursusinformation</a>
+	[KURSUSFORKORTELSER] <a href='https://brightspace.au.dk/d2l/le/lessons/27524/topics/254943' rel='noopener' target='_blank'>kursusinformation | kursusforkortelser</a>
+	[KURSUSINFOGPU]      <a href='https://brightspace.au.dk/d2l/le/lessons/27524/topics/244596' rel='noopener' target='_blank'>kursusinformation | GPU Cluster</a>
+	
+	[BR] <br>
+	
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 LESSON L00
 
-\h4{Forberedelse inden kursusstart}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\h5{Formål}
+\header{Forberedelse inden kursusstart}
 
-\p{Gruppe tilmelding: tilmeld dig til en ITMAL gruppe (se Blackboard link
-ovenfor).}
+\sub{Formål}
 
-\p{Installation: de obligatoriske værktøjer til ITMAL inden kursusstart (dvs.
+\p{\i{Gruppe tilmelding:} tilmeld dig til en ITMAL gruppe (find link i Brightspace!).}
+
+\p{\i{Installation}: de obligatoriske værktøjer til ITMAL inden kursusstart (dvs.
 L01).}
 
-\p{Forberedelse til L01: Hent GIT repositories til litteraturen [GITHOML], prøv at
+\p{\i{Forberedelse til L01:} Hent GIT repositories til litteraturen [GITHOML], prøv at
 kører et par Jupyter Notebooks [JPYNB], og læs mere om pythons NumPy
 bibliotek.}
 
-\p{Ekstra materiale til forberedelse: optionelle python opgaver, hvis du vil sætte
+\p{\i{Ekstra materiale til forberedelse:} optionelle python opgaver, hvis du vil sætte
 dig mere ind i sproget.}
 
-\h5{Installation}
+\sub{Installation}
 
 \ul{
 	\li{Installer Anaconda på din PC:}
 	\ul{
-	\li{\link{www.anaconda.com/products/individual,https://www.anaconda.com/products/individual}}
+	\li{\linkex{www.anaconda.com/products/individual, https://www.anaconda.com/products/individual}}
 		\li{vælg 'Download' (downloader direkte for Windows),}
 		\li{eller vælg Linux eller Mac, 32 eller 64 bit (dit valg),} 
-		\li{nværende nyeste Anaconda3 version er \bf{2021.05}}
+		\li{nværende nyeste Anaconda3 version er \b{2021.05}}
 	}
 	\ul{
 		\li{ALTERNATIV 1:}
 		\ul{
 			\li{brug vores ASE GPU Cluster som jupyter hub server,}
-			\li{se info in Kursusinfo | GPU Cluster.}
+			\li{se info in [KURSUSINFOGPU].}
 		}
 		\li{ALTERNATIV 2:}
 		\ul{
 			\li{Lav en konto på Google's Colaboratory,}
-			\li{\link{colab.research.google.co, https://colab.research.google.com}}
+			\li{\linkex{,https://colab.research.google.com}}
 		}
 	}
-	\li{Test at du kan køre jupyter notebooks [JYPYNB] fra [GITHOML], prøv f.eks.:}
-	\ul{
-		\li{index.ipynb}
+	\li{Test at du kan køre jupyter notebooks [JYPYNB] fra [GITHOML], prøv f.eks. \ipynb{index.ipynb}}
+}
+
+\sub{Forberedelse til Lektion 01}
+
+\ul{
+	\li{Læs materiale i [KURSUSINFORMATION],}
+	\li{få fat i litteratur til kurset,}
+	\li{clone [GITHOML] til din egen PC, se how-to under [KURSUSFORKORTELSER].}
+	\li{skim denne tutorial igennem:}
+	\displaystyle{\em{§ Scientific Python tutorials:} NumPy, \ipynb{tools_numpy.ipynb}, [GITHOML]
+		
+		[BR][BR]
+		
+		Læs blot, hvad du finder relevant så som 'iteration', men spring blot over
+		emner, der er for komplekse eller for 'pythoniske', så som 'Stacking arrays' og
+		'QR decomposition'. 
 	}
 }
 
-\h5{Forberedelse til Lektion 01}
+\sub{Note vdr. kildekritik og 'informations-overload'}
 
-\ul{
-	\li{Læs kursusinfo via Blackboard-linket ovenfor.
-	\li{Få fat i litteratur til kurset.
-	\li{Clone [GITHOML] til din egen PC, se how-to under kursusinfo | kursusforkortelser.
-	\li{Skim disse tutorials igennem:}
-	\ul{
-		\li{§ Scientific Python tutorials: NumPy}
-		\li{tools_numpy.ipynb [GITHOML]}
-}
-
-\p{Læs blot, hvad du finder relevant så som 'iteration', men spring blot over
-emner, der er for komplekse eller for 'pythoniske', så som 'Stacking arrays' og
-'QR decomposition'.  Note vdr.  kildekritik og 'informations-overload'}
 
 \p{Vi vil i dette kurset tit kunne blive overvældet af for meget ekstern
 information (informations-overload), så du skal danne dig en metode til at
@@ -68,40 +89,48 @@ kunne selektere og navigere i materialet.}
 
 \p{Vi vil primært holde os til [HOML], [GITHOML] og Scikit-learn, med en note
 om, at nettet flyder over med ekstra (til tider ubrugelig/ufiltreret)
-information: en kildekritiks holdning er vigtig!  Ekstra materiale til
-forberedelse}
+information: en kildekritiks holdning er vigtig!} 
 
-Hvis du har brug for at opfriske dit lineær algebra matematik eller er helt ny
+\sub{Ekstra materiale til forberedelse}
+
+\p{Hvis du har brug for at opfriske dit lineær algebra matematik eller er helt ny
 til python, så kan du f.eks.  læse/skimme følgende notebooks, i prioriteret
-rækkefølge:
+rækkefølge:}
 
-	   [OPTIONAL] Python og vectors/matrices math: math_linear_algebra.ipynb [GITHOML]
-	   [OPTIONAL] Python og grafisk plotting: tools_matplotlib.ipynb [GITHOML]
-	   [OPTIONAL] Ekstra, Python og dataværktøjet 'Pandas' : tools_pandas.ipynb [GITHOML]
-	   [OPTIONAL] Ekstra, mest for de matematik intereserede:  math_differential_calculus.ipynb [GITHOML]
+\ol{
+	\li{[OPTIONAL] python og vectors/matrices math:            [BR] \indent{\ipynb{math_linear_algebra.ipynb}        [GITHOML],}}
+	\li{[OPTIONAL] python og grafisk plotting:                 [BR] \indent{\ipynb{tools_matplotlib.ipynb}           [GITHOML],}}
+	\li{[OPTIONAL] ekstra, Python og dataværktøjet 'Pandas':   [BR] \indent{\ipynb{tools_pandas.ipynb}               [GITHOML],}}
+	\li{[OPTIONAL] ekstra, mest for de matematik intereserede: [BR] \indent{\ipynb{math_differential_calculus.ipynb} [GITHOML].}}
+}
 
 \p{Pandas er et meget populært databehandlingsværktøj, men vi kommer ikke til at
 bruge Pandas i dette kursus.}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 LESSON L01
 
-\h1{Introduktion}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\h2{Formål}
+\header{Introduktion}
+
+\sub{Formål}
 
 Denne lektion har til formål at give indledende information om kurset.  Dvs. 
 at vi præsentere de formelle rammer vdr.
 
 \ul{
-	   \li{ITMAL gruppetilmelding,}
-	   \li{opgavesæt og journalafleveringer,}
-	   \li{eksamensform,}
-	   \li{Blackboard opbygning og fildeling.}
+	\li{ITMAL gruppetilmelding,}
+	\li{opgavesæt og journalafleveringer,}
+	\li{eksamensform,}
+	\li{Blackboard opbygning og fildeling.}
 }
 
 \p{Herefter vil vi præsentere machine learning [ML] som koncept overordnet, og
 kort ridse lektionsplanen for kurset op.}
-
 
 \p{Software til brug for kurset introduceres og skal installeres på jeres PC'er,
 se 'L00: Forberedelse' for en installationsguide.  Vi anvender python
@@ -117,59 +146,60 @@ samt forsøge os med et par små programmer i python.}
 klassebegreber (modules, classes), så vi kan genbruge kode i senere
 lektioner..}
 
-\h2{Indhold}
+\sub{Indhold}
 
 \ul{
-	   \li{Formelle rammer vdr. kurset.}
-	   \li{Eksamensform, godkendelsesfag via:}
-	   \ul{
-	      	\li{et sæt obligatoriske skriftlige gruppe-journaler med afleveringsdeadlines,}
-	      	\li{en poster-session, med aflevering af poster og mundtlig præsentation af poster,}
-	      	\li{en mundtlig gennemgang af den sidste journal med alle medlemmer i ITMAL gruppen, samt evaluering af hver gruppemedlems bidrag.}
-		\li{=> Endelig godkendelse af kurset sker på en samlet vurdering af de tre punkter ovenfor.}
+	\li{Formelle rammer vdr. kurset.}
+	\li{Eksamensform, godkendelsesfag via:}
+	\ul{
+		\li{et sæt obligatoriske skriftlige gruppe-journaler med afleveringsdeadlines,}
+		\li{en poster-session, med aflevering af poster og mundtlig præsentation af poster,}
+		\li{en mundtlig gennemgang af den sidste journal med alle medlemmer i ITMAL gruppen, samt evaluering af hver gruppemedlems
+		bidrag.}
+		\displaystyle{\b{\style{color: #ff3333, => Endelig godkendelse af kurset sker på en samlet vurdering af de tre punkter ovenfor.}}}
 	}
-	   \li{Læringsmål.}
-	   \li{Litteratur.}
-	   \li{Intro til software, der bruges i ITMAL:}
-	   \ul{
-	      	\li{python generelt (link til mini python intro: demo.ipynb Click for more options)}
+	\li{Læringsmål.}
+	\li{Litteratur.}
+	\li{Intro til software, der bruges i ITMAL:}
+	\ul{
+		\li{python generelt (link til mini python intro: \link{,[HOME]/L01/demo.ipynb},}
 		\li{anaconda python distribution:}
 		\ul{
-	          	\li{jupyter notebooks,}
-	          	\li{spyder developer environment.}
+			\li{jupyter notebooks,}
+			\li{spyder developer environment.}
 		}
 		\li{Scikit-learn,}
 		\li{opgave med python modul og klasser.}
 	}
-	   \li{Intro til machine learning:}
-	   \ul{
-	       \li{Supervised learning (regression): 'life-satisfactory' [HOML].}
+	\li{Intro til machine learning:}
+	\ul{
+		\li{Supervised learning (regression): 'life-satisfactory' [HOML].}
 	}
 }
 
-\h2{Litteratur}
+\sub{Litteratur}
 
-	\px{§ Preface, p. xv [HOML] (eksklusiv fra Using Code Examples...og resten af intro	kapitlet)}
+	\displaystyle{§ Preface, p. xv [HOML] (eksklusiv fra Using Code Examples...og resten af intro	kapitlet)}
+	
+	\displaystyle{§ 1 The machine Learning Landscape [HOML]}
 
-	\px{§ 1 The machine Learning Landscape [HOML]}
-
-	\px{§ 2 End-to-End Machine Learning Project [HOML]}
+	\displaystyle{§ 2 End-to-End Machine Learning Project [HOML]}
 
 \p{Dette kapitel indeholder mange nye koncepter og en del kode.  Vi vender
 senere tilbage til kapitlet senere, så læs det og prøv at danne dig et overblik
-(dvs.  nærlæs ikke).}
+(dvs. nærlæs ikke).}
 
 \p{Når du har installeret anaconda (se L00):}
 
-	\px{§ Scientific Python tutorials: NumPy}
+	\displaystyle{§ Scientific Python tutorials: NumPy}
 	
-	\px{tools_numpy.ipynb [GITHOML]}
+	\displaystyle{tools_numpy.ipynb [GITHOML]}
 
 \p{Læs blot, hvad du finder relevant så som 'iteration', men spring blot over
 emner, der er for komplekse eller for 'pythoniske', så som 'Stacking arrays' og
 'QR decomposition'.}
 
-\h2{Opgaver}
+\sub{Opgaver}
 
 \p{Forberedelse inden lektionen}
 
@@ -179,75 +209,24 @@ emner, der er for komplekse eller for 'pythoniske', så som 'Stacking arrays' og
 	\li{Læs pensum.}
 }
 
-\h5{På klassen}
+\sub{På klassen}
 
 \ul{
 	\li{Diskussion om ML (indlejret i forelæsningen).}
 	\li{Opgave: intro.ipynb}
-	\li{HUSK DATA til intro'en (download og udpak så "dataset" dir ligger sammen med intro.ipynb): datasets.zip Click for more options}
+	\li{HUSK DATA til intro'en (download og udpak så "dataset" dir ligger sammen med intro.ipynb): \link{,[HOME]/L01/datasets.zip}}
 	\li{Opgave: modules_and_classes.ipynb}
 }
 
-\h5{Optionelle opgaver}
+\sub{Optionelle opgaver}
 
-\p{Se 'Ekstra materiale til forberedelse' i lektion 'nul', specielt hvis du har brug for en python og lineær algebra
-kick-start.}
+\p{Se 'Ekstra materiale til forberedelse' i lektion 'nul', specielt hvis du har
+brug for en python og lineær algebra kick-start.}
 
-\h5{Slides}
+\sub{Slides}
 
-\px{
-	\link{,[GITMAL]/L01/lesson01.pdf}
+\displaystyle{
+	\link{,[HOME]/L01/lesson01.pdf}
 }
 
-REFS 
-	[ITU]    https://itundervisning.ase.au.dk/ITMAL_E21/Html
-	[GITMAL] https://itundervisning.ase.au.dk/ITMAL_E21
 END
-
-
-<!DOCTYPE html>
-<html>
-<head>
-</head>
-<body style="font-family: Lato;font-size: 12pt;color: #494c4e;">
-<h5>Form&aring;l</h5>
-<p>Opsamlingslektion: vi tager et genblik p&aring; <em>&sect; 2 <em>"End-to-End Machine Learning Project",</em></em> og samler op p&aring; dette brede kapitel.</p>
-<p>Vi g&aring;r f&oslash;rst igang med at gennemg&aring; <em><strong>K-fold Cross-validation</strong></em> (eller K-fold CV), for derefter at bruge "The Map" til at komme igennem alle grundliggende koncepter i <em>&sect; 2. </em><em><br /></em></p>
-<p>Da alle kerne-koncepter i supervised ML nu kendes, kan det hele konkret sammens&aelig;ttes i en samlet processerings-<em><strong>pipeline</strong>.</em> Programmerings-teknisk ser vi derfor til sidst p&aring; Scikit-learns Pipelines.</p>
-<ul>
-<li><a rel="noopener" href="https://blackboard.au.dk/bbcswebdav/pid-2931054-dt-content-rid-10655397_1/xid-10655397_1" target="_blank" title="ml_supervised_map.pdf">Oversigtskortet for Supervised learning</a>:</li>
-</ul>
-<p style="margin-left: 60px;"><a rel="noopener" href="https://blackboard.au.dk/bbcswebdav/pid-2931054-dt-content-rid-10655397_1/xid-10655397_1" target="_blank" title="ml_supervised_map.pdf"><img src="https://blackboard.au.dk/bbcswebdav/pid-2931054-dt-content-rid-10655394_1/xid-10655394_1" alt="ml_supervised_map.pdf" title="ml_supervised_map.pdf" width="512" height="499" /></a></p>
-<h5>Indhold</h5>
-<ul>
-<li>Generel genl&aelig;sning og repetition af <em>&sect; 2</em></li>
-<li>K-fold Cross-validation</li>
-<li>Pipelines<em></em></li>
-</ul>
-<h5>Litteratur</h5>
-<p style="margin-left: 30px;"><em>Genl&aelig;s: &sect; 2 <em>"End-to-End Machine Learning Project" </em></em>[HOML]</p>
-<p style="margin-left: 60px;">(eksklusiv <em>"Create the Workspace" </em>og <em>"Download the Data")</em></p>
-<p style="margin-left: 30px;"><span style="color: #800000;"><span style="font-family: courier new, courier; color: #000000;"><a rel="noopener" href="https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.KFold.html?highlight=k%20fold#sklearn.model_selection.KFold" target="_blank"><span style="color: #000000;">Scikit's dokumentations-side vdr. k-fold CV</span></a></span><em> </em></span></p>
-<h6>Forberedelse inden lektionen</h6>
-<ul>
-<li>L&aelig;s litteraturen.<em><br /></em></li>
-</ul>
-<h6>P&aring; klassen</h6>
-<ol>
-<li><span style="text-decoration: line-through;">'</span>Sp&oslash;rge-minutter'</li>
-<li>Almindelig forel&aelig;sning
-<ul>
-<li>ekstra materiale: <span style="font-family: courier new, courier;"><a rel="noopener" href="https://blackboard.au.dk/bbcswebdav/pid-2931054-dt-content-rid-10655399_1/xid-10655399_1" target="_blank">k-fold_demo.ipynb</a></span></li>
-</ul>
-</li>
-<li>Exercise: <span style="font-family: courier new, courier;"><a rel="noopener" href="https://blackboard.au.dk/bbcswebdav/pid-2931054-dt-content-rid-10655389_1/xid-10655389_1" target="_blank">pipelines.ipynb</a> <br /></span>
-<ul>
-<li><span style="color: #800000;"><span style="color: #000000;">Data til pipelines opgaven (b&oslash;r lige i L07/Data/</span>)</span>: <span style="font-family: courier new, courier;"><a rel="noopener" href="https://blackboard.au.dk/bbcswebdav/pid-2931054-dt-content-rid-10656401_1/xid-10656401_1" class="event_clickFileName" target="_blank">itmal_l01_data.pkl</a> </span></li>
-<li>(Du har allerede denne data-fil, hvis du pull'er fra GITMAL)</li>
-</ul>
-</li>
-</ol>
-<h5>Slides</h5>
-<p style="margin-left: 30px;"><span style="font-family: courier new, courier;"><a rel="noopener" href="https://blackboard.au.dk/bbcswebdav/pid-2931054-dt-content-rid-10655390_1/xid-10655390_1" target="_blank">lesson03.pdf</a></span></p>
-</body>
-</html>

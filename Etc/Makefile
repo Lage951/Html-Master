@@ -1,17 +1,18 @@
 PYCOURSE=mk_course.py
 
-all:
+sync: build
+	cd .. && scp -r Html/*.html si:ITMAL_E21/Html
+	ssh si "cd ITMAL_E21 && git pull"	
+
+build:
 	$(PYCOURSE) -v -o ../Html/
 
 edit:
 	joe $(PYCOURSE)
 
-sync:
-	cd .. && scp -r Html si:ITMAL_E21/
-	ssh si "cd ITMAL_E21 && git pull"	
 	
 clean:
-	@ rm -f out.html L??.html
+	@ rm -f out.html ../Html/L??.html
 
 #JSFILES = $(wildcard JS/*.js)
 #PYFILE  = $(wildcard Py/*.py) $(wildcard Py/Utils/*.py)

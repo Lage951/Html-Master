@@ -3,9 +3,9 @@
 from Utils.dbg import 	DiagStdErr, PrettyPrintTracebackDiagnostics
 from sys import stdout, stderr
 
-def isStr(t, checknonempty=False):
+def isStr(t, checknonempty=True):
 	assert isinstance(t, str),  f"exected string but got type='{type(t)}'"
-	#assert (not checknonempty) or (len(t)>0)
+	assert (not checknonempty) or (len(t)>0), f"string is empty, and this was unexpected"
 	return t
 
 def isBool(t):
@@ -36,7 +36,7 @@ def Check(expr, msg):
 		Err("EXPRESSION NOT FULLFILLED: " + msg)
 
 def Trim(s):
-	s = isStr(s).replace("\t"," ")
+	s = isStr(s, False).replace("\t"," ")
 	s = s.strip()
 	return s
 

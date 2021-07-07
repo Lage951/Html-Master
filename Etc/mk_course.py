@@ -6,10 +6,13 @@ from Utils.mkutils import *
 
 from sys import argv
 from argparse import ArgumentParser
-from html import escape
+from html import escape, unescape
 
 if __name__ == '__main__':
-	
+
+	_currline = -1
+	_currcolumn = -1
+
 	class Cmd:
 		__cmdstate = 0 # 0: txt, 1: cmd, 2: args
 		__st  = ""
@@ -38,9 +41,9 @@ if __name__ == '__main__':
 			assert Cmd.isCmd(self)
 			assert isInt(self.__cmdstate)>=0 and self.__cmdstate<=2
 
-			isStr(self.__st)
-			isStr(self.__cmd)
-			isStr(self.__args)
+			isStr(self.__st, False)
+			isStr(self.__cmd, False)
+			isStr(self.__args, False)
 			
 			#if self.__cmdstate==0:
 			#	assert self.__args==""
@@ -52,12 +55,51 @@ if __name__ == '__main__':
 			#	assert self.__cmd!=""
 	
 			return True
-		
+				
 		@staticmethod	
-		def isHtmlCmd(c):			
-			return isStr(c) in  ["em", "bf", "it", "p", "h1", "h2", "h3", "h4", "h5", "ul", "li"]
-		
+		def __MkLink(a, exlink, left, right):
+			
+			args = isStr(a).split(",")
+			assert len(args)==2
+			
+			arg0 = isStr(args[0], False)
+			arg1 = isStr(args[1]).strip()
+			
+			if len(arg1)==0:
+				ERR("need second link argument, currently empty")
+			
+			if len(arg0)==0:
+				n = arg1.rfind('/')
+				if n<=0:
+					ERR(f"if first argument to link is empty, second arg='{arg1}' must contain at least one slash '/'")
+				
+				arg0 = arg1[n+1:]
+				if len(arg0)==0:
+					ERR("second arg still empty, this was not expected")
+				
+			extra =  " rel='noopener' target='_blank'" if isBool(exlink) else ""
+			return f"{isStr(left)}span style='font-family: courier new, courier;'{isStr(right)}{left}a href='{arg1}'{extra}{right}{arg0}{left}/a{right}{left}/span{right}"		
+
+		@staticmethod	
+		def __MkStyle(a, left, right):
+			
+			args = isStr(a).split(",")
+			assert len(args)==2
+			
+			arg0 = isStr(args[0]).strip()
+			arg1 = isStr(args[1]).strip()
+			
+			if arg0.find('"')>=0 or arg0.find("'")>=0:
+				ERR(f"do not use pligs (') or quotes (\") in style command, style='{arg0}'")
+			
+			return f"{isStr(left)}span style='{arg0}'{isStr(right)}{arg1}{left}/span{right}"		
+	
+		@staticmethod	
+		def __isHtmlCmd(c):			
+			return isStr(c) in  ["b", "i", "p", "ul", "ol", "li", "header", "sub", "em", "indent", "code", "ipynb", "displaystyle"]
+
 		def __MkCmd(self):
+
 			assert self.Ok()
 			
 			c = self.__cmd
@@ -73,35 +115,35 @@ if __name__ == '__main__':
 			Dbg(verbose, f"FOUND COMMAND={t}..", 2)
 			
 			v = ""
-			if Cmd.isHtmlCmd(c):
-				v = f"{left}{c}{right}{a}{left}/{c}{right}"
-			elif c=="link":
-				args = a.split(",")
-				assert len(args)==2
+			# fun(arg)..
+			if Cmd.__isHtmlCmd(c):
 				
-				arg0 = isStr(args[0])
-				arg1 = isStr(args[1])
-				
-				if len(arg1)==0:
-					ERR("need second link argument, currently empty")
-				
-				if len(arg0)==0:
-					n = arg1.rfind('/')
-					if n<=0:
-						ERR(f"if first argument to link is empty, second arg='{arg1}' must contain at least one slash '/'")
+				style = ""				
+				if c=="header":
+					c = "h3"
+				elif c=="sub":
+					c = "h4"
+				elif c=="em":
+					c = "i" 
+				elif c=="displaystyle":
+					c = "p"
+					style = " style='margin-left: 30px'" 
+				elif c=="indent":
+					c = "span"
+					style = " style='margin-left: 30px'" 
+				elif c=="code" or c=="ipynb":
+					c = "span" 
+					style=" style='font-family: courier new, courier;'"
 					
-					arg0 = arg1[n+1:]
-					if len(arg0)==0:
-						ERR("second arg still empty, this was not expected")
-				
-										
-				v = f"{left}span style='font-family: courier new, courier;'{right}{left}a href='{arg1}'{right}{arg0}{left}/a{right}{left}/span{right}"
-			elif c=="px":
-				c = "p"
-				v = f"{left}{c} style='margin-left: 30px'{right}{a}{left}/{c}{right}"
-
+				v = f"{left}{c}{style}{right}{a}{left}/{c}{right}"
+			
+			# fun(arg0, arg1)..
+			elif c=="link" or c=="linkex":
+				v = Cmd.__MkLink(a, c=="linkex", left, right)
+			elif c=="style":
+				v = Cmd.__MkStyle(a, left, right)				
 			else:
-				ERR(f"unknown command '{c}'")
+				ERR(f"unknown command '{c}' with argument(s) '{a}'")
 						
 			self.__txt += v
 			
@@ -133,6 +175,8 @@ if __name__ == '__main__':
 					self.__cmd = isStr(self.__st, True)
 					self.__st = ""
 				else:
+					if c=='(':
+						WARN("found left parathesis '(' while in command parsing mode, did you mean '{'?")
 					self.__st += c
 			else:	
 				assert self.__args==""
@@ -146,50 +190,50 @@ if __name__ == '__main__':
 					self.__txt += c
 
 			return False, None	
-	
-	
-	def ParseToHtml(elems):
-		
-		curr = Cmd()
-		st = [] 
-		
-		for j in isList(elems):
-			N = len(isStr(j))
-			
-			for i in range(N):		
-				Cmd.isCmd(curr)
-				c = j[i]	
-				
-				if c=='\\' and curr.State()!=0:
-					st.append(curr)
-					curr = Cmd()
-				
-				Cmd.isCmd(curr)
-				
-				p = curr.Parse(c)
-				if p[0] and len(st)>0:
-					t = curr.Text()
-					curr = st.pop()
-					curr.Add(t)
-			
-			curr.Parse("\n")
-					
-		if curr.State() != 0:
-			ERR(f"still in command parsing state={curr.State()}")	
-		
-		if len(st) != 0:
-			ERR(f"still {len(st)} elements on stack, expected zero")
-		
-		txt = curr.Text()		
-		Dbg(verbose, f"{Col('CYAN')}{isStr(txt)}{ColEnd()}", 3)		
-		return txt
 		
 	def ParseStructure(courselist):
+
+		def ParseToHtml(elems):
+			
+			curr = Cmd()
+			st = [] 
+			
+			for j in isList(elems):
+				N = len(isStr(j, False))
+				
+				for i in range(N):		
+					Cmd.isCmd(curr)
+					c = j[i]	
+					
+					if c=='\\' and curr.State()!=0:
+						st.append(curr)
+						curr = Cmd()
+					
+					Cmd.isCmd(curr)
+					
+					p = curr.Parse(c)
+					if p[0] and len(st)>0:
+						t = curr.Text()
+						curr = st.pop()
+						curr.Add(t)
+				
+				curr.Parse("\n")
+						
+			if curr.State() != 0:
+				ERR(f"still in command parsing state={curr.State()}")	
+			
+			if len(st) != 0:
+				ERR(f"still {len(st)} elements on stack, expected zero")
+			
+			txt = curr.Text()		
+			Dbg(verbose, f"{Col('CYAN')}{isStr(txt)}{ColEnd()}", 3)		
+			return txt
+			
 
 		def ParseRefs(refs):
 			r = {}
 			for i in refs.split("\n"):					
-				if len(isStr(i).strip())>0:						
+				if len(isStr(i, False).strip())>0:						
 					n = isStr(i).find(']')
 					
 					if n<=0 or i[0]!='[':
@@ -218,7 +262,9 @@ if __name__ == '__main__':
 			
 		s = {}
 		curr = None
+				
 		for i in range(1, N):
+					
 			t = Trim(courselist[i])
 						
 			if t=="END":
@@ -234,9 +280,9 @@ if __name__ == '__main__':
 			else:
 				curr.append(t)
 		
-		htmlstructure = {}
-		
-		for i in s:
+		htmlstructure = {}		
+
+		for i in s:		
 			h = ParseToHtml(s[i])
 			assert not htmlstructure.get(i)
 			htmlstructure[i] = h	
@@ -244,7 +290,7 @@ if __name__ == '__main__':
 
 		refs = {} 
 		if isDict(htmlstructure).get("REFS"):
-			r = htmlstructure["REFS"]
+			r = unescape(htmlstructure["REFS"])
 			del htmlstructure["REFS"]			
 			refs = ParseRefs(r)
 		
@@ -260,14 +306,14 @@ if __name__ == '__main__':
 						
 	try:
 		def HtmlEncode(s):
-			return escape(isStr(s))    
+			return escape(isStr(s, False))    
 
 		def MkHtml(htmlstructure, addhtmlheaders, filenamebase):
 			
 			def MkHtmlPage(htmlcontent):
 				assert isStr(htmlcontent).find("DOCTYPE")<0 and htmlcontent.find("<html>")<=0 and htmlcontent.find("<body>")<=0
 				#bodystyle = "style='font-family: Verdana;font-size: 12pt;color: #494c4e;'"
-				bodystyle = "style='font-family: times new roman, times, serif;font-size: 13pt;color: #424222;'"
+				bodystyle = "style='font-family: times new roman, times, serif;font-size: 12pt;color: #424222;'"
 				meta = "<meta http-equiv='Content-Type' content='text/html; charset=utf-8'/>"
 				return f"<!DOCTYPE html>\n<html>\n{meta}\n<body {bodystyle}>\n" + htmlcontent + "\n</body>\n</html>"										
 							
@@ -286,6 +332,16 @@ if __name__ == '__main__':
 				
 				with Outputfile(outputfilename) as f:
 					f.write(html)				
+					
+		def LoadCourseFile(coursefile):
+			r = []
+			for i in LoadText(isStr(coursefile)):
+				t = i.strip()
+				if len(t)>0 and t[0]!='%': # and t[0]!='#':
+					r.append(i)
+				else: 
+					r.append("")
+			return r
 							
 		f = "some ( test \\call{a, b} fun ) end"
 		assert f==HtmlEncode(f)
@@ -303,9 +359,10 @@ if __name__ == '__main__':
 				
 		verbose = isInt(args.v)				
 		coursefile = isStr(args.c)
+		
 		Dbg(verbose, f"{Col('PURPLE')}GENERATING course file '{coursefile}'..{ColEnd()}")
 
-		htmlencoded = [HtmlEncode(i) for i in LoadText(coursefile)]
+		htmlencoded   = [HtmlEncode(i) for i in LoadCourseFile(coursefile)]
 		htmlstructure = ParseStructure(htmlencoded)				
 	
 		MkHtml(htmlstructure, not args.t, args.o)		
