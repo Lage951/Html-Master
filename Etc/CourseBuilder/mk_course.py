@@ -360,7 +360,7 @@ if __name__ == '__main__':
 		verbose = isInt(args.v)				
 		coursefile = isStr(args.c)
 		
-		Dbg(verbose, f"{Col('PURPLE')}GENERATING course file '{coursefile}'..{ColEnd()}")
+		Dbg(verbose, f"{Col('PURPLE')}GENERATING html course from file '{coursefile}'..{ColEnd()}")
 
 		htmlencoded   = [HtmlEncode(i) for i in LoadCourseFile(coursefile)]
 		htmlstructure = ParseStructure(htmlencoded)				
