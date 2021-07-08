@@ -48,7 +48,7 @@ if __name__ == '__main__':
 			r = []
 			o = ""
 			for i in s:
-				t = Trim(i)
+				t = Trim(i, False)
 				o += ("     " if expectedlen < 0 else "  ") + t + ("\n" if expectedlen < 0 else " | ") 
 				r.append(t)
 		
@@ -64,7 +64,7 @@ if __name__ == '__main__':
 		if N < 7:
 			ERR("planlist too short, expected at least three lines with COUSEPLAN/HEAD/CONTENT/REFS/END")
 		
-		CheckLine(0, "COUSEPLAN")
+		CheckLine(0, "COUSEPLAN")	
 		CheckLine(1, "HEAD")
 		CheckLine(3, "CONTENT")
 	
@@ -81,39 +81,53 @@ if __name__ == '__main__':
 		for j in range(4, N):
 			i = isStr(Trim(planlist[j]))
 			
-			if i=="REFS":
+			if i=="NOTES":
+				assert not s.get('content')
 				s['content']=curr
 				curr = []
-			if i=="END":
-				e = True
+			elif i=="REFS":
+				assert not s.get('notes')
+				s['notes']=curr
+				curr = []
+			elif i=="END":
+				assert not s.get('refs')
 				s['refs']=curr
 				curr = None
+		
+				e = True
 				break
+				
 			curr.append(i)
 		
 		Check(curr is None, 	"plainlist missing END tag")
-		Check(s.get('content'), "planlist missing content structure")
-		Check(s.get('refs'),    "planlist missing ref structure")
+		Check(s.get('content'), "planlist missing CONTENT structure")
+		Check(s.get('notes'),   "planlist missing NOTES structure")
+		Check(s.get('refs'),    "planlist missing REFS structure")
 
 		parsed = []
 		for i in s['content']:
 			l = ParseLine(i, M)
-			
 			Dbg(verbose, str(l), 2)
-				
 			parsed.append(l)
+			
 		s['parsed'] = parsed
 	
 		return s
 
-	def GenerateHtml(headers, widths, parsed, fullhtmldoc):
+	def GenerateHtml(headers, widths, parsed, notes, fullhtmldoc):
 		def HtmlEncode(s):
 			return escape(isStr(s, False))
 		
 		M = len(isList(headers))
-		html = '<!DOCTYPE html>\n<html>\n<body>\n' if isBool(fullhtmldoc) else ""
+		html = ""
+
+		for i in isList(notes):
+			html += i + "<br>\n"
+		if len(notes)>0:
+			html += "<br>\n"
+
 		html += '<table cellspacing="0px" cellpadding="1px" border="1px" align="center">\n<tbody>\n<tr style="background-color: #000000;" align="center">\n'		
-		
+			
 		for i in zip(isList(headers), isList(widths)):
 			isTuple(i)
 			html += f'<td width="{isInt(i[1])}"><span style="background-color: #000000; color: #ffffff;"><strong>{HtmlEncode(i[0])}</strong></span></td>\n'
@@ -130,11 +144,12 @@ if __name__ == '__main__':
 			html += '</tr>'
 		
 		html += '</table>\n'
-		html += '</body>\n</html>' if isBool(fullhtmldoc) else ""
+		
+		if fullhtmldoc:
+			html = MkHtmlPage(html)
 		
 		Dbg(verbose, f"  {Col('YELLOW')}FOUND a  {len(parsed)} x {len(headers)}  table (rows x columns){ColEnd()}")
 
-		
 		return html
 		
 	try:	
@@ -155,7 +170,7 @@ if __name__ == '__main__':
 		structure = ParseStructure(LoadText(planfile))		
 	
 		Dbg(verbose, str(structure['headers']), 2)
-		html = GenerateHtml(structure['headers'], structure['widths'], structure['parsed'], not args.t)
+		html = GenerateHtml(structure['headers'], structure['widths'], structure['parsed'], structure['notes'], not args.t)
 		
 		with Outputfile(args.o) as f:
 			f.write(html)

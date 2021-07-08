@@ -2,10 +2,11 @@ COURSE
 DEFS 
 	[HOMEHTML] https://itundervisning.ase.au.dk/ITMAL_E21/Html
 	[HOME]     https://itundervisning.ase.au.dk/ITMAL_E21
-	[HOML]    <span style='font-family: courier new, courier;'>[HOML]</span>
-	[GITMAL]  <span style='font-family: courier new, courier;'>[GITMAL]</span>
-	[GITHOML] <span style='font-family: courier new, courier;'>[GITHOML]</span>
-	[JPYNB]   <span style='font-family: courier new, courier;'>[JPYNB]</span>
+	[FIGS]     https://itundervisning.ase.au.dk/ITMAL_E21/Html/Figs
+	[HOML]     <span style='font-family: courier new, courier;'>[HOML]</span>
+	[GITMAL]   <span style='font-family: courier new, courier;'>[GITMAL]</span>
+	[GITHOML]  <span style='font-family: courier new, courier;'>[GITHOML]</span>
+	[JPYNB]    <span style='font-family: courier new, courier;'>[JPYNB]</span>
 	[OPTIONAL] (OPTIONEL)
 
 	[KURSUSINFORMATION]  <a href='https://brightspace.au.dk/d2l/le/lessons/27524/units/244588'>kursusinformation</a>
@@ -13,16 +14,336 @@ DEFS
 	[KURSUSINFOGPU]      <a href='https://brightspace.au.dk/d2l/le/lessons/27524/topics/244596' rel='noopener' target='_blank'>kursusinformation | GPU Cluster</a>
 	
 	[BR] <br>
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+CONTENT Litteratur
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\header{Litteratur}
+
+\sub{Hands-on Machine Learning [HOML]}
+
+\displaystyle{
+	\img{[FIGS]/book_homl.jpg, Hands-on Machine Learning with Scikit-Learn (front image)}
+
+	[BR] \i{Hands-on Machine Learning with Scikit-Learn, Keras, and TensorFlow: Concepts, Tools, and Techniques to Build Intelligent Systems}
+	[BR]
 	
+	[BR] Aurélien Géron 
+	[BR] O'Reilly / Wiley, 2019, 2.ed.
+	[BR] ISBN: 9781492032649 
+	[BR] \link{online link, https://www.oreilly.com/library/view/hands-on-machine-learning/9781492032632/}
+}
+
+\p{\i{NOTE 1:} dette er anden udgave (Second Edition/2.ed) af Géron's " Hands-on",
+undgå at bruge førsteudgaven, idet den benytter TensorFlow direkte istedet for
+Keras, og desuden har flere mangler.}
+
+\p{\i{NOTE 2:} i PDF udgaven (Early Release, June 2019, 2019-04-22: Fifth Release)
+svare sidetal og nogle kaptitler ikke til den officielle bog udgave ovenfor!}
+
+\sub{Deep Learning [DL]}
+
+\displaystyle{
+
+	\img{[FIGS]/book_dl.jpg, Deep Learning (front image)}
+
+	[BR] \i{Deep Learning}
+	[BR]
+	
+	[BR] Ian Goodfellow, Yoshua Bengio, Aaron Courville
+	[BR] The MIT Press 
+	[BR] November 18, 2016
+	[BR] Hardcover: 775 pages
+	[BR] ISBN-10: 0262035618 
+	[BR] ISBN-13: 978-0262035613
+	[BR] \link{online link, http://www.deeplearningbook.org/}
+}
+
+\p{\i{NOTE:} ikke obligatorisk, kun få afsnit og figure bruges herfra.  (Bog god til
+videregående Neural Netværks-teori og meget brugt i ML sammenhænge.)}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-LESSON L00
+CONTENT Kursusforkortelser
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\header{Forberedelse inden kursusstart}
+%\header{Kursusforkortelser}
+
+[DL]: \displaystyle{
+	Enten bare Deep Learning eller Deep Learning bogen af Ian Goodfellow, et. al.
+}
+
+[G]: \displaystyle{
+	Group, ITMAL øvelsesgruppe.
+}
+
+[GITHOML]: \displaystyle{
+	GitHub repository til [HOML],
+
+	\quote{\linkex{github.com/ageron/handson-ml2, https:///github.com/ageron/handson-ml2/}}
+
+	Clone via HTTPS:
+
+	\quote{\code{git clone https://github.com/ageron/handson-ml2.git}}
+
+	eller via SSH
+
+	\quote{\code{git clone git@github.com:ageron/handson-ml2.git}}
+}
+
+[GITMAL]: \displaystyle{
+
+	Git repository for ITMAL, 
+
+	\quote{\linkex{gitlab.au.dk/au204573/GITMAL, https://gitlab.au.dk/au204573/GITMAL/}}
+
+	Clone via HTTPS: 
+
+	\quote{\code{git clone https://gitlab.au.dk/au204573/GITMAL.git}}
+	
+	eller via SSH
+
+	\quote{\code{git clone git@gitlab.au.dk:au204573/GITMAL.git}}
+}
+
+[HOML]: \displaystyle{
+
+	Hands-on Machine Learning af Aurélien Géron, hovedlitteratur til dette kursus.
+
+	[BR][BR] For klarhedens skyld undtales 'HOML' som Holm i Brian Holm. 
+	
+	[BR][BR]\img{[FIGS]/brian_holm.jpg, Brian Holm (foto fra cdn-ctstaging.pressidium.com)}
+	
+	\cite{https://cdn-ctstaging.pressidium.com/wp-content/uploads/2020/12/CORVOS_00000365-066.jpg}
+}
+
+[ITMAL]: \displaystyle{ 
+	IT Machine Learning, kursusnavnet.
+}
+
+% [J1, J2, .. JN]: En journal opgave/aflevering, f.eks. "Journal 1" (J1). 'Journaler' erstattes af 'opgave afleveringer', O1, O2, osv.
+
+[JPYNB]: \displaystyle{
+	Jypyter Python NoteBook, dvs. Notebook applikationen eller en notebook kildetekst fil (med endelsen .ipynb).
+}
+
+[ML]: \displaystyle{
+	Machine Learning, det generelle koncept.
+}
+
+[NN:] \displaystyle{ 
+	Neural Network.
+}
+
+[O1, O2, O3, O4]: \displaystyle{
+
+	En opgaveaflevering, f.eks. O1 for opgaveaflevering 1.
+
+	%(opgave afleveringer hed tidligere journaler).
+}
+
+[SG]: \displaystyle{
+	Super-group, bestående af tre eller fire Grupper [G]'s.
+}
+
+[Q]:  \displaystyle{  
+	Et specifikt spørgsmål (Question) i en journal opgave, ala Qc for opgave 'c' i et journal spørgsmål.
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+CONTENT Dokumentation og links
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\sub{Web sites}
+
+Primære
+
+\ul{
+    \li{\linkex{[GITHOML] github.com/ageron/handson-ml2, https://github.com/ageron/handson-ml2/}}
+    \li{\linkex{Scikit-learn:scikit-learn.org/stable,     https://scikit-learn.org/stable/}}
+    \li{\linkex{Keras: keras.io, https://keras.io/}}
+}
+
+Sekundære
+
+\ul{
+    \li{\linkex{Jupyter: jupyter-notebook.readthedocs.io/en/stable,  https://jupyter-notebook.readthedocs.io/en/stable/}}
+    \li{\linkex{Anaconda Cloud: anaconda.org,                        https://anaconda.org/}}
+   	\li{\linkex{Tensorflow: www.tensorflow.org,                      https://www.tensorflow.org/}}
+}
+
+Datakilder
+
+\ul{
+    \li{\link{Kaggle datasets: www.kaggle.com, https://www.kaggle.com/}}
+    \li{\i{Sign in with your email} => genbrug gerne min konto, og undgå tidsplid:
+    	\ul{
+           \li{user: cef@ase.au.dk}
+           \li{password: test123}
+        }
+	}
+}
+
+
+Dokumentation
+
+\ul{
+    \li{Brug den inbyggede hjælp i [JPYNP]}
+    \img{[FIGS]/Screenshot_jupyter_help.png,}
+}
+
+Guides etc.
+
+\ul{
+    \li{\linkex{A Quick Python intro (short), https://www.w3schools.com/python/python_intro.asp}}
+    \li{\linkex{A Python tutorial (not so short!), https://docs.python.org/3/tutorial/}}
+    \li{Jupyter shortcuts quick guide XXX}
+    \li{Scikit-learn reference XXX}
+    \li{Scikit-learn cheat sheet XXX}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+CONTENT GPU Cluster
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Der er adgang til en GPU baseret server ifbm kurset. Serveren består af en 'master' som kan tilgås via
+
+http://gpucluster.st.lab.au.dk/
+
+og fire 'slave' noder med GPU'er via
+
+http://gpucluster.st.lab.au.dk/jhub1 (NEDE: brændt varm!)
+
+http://gpucluster.st.lab.au.dk/jhub2
+
+http://gpucluster.st.lab.au.dk/jhub3
+
+http://gpucluster.st.lab.au.dk/jhub4 (unavailable/resv. til forksning)
+
+http://gpucluster.st.lab.au.dk/jhub5 (GPU 3090 og ny 4GHz CPU, 3090 har problemer med Tensorflow)
+
+som frit kan benyttes.
+
+Adgang kræver at i er på EDUROAM eller VPN/au access,.
+
+Der er pt. ingen load-balancing på de fire noder så se på gpucluster hjemmesiden, hvilke noder der er mindst belastede (via TOP dataen).
+Brug
+
+Alle grupper har fået deres egen konto, og f.eks. så logger Grp 09 ind som:
+
+Login: f21mal09
+
+Password: f21mal09_123
+
+Dvs. brugernavn/login f21malXX hvor XX er jeres ITMAL gruppe og password sammen som brugernavn med med _123 tilføjet.
+Quick Guide
+GIT via Jupyter
+
+I kan clone git repositoret via en '!'-shell commando i Jupyter notepad'en
+
+! git clone https://cfrigaard@bitbucket.org/cfrigaard/itmal
+
+og så herefter pull'e via
+
+! cd itmal && git pull 
+
+PYTHONPATH
+
+NOTE: PYTHONPATH er IKKE sat (som vi gjorde i L03/modules_and _classes.ipynb), men kan simuleres via
+
+import sys,os sys.path.append(os.path.expanduser('~/itmal'))
+
+Hvis du kloner GITMAL til itmal som overnfor er der nu automatisk sat en path op til libitaml, prøv det!
+GPU Hukommelse
+
+Ved brug af Keras+GPU allokeres automatisk al GPU hukommelse. Når vi er flere brugere skal i derfor indsætte følgende i starten af jeres Keras/Tensorflow Jupyternotebook kode:
+
+import tensorflow as tf
+from keras.backend.tensorflow_backend import set_session
+config = tf.ConfigProto()
+config.gpu_options.per_process_gpu_memory_fraction = 0.05
+config.gpu_options.allow_growth=True
+set_session(tf.Session(config=config))
+
+eller blot
+
+from libitmal import kernelfuns as itmalkernelfuns
+itmalkernelfuns.EnableGPU()
+
+så allokeres kun en brøkdel af GPU hukommelsen! Det ser ud til at growth=True ikke virker, så sæt per_process_gpu_memory_fraction op hvis i har behov.
+
+Der kører nu et automatisk startup-script når i logger ind/åbner en nodebook. Se
+
+/home/shared/(??)/startup/00_init.py
+
+der kører StartupSequence_SetPath() og StartupSequence_EnableGPU(), den sidste unktion med følgende default paramete
+
+def StartupSequence_EnableGPU(gpu_mem_fraction=0.05, gpus=None, cpus=None)
+
+Bemærk at jeres jupyter server, beholder all hukommelse, også når i logger af...kun "stop my server"/"start server" frigiver!
+
+Jeg vil slå alle proceser ned, der har allokeret over ca. 4Gb GPU hukommelse eller har kørt i en uge...det er en automatisk process, der kører med ca 5. interval!
+Noter
+Terminal på cluster
+
+Brug Jupyter notebooks terminalen:
+
+Herefter har du en fin terminal på cluster noden:
+
+SSH til cluster
+
+Eller gør det på den klassiske metode via SSH til clusterens 'masternode' via
+
+> ssh -p 443 gpucluster.st.lab.au.dk
+
+og herfra videre til 'noder' via ssh node 1 til node 4, f.eks.
+
+> ssh node3
+
+Brug ikke 'masternode'en til udregninger, kun node 1 til 4!
+
+Sæt gerne jeres SSH certifickater på, så i slipper for login/password..
+Password
+
+Kan kun ændres via SSH og > passwd
+Se Hvad der kører på CPU
+
+! top -n1
+
+Se Hvad der kører på GPU
+
+! nvidia-smi
+
+Kill din egne processer
+
+! kill -9 <pid>
+eller 
+! pkill <navn>
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+CONTENT L00
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\header{Forberedelse inden kursusstart}
 
 \sub{Formål}
 
@@ -111,12 +432,12 @@ at undersøg/bruge det).}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-LESSON L01
+CONTENT L01
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\header{Introduktion}
+%\header{Introduktion}
 
 \sub{Formål}
 

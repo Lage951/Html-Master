@@ -35,10 +35,16 @@ def Check(expr, msg):
 	if not expr:
 		Err("EXPRESSION NOT FULLFILLED: " + msg)
 
-def Trim(s):
-	s = isStr(s, False).replace("\t"," ")
+def Trim(s, checknonempty=True):
+	s = isStr(s, isBool(checknonempty)).replace("\t"," ")
 	s = s.strip()
 	return s
+
+def SuffixFrom(s, splitstr):
+	n = isStr(s).rfind(isStr(splitstr))
+	if n<0: 
+		ERR(f"string '{s}' does not contain split string '{splitstr}' at all")
+	return s[n+len(splitstr):]
 
 def Dbg(verbose, msg, level=1):
 	isInt(verbose)
@@ -47,19 +53,10 @@ def Dbg(verbose, msg, level=1):
 	if level <= verbose:
 		print(msg, file=stderr)
 
-def Print(msg, outputfile):
-	assert isStr(msg)
-	#assert outputfile is None or isinstance(outputfile, _io.TextIOWrapper)
-	#print(msg, file=(stdout if outputfile is None else outputfile))
-	print(msg, file=outputfile)
-
 def Outputfile(outputfile):
-	isStr(outputfile)		
-	f = stdout
-	if not (outputfile is None or len(outputfile)==0 or outputfile=="None"):
-		f = open(outputfile, 'w')
-	else:
-		f = stdout
+	assert outputfile is not None
+	outputfile = isStr(outputfile).replace(" ", "_")	
+	f = stdout if (outputfile is None or len(outputfile)==0 or outputfile=="None") else open(outputfile, 'w')
 	return f
 
 def LoadText(filename, timeout=4000, split=True):
@@ -68,6 +65,13 @@ def LoadText(filename, timeout=4000, split=True):
 		if split:
 			c = c.split("\n")
 		return c
+
+def MkHtmlPage(htmlcontent):
+	assert isStr(htmlcontent).find("DOCTYPE")<0 and htmlcontent.find("<html>")<=0 and htmlcontent.find("<body>")<=0
+	#bodystyle = "style='font-family: Verdana;font-size: 12pt;color: #494c4e;'"
+	bodystyle = "style='font-family: times new roman, times, serif;font-size: 12pt;color: #424222;'"
+	meta = "<meta http-equiv='Content-Type' content='text/html; charset=utf-8'/>"
+	return f"<!DOCTYPE html>\n<html>\n{meta}\n<body {bodystyle}>\n" + htmlcontent + "\n</body>\n</html>"  
 
 def HandleException(ex):
 	try:

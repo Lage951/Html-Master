@@ -8,6 +8,10 @@ PWD = $(shell pwd)
 COURSEFILES = ITMAL_E21
 MKDIFF=colordiff -dw Refs/$1 $1 && echo "DIFF OK" && rm $1
 
+sync: build
+	ssh si "cd ITMAL_E21 && rm -f Html/*.html && git pull"
+	cd ../../Html && scp -C -r *.html Figs/ si:ITMAL_E21/Html
+	
 build:
 	@ $(PYCOURSE) -c $(COURSEFILES)/course.tex  -v  -o ../../Html/
 	@ $(PYPLAN)   -p $(COURSEFILES)/plan.txt    -v  -o ../../Html/plan.html
@@ -23,13 +27,8 @@ test:
 	@ cd Test && $(PWD)/$(PYFILETREE)  $(TESTARGS) -o $(PWD)/tree.html
 	@ $(call MKDIFF,tree.html)
 
-sync: build
-	cd .. && scp -r Html/*.html si:ITMAL_E21/Html
-	ssh si "cd ITMAL_E21 && git pull"
-
 edit:
 	joe $(PYCOURSE)
-
 	
 clean:
 	@ rm -f index.html out.html test.html ../Html/L??.html 

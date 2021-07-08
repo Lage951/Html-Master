@@ -57,13 +57,26 @@ if __name__ == '__main__':
 			return True
 				
 		@staticmethod	
+		def __MkParseArg(a, checknonempty0=True, checknonempty1=True):
+
+			args = isStr(a).split(",")
+			assert len(args)==2
+			
+			arg0 = Trim(args[0], checknonempty0)
+			arg1 = Trim(args[1], checknonempty1)	
+			if arg0.find('"')>=0 or arg0.find("'")>=0:
+				ERR(f"do not use pligs (') or quotes (\") in style command, style='{arg0}'")
+			
+			return arg0, arg1
+	
+		@staticmethod	
 		def __MkLink(a, exlink, left, right):
 			
 			args = isStr(a).split(",")
 			assert len(args)==2
 			
 			arg0 = isStr(args[0], False)
-			arg1 = isStr(args[1]).strip()
+			arg1 = Trim(args[1])
 			
 			if len(arg1)==0:
 				ERR("need second link argument, currently empty")
@@ -82,21 +95,19 @@ if __name__ == '__main__':
 
 		@staticmethod	
 		def __MkStyle(a, left, right):
-			
-			args = isStr(a).split(",")
-			assert len(args)==2
-			
-			arg0 = isStr(args[0]).strip()
-			arg1 = isStr(args[1]).strip()
-			
-			if arg0.find('"')>=0 or arg0.find("'")>=0:
-				ERR(f"do not use pligs (') or quotes (\") in style command, style='{arg0}'")
-			
+			arg0, arg1 = Cmd.__MkParseArg(a)
 			return f"{isStr(left)}span style='{arg0}'{isStr(right)}{arg1}{left}/span{right}"		
 	
 		@staticmethod	
+		def __MkImg(a, left, right):		
+			arg0, arg1 = Cmd.__MkParseArg(a, True, False)
+			if arg1=="":
+				arg1="the-missing-link: " + arg0
+			return f"{isStr(left)}img src='{arg0}' alt='{arg1}'{isStr(right)}"		
+	
+		@staticmethod	
 		def __isHtmlCmd(c):			
-			return isStr(c) in  ["b", "i", "p", "ul", "ol", "li", "header", "sub", "em", "indent", "code", "ipynb", "displaystyle"]
+			return isStr(c) in  ["b", "i", "p", "ul", "ol", "li", "header", "sub", "em", "indent", "code", "ipynb", "quote", "displaystyle", "cite"]
 
 		def __MkCmd(self):
 
@@ -110,6 +121,7 @@ if __name__ == '__main__':
 			
 			left = '<'
 			right= '>'
+			leftmarg = " style='margin-left: 30px;'"
 			
 			t = f"cmd={c}({a})"			
 			Dbg(verbose, f"FOUND COMMAND={t}..", 2)
@@ -118,30 +130,51 @@ if __name__ == '__main__':
 			# fun(arg)..
 			if Cmd.__isHtmlCmd(c):
 				
-				style = ""				
-				if c=="header":
-					c = "h3"
+				head  =""
+				tail  =""
+				style = ""
+								
+				if c=="b" or c=="i" or c=="p" or c=="li" or c=="ul" or c=="ol":
+					pass
+				elif c=="header":
+					c = "h2"
 				elif c=="sub":
-					c = "h4"
+					c = "h3"
 				elif c=="em":
 					c = "i" 
 				elif c=="displaystyle":
 					c = "p"
-					style = " style='margin-left: 30px'" 
+					style = leftmarg 
 				elif c=="indent":
 					c = "span"
-					style = " style='margin-left: 30px'" 
+					style = " style='margin-left: 30px;'" 
 				elif c=="code" or c=="ipynb":
 					c = "span" 
 					style=" style='font-family: courier new, courier;'"
+				elif c=="cite" :
+					c = "span" 
+					a = "[kilde: " + a + "]"
+					style=" style='font-size: xx-small;'"
+					head = "<br>\n"
+					tail = "<br>\n"
+
+				elif c=="quote":
+					c = "span"
+					style = leftmarg 
+					head = "<br>\n<br>\n"
+					tail = "<br>\n<br>\n"
+				else:
+					ERR(f"that odd, an unhandled command '{c}' that seem to be present in isHtmlCmd list")
 					
-				v = f"{left}{c}{style}{right}{a}{left}/{c}{right}"
+				v = f"{head}{left}{c}{style}{right}{a}{left}/{c}{right}{tail}"
 			
 			# fun(arg0, arg1)..
 			elif c=="link" or c=="linkex":
 				v = Cmd.__MkLink(a, c=="linkex", left, right)
 			elif c=="style":
 				v = Cmd.__MkStyle(a, left, right)				
+			elif c=="img":
+				v = Cmd.__MkImg(a, left, right)				
 			else:
 				ERR(f"unknown command '{c}' with argument(s) '{a}'")
 						
@@ -175,8 +208,8 @@ if __name__ == '__main__':
 					self.__cmd = isStr(self.__st, True)
 					self.__st = ""
 				else:
-					if c=='(':
-						WARN("found left parathesis '(' while in command parsing mode, did you mean '{'?")
+					if c=='(' or c=='[':
+						WARN("found left parathesis '{c}' while in command parsing mode, did you mean '{'?")
 					self.__st += c
 			else:	
 				assert self.__args==""
@@ -233,7 +266,7 @@ if __name__ == '__main__':
 		def ParseRefs(refs):
 			r = {}
 			for i in refs.split("\n"):					
-				if len(isStr(i, False).strip())>0:						
+				if len(Trim(i, False))>0:						
 					n = isStr(i).find(']')
 					
 					if n<=0 or i[0]!='[':
@@ -265,11 +298,11 @@ if __name__ == '__main__':
 				
 		for i in range(1, N):
 					
-			t = Trim(courselist[i])
+			t = Trim(courselist[i], False)
 						
 			if t=="END":
 				break
-			elif t.find("LESSON")==0:
+			elif t.find("CONTENT")==0:
 				curr = []
 				assert not s.get(t)
 				s[t] = curr
@@ -310,17 +343,10 @@ if __name__ == '__main__':
 
 		def MkHtml(htmlstructure, addhtmlheaders, filenamebase):
 			
-			def MkHtmlPage(htmlcontent):
-				assert isStr(htmlcontent).find("DOCTYPE")<0 and htmlcontent.find("<html>")<=0 and htmlcontent.find("<body>")<=0
-				#bodystyle = "style='font-family: Verdana;font-size: 12pt;color: #494c4e;'"
-				bodystyle = "style='font-family: times new roman, times, serif;font-size: 12pt;color: #424222;'"
-				meta = "<meta http-equiv='Content-Type' content='text/html; charset=utf-8'/>"
-				return f"<!DOCTYPE html>\n<html>\n{meta}\n<body {bodystyle}>\n" + htmlcontent + "\n</body>\n</html>"										
-							
 			for i in htmlstructure:
-				assert isStr(i).find("LESSON")==0
+				assert isStr(i).find("CONTENT")==0
 				
-				sublesson = i[6:].strip()
+				sublesson = i[7:].strip()
 				if len(sublesson)<=0:
 					ERR("sublesson name empty (or just whitespace)")
 				
@@ -336,11 +362,11 @@ if __name__ == '__main__':
 		def LoadCourseFile(coursefile):
 			r = []
 			for i in LoadText(isStr(coursefile)):
-				t = i.strip()
-				if len(t)>0 and t[0]!='%': # and t[0]!='#':
+				n = i.find('%')
+				if n>=0:
+					r.append(i[0:n])
+				else:			
 					r.append(i)
-				else: 
-					r.append("")
 			return r
 							
 		f = "some ( test \\call{a, b} fun ) end"

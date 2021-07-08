@@ -13,6 +13,16 @@ from urllib.request import urlretrieve
 
 if __name__ == '__main__':
 
+	outputstr = ""
+	
+	def Print(msg, outputfile):
+		global outputstr
+		assert isStr(msg)
+		#assert outputfile is None or isinstance(outputfile, _io.TextIOWrapper)
+		#print(msg, file=(stdout if outputfile is None else outputfile))
+		#print(msg, file=outputfile)
+		outputstr += msg + "\n"
+    
 	def Find(root, excludepat):
 		assert isinstance(root, str)
 		assert isinstance(excludepat, list)
@@ -176,18 +186,23 @@ if __name__ == '__main__':
 		Dbg(verbose, f"{Col('PURPLE')}GENERATING html file tree from root '{root}'" + (f", (url='{url}')" if verbose > 0 else "") + f"..{ColEnd()}")
 
 		tree = Find(root, ["git", "Old", "ipynb_checkpoints", "~", "__pycache__"])		
-		outputfile = Outputfile(args.o)
+		
+		outputfile = None
+		#outputfile = Outputfile(args.o)
 		
 		if htmlmode:
-			Print("<!DOCTYPE html>\n<html>\n<body>\n", outputfile)
 			Print("<h3>" + welcome + "</h3>\n", outputfile)
 
 		(files, dirs) = PrintTree(tree)
 		Dbg(verbose, f"  {Col('YELLOW')}FOUND  files={files},  dirs={dirs}{ColEnd()}")
 	
+		html = outputstr
 		if htmlmode:
-			Print("\n</body></html>", outputfile)
-			
+			html = MkHtmlPage(html)
+		
+		with Outputfile(args.o) as f:
+			f.write(html)
+				
 		Dbg(verbose, f"{Col('PURPLE')}DONE{ColEnd()}")
 			
 	except Exception as ex:
