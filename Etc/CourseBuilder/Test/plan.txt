@@ -18,6 +18,8 @@ CONTENT
 	18		|04/05-2021	|L13		|Projektarbejde	(Discord)				|			| 			|
 	19		|11/05-2021	|L14		|O4	projekt								|			|			|
 	20		|18/05-2021	|L15		|O4	projekt								|O4	(19/05) |			|
+NOTES
+	none
 REFS 
 	[1] sdf
 	[2] sfd zdf
