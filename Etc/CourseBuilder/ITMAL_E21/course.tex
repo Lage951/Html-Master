@@ -27,45 +27,49 @@ CONTENT Litteratur
 
 \sub{Hands-on Machine Learning [HOML]}
 
-\displaystyle{
-	\img{[FIGS]/book_homl.jpg, Hands-on Machine Learning with Scikit-Learn (front image)}
 
-	[BR] \i{Hands-on Machine Learning with Scikit-Learn, Keras, and TensorFlow: Concepts, Tools, and Techniques to Build Intelligent Systems}
-	[BR]
-	
-	[BR] Aurélien Géron 
-	[BR] O'Reilly / Wiley, 2019, 2.ed.
-	[BR] ISBN: 9781492032649 
-	[BR] \link{https://www.oreilly.com/library/view/hands-on-machine-learning/9781492032632/}
+\dl{
+	\dd{\img{[FIGS]/book_homl.jpg, Hands-on Machine Learning with Scikit-Learn (front image)}}
+	\dd{\i{Hands-on Machine Learning with Scikit-Learn, Keras, and TensorFlow:[BR] Concepts, Tools, and Techniques to Build Intelligent Systems}}
+	\dd{[BR]}
+	\dd{Aurélien Géron}
+	\dd{O'Reilly / Wiley, 2019, 2.ed.}
+	\dd{ISBN: 9781492032649}
+	\dd{\link{O'Reilly link,https://www.oreilly.com/library/view/hands-on-machine-learning/9781492032632/}}
+	\dd{[BR]}
+	\dl{
+		\dt{\i{NOTE 1:}} 
+			\dd{Dette er anden udgave (Second Edition/2.ed) af Géron's " Hands-on",	
+			undgå at bruge førsteudgaven, idet den benytter TensorFlow direkte istedet for
+			Keras, og desuden har flere mangler.}
+
+		\dt{\i{NOTE 2:}}
+			\dd{I PDF udgaven (Early Release, June 2019, 2019-04-22: Fifth Release)
+			svare sidetal og nogle kaptitler ikke til den officielle bog udgave ovenfor!}
+	}
 }
-
-\p{\i{NOTE 1:} dette er anden udgave (Second Edition/2.ed) af Géron's " Hands-on",
-undgå at bruge førsteudgaven, idet den benytter TensorFlow direkte istedet for
-Keras, og desuden har flere mangler.}
-
-\p{\i{NOTE 2:} i PDF udgaven (Early Release, June 2019, 2019-04-22: Fifth Release)
-svare sidetal og nogle kaptitler ikke til den officielle bog udgave ovenfor!}
 
 \sub{Deep Learning [DL]}
 
-\displaystyle{
-
-	\img{[FIGS]/book_dl.jpg, Deep Learning (front image)}
-
-	[BR] \i{Deep Learning}
-	[BR]
-	
-	[BR] Ian Goodfellow, Yoshua Bengio, Aaron Courville
-	[BR] The MIT Press 
-	[BR] November 18, 2016
-	[BR] Hardcover: 775 pages
-	[BR] ISBN-10: 0262035618 
-	[BR] ISBN-13: 978-0262035613
-	[BR] \link{http://www.deeplearningbook.org/}
+\dl{
+	\dd{\img{[FIGS]/book_dl.jpg, Deep Learning (front image)}}
+	\dd{\i{Deep Learning}}
+	\dd{[BR]}
+	\dd{Ian Goodfellow, Yoshua Bengio, Aaron Courville}
+	\dd{The MIT Press}
+	\dd{November 18, 2016}
+	\dd{Hardcover: 775 pages}
+	\dd{ISBN-10: 0262035618}
+	\dd{ISBN-13: 978-0262035613}
+	\dd{\link{http://www.deeplearningbook.org/}}
+	\dd{[BR]}
+	\dl{
+		\dt{\i{NOTE:}}
+			\dd{Ikke obligatorisk, kun få afsnit og figure bruges herfra.  
+			(Bog god til videregående Neural Netværks-teori
+			og meget brugt i ML sammenhænge.)}
+	}
 }
-
-\p{\i{NOTE:} ikke obligatorisk, kun få afsnit og figure bruges herfra.  (Bog god til
-videregående Neural Netværks-teori og meget brugt i ML sammenhænge.)}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -78,17 +82,23 @@ CONTENT Kursusforkortelser
 %\header{Kursusforkortelser}
 
 \dl{
-	\dt{[DL]:}
+	\dt{[\b{AI}]:}
+	\dd{Artificial intelligence (kunstig intelligens). Generelt bruges udtrykket ML istedet for AI i kurset.}
+
+	\dt{[\b{CNN}]}
+	\dd{Convolutional Neural Network(s), undersort at NNs, primært til billebehandling.}
+
+	\dt{[\b{DL}]}
 	\dd{Enten bare Deep Learning eller Deep Learning bogen af Ian Goodfellow, et. al.}
 				
-	\dt{[G]:}
+	\dt{[\b{G}]}
 	\dd{Group, ITMAL øvelsesgruppe.}
 		
-	\dt{[GITHOML]:}
+	\dt{[\b{GITHOML}]}
 	\dd{
 		\dl{
 			\dt{GitHub repository til [HOML],}
-			\dd{\link{https:///github.com/ageron/handson-ml2/}}
+			\dd{\link{https://github.com/ageron/handson-ml2/}}
 			\dt{Clone via HTTPS}
 			\dd{\code{git clone https://github.com/ageron/handson-ml2.git}}
 			\dt{eller via SSH}
@@ -96,7 +106,7 @@ CONTENT Kursusforkortelser
 		}
 	}
 
-	\dt{[GITMAL]:}
+	\dt{[\b{GITMAL}]}
 	\dd{
 		\dl{
 			\dt{Git repository for ITMAL,}
@@ -108,35 +118,38 @@ CONTENT Kursusforkortelser
 		}
 	}
 
-	\dt{[HOML]:}
+	\dt{[\b{HOML}]}
 	\dd{Hands-on Machine Learning af Aurélien Géron, hovedlitteratur til dette kursus. For klarhedens skyld undtales 'HOML' som Holm i Brian Holm.}
 	\dd{
 		[BR]\img{[FIGS]/brian_holm.jpg, Brian Holm (foto fra cdn-ctstaging.pressidium.com)}
 		[BR]\cite{https://cdn-ctstaging.pressidium.com/wp-content/uploads/2020/12/CORVOS_00000365-066.jpg}
 	}
 
-
-	\dt{[ITMAL]:}
+	\dt{[\b{ITMAL}]}
 	\dd{IT Machine Learning, kursusnavnet.}
 
 	% [J1, J2, .. JN]: En journal opgave/aflevering, f.eks. "Journal 1" (J1). 'Journaler' erstattes af 'opgave afleveringer', O1, O2, osv.
 
-	\dt{[JPYNB]:}
+	\dt{[\b{JPYNB}]}
 	\dd{Jypyter Python NoteBook, dvs. Notebook applikationen eller en notebook kildetekst fil (med endelsen .ipynb).}
 
-	\dt{[ML]:}
+	\dt{[\b{ML}]}
 	\dd{Machine Learning, det generelle koncept.}
 	
-	\dt{[NN:]}
-	\dd{Neural Network(s).}
+	\dt{[\b{NN}]}
+	\dd{Neural Network(s). Normalt forstået som fully-connected neurale netværk (se også CNN).}
 
-	\dt{[O1, O2, O3, O4]:}
+	\dt{[\b{O1, O2, O3, O4}]}
 	\dd{En opgaveaflevering, f.eks. O1 for opgaveaflevering 1.} %(opgave afleveringer hed tidligere journaler).
 
-	\dt{[SG]:}
+	%\dt{[RNN:]}
+	%\dd{Recurrent Neural Network(s), undersort at NNs, men med indbygget \i{hukommelse}. }
+
+
+	\dt{[\b{SG}]}
 	\dd{Super-group, bestående af tre eller fire Grupper [G]'s.}
 
-	\dt{[Q]:}
+	\dt{[\b{Q}]:}
 	\dd{Et specifikt spørgsmål (Question) i en journal opgave, ala Qc for opgave 'c' i et journal spørgsmål.}
 }
 

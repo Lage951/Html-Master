@@ -109,9 +109,13 @@ if __name__ == '__main__':
 			
 			n_http  = arg1.find("http://")
 			n_https = arg1.find("https://")
+			m = 7 + (1 if n_https==0 else 0)
 			
 			if not (n_http==0 or n_https==0):
-				WARN(f"link '{arg1}' does not begin with 'http://' or 'https://' as it should")
+				ERR(f"link '{arg1}' does not begin with 'http://' or 'https://' as it should")
+				
+			if arg1[m]=="/":
+				ERR(f"link with triple '///', for '{arg1}'")
 			
 			if len(arg0)==0:
 				#n = arg1.rfind('/')
@@ -121,7 +125,7 @@ if __name__ == '__main__':
 				#arg0 = arg1[n+1:]
 				#if len(arg0)==0:
 				#	ERR("second arg still empty, this was not expected")
-				arg0 = arg1[8 + (1 if n_https==0 else 0):]
+				arg0 = arg1[m:]
 			
 			exlink = True
 			if arg1.find("au.dk")>0:
