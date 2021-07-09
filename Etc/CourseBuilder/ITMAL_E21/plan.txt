@@ -12,7 +12,7 @@ CONTENT
 	42		|22/10-2021	|			|										|			|Efterårsferie (ingen undervisning)
 	43		|29/10-2021	|L08		|Neurale netværk (NN)					|			|
 	44		|05/11-2021	|L09		|Deep learning (CNN)					|			|
-	45		|12/11-2021	|L10		|Hardware til ML						|O3 (12/11)	|
+	45		|12/11-2021	|L10		|Frameworks og hardware 				|O3 (12/11)	|
 	46		|19/11-2021	|L11		|Unsupervised learning  I  (PCA)		|			|
 	47		|26/11-2021	|L12		|Unsupervised learnindg II (Kmeans,GMM)	|			|Kursus-evaluering
 	48		|03/12-2021	|L13		|O4 projekt								|			|

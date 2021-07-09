@@ -90,7 +90,7 @@ if __name__ == '__main__':
 			return arg0, arg1
 	
 		@staticmethod	
-		def __MkLink(a, exlink, left, right):
+		def __MkLink(a, isstar, uselinkfilename, left, right):
 			
 			if isStr(a).find(",")<=0:
 				Dbg(verbose, f"one argument link command '{a}'..", 2)
@@ -126,6 +126,17 @@ if __name__ == '__main__':
 				#if len(arg0)==0:
 				#	ERR("second arg still empty, this was not expected")
 				arg0 = arg1[m:]
+				
+				if uselinkfilename:
+					k = arg0.rfind("/")
+					if arg0[-1]=="/":
+						ERR(f"can not generate file name, when link argument '{arg0}' ends in a slash '/'")
+					if k<=0:
+						ERR("could not generate filename from link '{arg0}', need at least one slash '/'")
+					arg0 = arg0[k+1:]
+			
+			if len(arg0)==0:
+				ERR("link arg0 ends-up empty, this was not the way it should be")
 			
 			exlink = True
 			if arg1.find("au.dk")>0:
@@ -134,8 +145,9 @@ if __name__ == '__main__':
 			else:
 				Dbg(verbose, f"exernal link = '{arg1}'..",  2)
 	
-			extra =  " rel='noopener' target='_blank'" if isBool(exlink) else ""
-			return f"{isStr(left)}span style='font-family: courier new, courier;'{isStr(right)}{left}a href='{arg1}'{extra}{right}{arg0}{left}/a{right}{left}/span{right}"		
+			extra = " rel='noopener' target='_blank'" if isBool(exlink) else ""
+			style = " style='font-family: courier new, courier;'" if not isBool(isstar) else ""
+			return f"{isStr(left)}span{style}{isStr(right)}{left}a href='{arg1}'{extra}{right}{arg0}{left}/a{right}{left}/span{right}"		
 
 		@staticmethod	
 		def __MkStyle(a, left, right):
@@ -151,7 +163,7 @@ if __name__ == '__main__':
 	
 		@staticmethod	
 		def __isCmd(c):			
-			return isStr(c) in  ["b", "i", "p", "pre", "ul", "ol", "li", "dl", "dt", "dd", "header", "sub", "em", "indent", "code", "ipynb", "quote", "displaystyle", "displaycode", "cite"]
+			return isStr(c) in  ["b", "i", "p", "pre", "ul", "itemize", "ol", "li", "item", "item*", "subitem", "subitem*", "dl", "dt", "dd", "header", "sub", "em", "indent", "code", "ipynb", "quote", "displaystyle", "displaycode", "cite"]
 
 		def __MkCmd(self):
 
@@ -179,8 +191,26 @@ if __name__ == '__main__':
 				style = ""
 				closing = True
 								
-				if c=="b" or c=="i" or c=="p" or c=="li" or c=="ul" or c=="ol" or c=="dl" or c=="pre":
+				if c=="b" or c=="i" or c=="p" or c=="ul" or c=="li" or c=="ol" or c=="dl" or c=="pre":
 					pass
+				elif c=="itemize":
+					c = "ul"
+				elif c=="item" or c=="item*":
+					if c=="item*":
+						head = _mkHtml("dl")
+						tail = _mkHtml("/dl")
+						c = "dd"
+					else:
+						c = "li"
+				elif c=="subitem" or c=="subitem*":
+					if c=="subitem*":
+						head = _mkHtml("dl")
+						tail = _mkHtml("/dl")
+						c = "dd"
+					else:
+						head = _mkHtml("ul")
+						tail = _mkHtml("/ul")
+						c = "li"
 				elif c=="dt" or c=="dd":
 					closing = False
 				elif c=="header":
@@ -208,7 +238,6 @@ if __name__ == '__main__':
 					style=" style='font-size: xx-small;'"
 					head = "<br>\n"
 					tail = "<br>\n"
-
 				elif c=="quote":
 					c = "span"
 					style = leftmarg 
@@ -221,8 +250,8 @@ if __name__ == '__main__':
 				v = f"{head}{left}{c}{style}{right}{a}{closetags}"
 			
 			# fun(arg0, arg1)..
-			elif c=="link" or c=="linkex":
-				v = Cmd.__MkLink(a, c=="linkex", left, right)
+			elif c=="link" or c=="link*" or c=="link**":
+				v = Cmd.__MkLink(a, c=="link*", c=="link**", left, right)
 			elif c=="style":
 				v = Cmd.__MkStyle(a, left, right)				
 			elif c=="img":

@@ -9,8 +9,10 @@ COURSEFILES = ITMAL_E21
 MKDIFF=colordiff -dw Refs/$1 $1 && echo "DIFF OK" && rm $1
 
 sync: build
-	ssh si "cd ITMAL_E21 && rm -f Html/*.html && git pull"
-	cd ../../ && scp -q -C -r Html si:ITMAL_E21/
+	@ echo "SYNC.."
+	@ ssh si "cd ITMAL_E21 && rm -f Html/*.html && git pull"
+	@ cd ../../ && scp -q -C -r Html si:ITMAL_E21/
+	@ echo "SYNC..DONE"
 	
 build:
 	@ $(PYCOURSE) -c $(COURSEFILES)/course.tex  -v  -o ../../Html/

@@ -12,7 +12,9 @@ DEFS
 	[KURSUSINFORMATION]  <a href='https://brightspace.au.dk/d2l/le/lessons/27524/units/244588'>kursusinformation</a>
 	[KURSUSFORKORTELSER] <a href='https://brightspace.au.dk/d2l/le/lessons/27524/topics/254943' rel='noopener' target='_blank'>kursusinformation | kursusforkortelser</a>
 	[KURSUSINFOGPU]      <a href='https://brightspace.au.dk/d2l/le/lessons/27524/topics/244596' rel='noopener' target='_blank'>kursusinformation | GPU Cluster</a>
-	
+
+	[SLIDES(arg)]       slide arg
+
 	[BR] <br>
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -26,7 +28,6 @@ CONTENT Litteratur
 %\header{Litteratur}
 
 \sub{Hands-on Machine Learning [HOML]}
-
 
 \dl{
 	\dd{\img{[FIGS]/book_homl.jpg, Hands-on Machine Learning with Scikit-Learn (front image)}}
@@ -177,9 +178,9 @@ Primære
 Sekundære
 
 \ul{
-    \li{\linkex{Jupyter: jupyter-notebook.readthedocs.io/en/stable,  https://jupyter-notebook.readthedocs.io/en/stable/}}
-    \li{\linkex{Anaconda Cloud: anaconda.org,                        https://anaconda.org/}}
-   	\li{\linkex{Tensorflow: www.tensorflow.org,                      https://www.tensorflow.org/}}
+    \li{\link{Jupyter: jupyter-notebook.readthedocs.io/en/stable,  https://jupyter-notebook.readthedocs.io/en/stable/}}
+    \li{\link{Anaconda Cloud: anaconda.org,                        https://anaconda.org/}}
+   	\li{\link{Tensorflow: www.tensorflow.org,                      https://www.tensorflow.org/}}
 }
 
 Datakilder
@@ -205,8 +206,8 @@ Dokumentation
 Guides etc.
 
 \ul{
-    \li{\linkex{A Quick Python intro (short), https://www.w3schools.com/python/python_intro.asp}}
-    \li{\linkex{A Python tutorial (not so short!), https://docs.python.org/3/tutorial/}}
+    \li{\link{A Quick Python intro (short),      https://www.w3schools.com/python/python_intro.asp}}
+    \li{\link{A Python tutorial (not so short!), https://docs.python.org/3/tutorial/}}
     \li{Jupyter shortcuts quick guide XXX}
     \li{Scikit-learn reference XXX}
     \li{Scikit-learn cheat sheet XXX}
@@ -270,7 +271,7 @@ tilføjet.}
 		\dd{\code{import sys,os sys.path.append(os.path.expanduser('~/itmal'))}}
 }
 
-\p{Hvis du kloner GITMAL til itmal som overnfor er der nu automatisk sat en path op til libitaml, prøv det!}
+\p{Hvis du kloner [GITMAL] til itmal som overnfor er der nu automatisk sat en path op til libitaml, prøv det!}
 
 \sub{GPU Hukommelse}
 
@@ -374,7 +375,7 @@ dig mere ind i sproget.}
 \ul{
 	\li{Installer Anaconda på din PC:}
 	\ul{
-	\li{\linkex{www.anaconda.com/products/individual, https://www.anaconda.com/products/individual}}
+	\li{\link{www.anaconda.com/products/individual, https://www.anaconda.com/products/individual}}
 		\li{vælg 'Download' (downloader direkte for Windows),}
 		\li{eller vælg Linux eller Mac, 32 eller 64 bit (dit valg),} 
 		\li{nværende nyeste Anaconda3 version er \b{2021.05}}
@@ -557,8 +558,177 @@ brug for en python og lineær algebra kick-start.}
 
 \sub{Slides}
 
+\itemize{
+	\item*{\link**{[HOME]/L01/lesson01.pdf}}
+}
+
+END
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+CONTENT L02
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\header{Supervised classification, Cost function, Performance metrics}
+
+\sub{Formål}
+
+\p{Vi lægger ud med at se på datamat-læring eller ML-læring via cost
+funktionen, J, dvs.  hvordan en supervised ML algoritme i princippet kunne
+tænkes at fungere.  Til cost funktionen tager vi hul på et par grundliggende
+lineær algebra koncepter: "norm" eller afstandsmål mellem to N-dimensionale
+vektorer, og vi ser hvordan Mean-Square-Error (MSE) og Mean-Absolute-Error
+(MAE) kunne indgå i J.}
+
+\p{Herefter studerer vi begrebet supervised klassifikation dybere og bruger
+Scikit-learns fit-predict interface til konkret at lave og køre ML-kode.  Vi
+går i detaljen med den fundamentale train/test-split og fit/predict proces vdr. 
+supervised learning, og vi bruger diverse kendte små dataset, som vi også vil
+benytte i resten af kurset: MNIST, Iris og Moon.}
+
+\p{Til sidst evaluere vi en kørt ML læring ved brug af diverse performance
+metrics, dvs.  metoder til generelt at kvantificere hvor 'god' (kvalitet) en
+læring den pågældende algoritme har opnået på de pågældende data.}
+
+
+\sub{Indhold}
+
+\itemize{
+	\item{Lineær algebra og cost funktionen, J}
+	\itemize{
+		\item{matricer, vektors, norms og NumPy,}
+		\item{MSE, MAE,
+		\item{ML læring via J}
+	}
+	\item{Klassifikation}
+        \itemize{
+        \item{’demo’ datasæt:  MNIST, iris and moon}
+        \item{fundamental ML supervised lærings-proces,}
+        \itmeize{
+            \item*{i) forbered data: shuffle, stratification, normalization}
+            \item*{ii) train/test split}
+            \item*{iii) træn på træningsdata}
+            \item*{iv) evaluer på test data:  performance metrics}
+		}
+    \item{Performance metrics}
+    	\itemize{
+        	\item{the accuracy paradox,}
+        	\itemize{
+	        	\item{vigtige metrics,}
+				\itemize{
+					\item{accuracy}
+					\item{precision_score}
+					\item{recall_score}
+					\item{f1_score}
+					\item{confusion_matrix}
+				}
+			}
+		}
+	}
+}
+
+END
+\sub{Litteratur}
+
+§ 2 "End-to-End Machine Learning Project" kapitel "Select a Performance Measure", [HOML]
+
+Genlæs KUN "Select a Performance Measure" (pp.39-41)
+
+§ 3 Classification [HOML]
+
+Skim eller spring over: "The ROC Curve" (pp.97-1o0) "Multilabel Classification" og "Multioutput Classification" (pp.106-108).
+
+
+\sub{Opgaver}
+
+Forberedelse inden lektionen
+
+Læs litteraturen.
+
+Tilføjet 5/2: se de fem Offline-lektioner nedenfor.
+På klassen
+
+        'Spørge-minutter' --- online diskussion, kom med din spørgsmål på Zoom'en...
+        [INGEN spil Among-Us ;-]
+        Almindelig forelæsning
+        Exercise (cost funktionen og lineær algebra):
+            cost_function.ipynb Click for more options
+        Exercise (supervised learning og fit-predict interfacet):
+            dummy_classifier.ipynb Click for more options
+        Exercise:
+            performance_metrics.ipynb Click for more options
+
+\sub{Slides}
+
+\itemize{
+	\item*{\link**{[HOME]/L02/lesson02.pdf}}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+CONTENT L03 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\header{End-to-end ML}
+
+\sub{Formål}
+
+\p{Opsamlingslektion: vi tager et genblik på \i{§ 2 "End-to-End Machine Learning Project"}, og samler op på dette brede
+kapitel.}
+
+\p{Vi går først igang med at gennemgå \i{K-fold Cross-validation} (eller K-fold CV), for derefter at bruge \link{"The
+Map", [HOME]/Etc/ml_supervised_map.pdf} til at komme igennem alle grundliggende koncepter i \i{§ 2}.}
+
+\p{Da alle kerne-koncepter i supervised ML nu kendes, kan det hele konkret sammensættes i en samlet
+processerings-\i{pipeline}.  Programmerings-teknisk ser vi derfor til sidst på Scikit-learns Pipelines.}
+
 \displaystyle{
-	\link{[HOME]/L01/lesson01.pdf}
+	\link{\img{[FIGS]/ml_supervised_map.png, Supervised map image.}, [HOME]/Etc/ml_supervised_map.pdf}
+	[BR] \i{Figur: \link*{Oversigtskortet for Supervised learning.,  [HOME]/Etc/ml_supervised_map.pdf}}
+}
+
+\sub{Indhold}
+
+\itemize{
+	\item{Generel genlæsning og repetition af § 2}
+	\item{K-fold Cross-validation}
+	\item{Pipelines}
+}
+
+\sub{Litteratur}
+
+\itemize{
+	\item{Genlæs: § 2 "End-to-End Machine Learning Project" [HOML]}
+		\subitem*{(eksklusiv "Create the Workspace" og "Download the Data")}
+	\item{Scikit's dokumentations-side vdr. k-fold CV}
+		\subitem*{\link{https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.KFold.html}}
+}
+
+\sub{Forberedelse inden lektionen} 
+
+\itemize{
+	\item{Læs litteraturen.}
+}
+
+\sub{På klassen}
+
+\itemize{
+    \item{Almindelig forelæsning}
+		\subitem*{ekstra materiale: \link**{[HOME]/L03/Extra/k-fold_demo.ipynb}}
+    \item{Exercise: \link**{[HOME]/L03/pipelines.ipynb}}
+   		\subitem*{Data til pipelines opgaven (bør lige i L03/Data/): \link**{[HOME]/L03/itmal_l01_data.pkl}}
+		\subitem*{(Du har allerede denne data-fil, hvis du pull'er fra [GITMAL])}
+}
+
+\sub{Slides}
+
+\itemize{
+	\item*{\link**{[HOME]/L03/lesson03.pdf}}
 }
 
 END
