@@ -177,40 +177,39 @@ Primære
 
 Sekundære
 
-\ul{
-    \li{\link{Jupyter: jupyter-notebook.readthedocs.io/en/stable,  https://jupyter-notebook.readthedocs.io/en/stable/}}
-    \li{\link{Anaconda Cloud: anaconda.org,                        https://anaconda.org/}}
-   	\li{\link{Tensorflow: www.tensorflow.org,                      https://www.tensorflow.org/}}
+\itemize{
+    \item{\link{Jupyter: jupyter-notebook.readthedocs.io/en/stable,  https://jupyter-notebook.readthedocs.io/en/stable/}}
+    \item{\link{Anaconda Cloud: anaconda.org,                        https://anaconda.org/}}
+   	\item{\link{Tensorflow: www.tensorflow.org,                      https://www.tensorflow.org/}}
 }
 
 Datakilder
 
-\ul{
-    \li{\link{Kaggle datasets: www.kaggle.com, https://www.kaggle.com/}}
-    \li{\i{Sign in with your email} => genbrug gerne min konto, og undgå tidsplid:
-    	\ul{
-           \li{user: cef@ase.au.dk}
-           \li{password: test123}
+\itemize{
+    \item{\link{Kaggle datasets: www.kaggle.com, https://www.kaggle.com/}}
+    \item{\i{Sign in with your email} => genbrug gerne min konto, og undgå tidsplid:
+    	\itemize{
+           \item{user: cef@ase.au.dk}
+           \item{password: test123}
         }
 	}
 }
 
-
 Dokumentation
 
-\ul{
-    \li{Brug den inbyggede hjælp i [JPYNP]}
+\itemize{
+    \item{Brug den inbyggede hjælp i [JPYNP]}
     \img{[FIGS]/Screenshot_jupyter_help.png,}
 }
 
 Guides etc.
 
-\ul{
-    \li{\link{A Quick Python intro (short),      https://www.w3schools.com/python/python_intro.asp}}
-    \li{\link{A Python tutorial (not so short!), https://docs.python.org/3/tutorial/}}
-    \li{Jupyter shortcuts quick guide XXX}
-    \li{Scikit-learn reference XXX}
-    \li{Scikit-learn cheat sheet XXX}
+\itemize{
+    \item{\link{A Quick Python intro (short),      https://www.w3schools.com/python/python_intro.asp}}
+    \item{\link{A Python tutorial (not so short!), https://docs.python.org/3/tutorial/}}
+    \item{Jupyter shortcuts quick guide XXX}
+    \item{Scikit-learn reference XXX}
+    \item{Scikit-learn cheat sheet XXX}
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -372,36 +371,28 @@ dig mere ind i sproget.}
 
 \sub{Installation}
 
-\ul{
-	\li{Installer Anaconda på din PC:}
-	\ul{
-	\li{\link{www.anaconda.com/products/individual, https://www.anaconda.com/products/individual}}
-		\li{vælg 'Download' (downloader direkte for Windows),}
-		\li{eller vælg Linux eller Mac, 32 eller 64 bit (dit valg),} 
-		\li{nværende nyeste Anaconda3 version er \b{2021.05}}
-	}
-	\ul{
-		\li{ALTERNATIV 1:}
-		\ul{
-			\li{brug vores ASE GPU Cluster som jupyter hub server,}
-			\li{se info in [KURSUSINFOGPU].}
-		}
-		\li{ALTERNATIV 2:}
-		\ul{
-			\li{Lav en konto på Google's Colaboratory,}
-			\li{\link{https://colab.research.google.com}}
-		}
-	}
-	\li{Test at du kan køre jupyter notebooks [JYPYNB] fra [GITHOML], prøv f.eks. \ipynb{index.ipynb}}
+\itemize{
+	\item{Installer Anaconda på din PC:}
+		\subitem{\link**{www.anaconda.com/products/individual, https://www.anaconda.com/products/individual}}
+		\subitem{vælg 'Download' (downloader direkte for Windows),}
+		\subitem{eller vælg Linux eller Mac, 32 eller 64 bit (dit valg),} 
+		\subitem{nværende nyeste Anaconda3 version er \b{2021.05}}
+	\item{ALTERNATIV 1:}
+		\subitem{brug vores ASE GPU Cluster som jupyter hub server,}
+		\subitem{se info in [KURSUSINFOGPU].}
+	\item{ALTERNATIV 2:}
+		\subitem{Lav en konto på Google's Colaboratory,}
+		\subitem{\link{https://colab.research.google.com}}
+	\item{Test at du kan køre jupyter notebooks [JYPYNB] fra [GITHOML], prøv f.eks. \ipynb{index.ipynb}}
 }
 
 \sub{Forberedelse til Lektion 01}
 
-\ul{
-	\li{Læs materiale i [KURSUSINFORMATION],}
-	\li{få fat i litteratur til kurset,}
-	\li{clone [GITHOML] til din egen PC, se how-to under [KURSUSFORKORTELSER].}
-	\li{skim denne tutorial igennem:}
+\itemize{
+	\item{Læs materiale i [KURSUSINFORMATION],}
+	\item{få fat i litteratur til kurset,}
+	\item{clone [GITHOML] til din egen PC, se how-to under [KURSUSFORKORTELSER].}
+	\item{skim denne tutorial igennem:}
 	\displaystyle{\em{§ Scientific Python tutorials:} NumPy, \ipynb{tools_numpy.ipynb}, [GITHOML]
 		
 		[BR][BR]
@@ -414,7 +405,6 @@ dig mere ind i sproget.}
 
 \sub{Note vdr. kildekritik og 'informations-overload'}
 
-
 \p{Vi vil i dette kurset tit kunne blive overvældet af for meget ekstern
 information (informations-overload), så du skal danne dig en metode til at
 kunne selektere og navigere i materialet.}
@@ -425,15 +415,15 @@ information: en kildekritiks holdning er vigtig!}
 
 \sub{Ekstra materiale til forberedelse}
 
-\p{Hvis du har brug for at opfriske dit lineær algebra matematik eller er helt ny
-til python, så kan du f.eks.  læse/skimme følgende notebooks, i prioriteret
+\p{Hvis du har brug for at opfriske dit lineær algebra matematik eller er helt
+ny til python, så kan du f.eks.  læse/skimme følgende notebooks, i prioriteret
 rækkefølge:}
 
-\ol{
-	\li{[OPTIONAL] python og vectors/matrices math:            [BR] \indent{\ipynb{math_linear_algebra.ipynb}        [GITHOML],}}
-	\li{[OPTIONAL] python og grafisk plotting:                 [BR] \indent{\ipynb{tools_matplotlib.ipynb}           [GITHOML],}}
-	\li{[OPTIONAL] ekstra, Python og dataværktøjet 'Pandas':   [BR] \indent{\ipynb{tools_pandas.ipynb}               [GITHOML],}}
-	\li{[OPTIONAL] ekstra, mest for de matematik intereserede: [BR] \indent{\ipynb{math_differential_calculus.ipynb} [GITHOML].}}
+\enumerate{
+	\item{[OPTIONAL] python og vectors/matrices math:            [BR] \indent{\ipynb{math_linear_algebra.ipynb}        [GITHOML],}}
+	\item{[OPTIONAL] python og grafisk plotting:                 [BR] \indent{\ipynb{tools_matplotlib.ipynb}           [GITHOML],}}
+	\item{[OPTIONAL] ekstra, Python og dataværktøjet 'Pandas':   [BR] \indent{\ipynb{tools_pandas.ipynb}               [GITHOML],}}
+	\item{[OPTIONAL] ekstra, mest for de matematik intereserede: [BR] \indent{\ipynb{math_differential_calculus.ipynb} [GITHOML].}}
 }
 
 \p{Pandas er et meget populært databehandlingsværktøj, men det
@@ -455,11 +445,11 @@ CONTENT L01
 Denne lektion har til formål at give indledende information om kurset.  Dvs. 
 at vi præsentere de formelle rammer vdr.
 
-\ul{
-	\li{ITMAL gruppetilmelding,}
-	\li{opgavesæt og journalafleveringer,}
-	\li{eksamensform,}
-	\li{Blackboard opbygning og fildeling.}
+\itemize{
+	\item{ITMAL gruppetilmelding,}
+	\item{opgavesæt og journalafleveringer,}
+	\item{eksamensform,}
+	\item{Blackboard opbygning og fildeling.}
 }
 
 \p{Herefter vil vi præsentere machine learning [ML] som koncept overordnet, og
@@ -481,32 +471,32 @@ lektioner..}
 
 \sub{Indhold}
 
-\ul{
-	\li{Formelle rammer vdr. kurset.}
-	\li{Eksamensform, godkendelsesfag via:}
-	\ul{
-		\li{et sæt obligatoriske skriftlige gruppe-journaler med afleveringsdeadlines,}
-		\li{en poster-session, med aflevering af poster og mundtlig præsentation af poster,}
-		\li{en mundtlig gennemgang af den sidste journal med alle medlemmer i ITMAL gruppen, samt evaluering af hver gruppemedlems
+\itemize{
+	\item{Formelle rammer vdr. kurset.}
+	\item{Eksamensform, godkendelsesfag via:}
+	\itemize{
+		\item{et sæt obligatoriske skriftlige gruppe-journaler med afleveringsdeadlines,}
+		\item{en poster-session, med aflevering af poster og mundtlig præsentation af poster,}
+		\item{en mundtlig gennemgang af den sidste journal med alle medlemmer i ITMAL gruppen, samt evaluering af hver gruppemedlems
 		bidrag.}
 		\displaystyle{\b{\style{color: #ff3333, => Endelig godkendelse af kurset sker på en samlet vurdering af de tre punkter ovenfor.}}}
 	}
-	\li{Læringsmål.}
-	\li{Litteratur.}
-	\li{Intro til software, der bruges i ITMAL:}
-	\ul{
-		\li{python generelt (link til mini python intro: \link{[HOME]/L01/demo.ipynb},}
-		\li{anaconda python distribution:}
-		\ul{
-			\li{jupyter notebooks,}
-			\li{spyder developer environment.}
+	\item{Læringsmål.}
+	\item{Litteratur.}
+	\item{Intro til software, der bruges i ITMAL:}
+	\itemize{
+		\item{python generelt (link til mini python intro: \link**{[HOME]/L01/demo.ipynb},}
+		\item{anaconda python distribution:}
+		\itemize{
+			\item{jupyter notebooks,}
+			\item{spyder developer environment.}
 		}
-		\li{Scikit-learn,}
-		\li{opgave med python modul og klasser.}
+		\item{Scikit-learn,}
+		\item{opgave med python modul og klasser.}
 	}
-	\li{Intro til machine learning:}
-	\ul{
-		\li{Supervised learning (regression): 'life-satisfactory' [HOML].}
+	\item{Intro til machine learning:}
+	\itemize{
+		\item{Supervised learning (regression): 'life-satisfactory' [HOML].}
 	}
 }
 
@@ -532,23 +522,21 @@ senere tilbage til kapitlet senere, så læs det og prøv at danne dig et overbl
 emner, der er for komplekse eller for 'pythoniske', så som 'Stacking arrays' og
 'QR decomposition'.}
 
-\sub{Opgaver}
+\sub{Forberedelse inden lektionen}
 
-\p{Forberedelse inden lektionen}
-
-\ul{
-	\li{Meld dig ind i en ITMAL working-group [G].}
-	\li{Følg installation processen givet i lektion nul ('L00: Forberedelse').}
-	\li{Læs pensum.}
+\itemize{
+	\item{Meld dig ind i en ITMAL working-group [G].}
+	\item{Følg installation processen givet i lektion nul ('L00: Forberedelse').}
+	\item{Læs pensum.}
 }
 
 \sub{På klassen}
 
-\ul{
-	\li{Diskussion om ML (indlejret i forelæsningen).}
-	\li{Opgave: intro.ipynb}
-	\li{HUSK DATA til intro'en (download og udpak så "dataset" dir ligger sammen med intro.ipynb): \link{[HOME]/L01/datasets.zip}}
-	\li{Opgave: modules_and_classes.ipynb}
+\enumerate{
+	\item{Diskussion om ML (indlejret i forelæsningen).}
+	\item{\b{Opgave} (introduktion): \link**{[HOME]/L01/intro.ipynb}}
+	\subitem*{HUSK DATA til intro'en (download og udpak så "dataset" dir ligger sammen med intro.ipynb): \link**{[HOME]/L01/datasets.zip}}
+	\item{\b{Opgave} (python introduktion): \link**{[HOME]/L01/modules_and_classes.ipynb}}
 }
 
 \sub{Optionelle opgaver}
@@ -558,11 +546,11 @@ brug for en python og lineær algebra kick-start.}
 
 \sub{Slides}
 
-\itemize{
-	\item*{\link**{[HOME]/L01/lesson01.pdf}}
+\displaystyle{
+	\link**{[HOME]/L01/lesson01.pdf}
 }
 
-END
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -592,7 +580,6 @@ benytte i resten af kurset: MNIST, Iris og Moon.}
 metrics, dvs.  metoder til generelt at kvantificere hvor 'god' (kvalitet) en
 læring den pågældende algoritme har opnået på de pågældende data.}
 
-
 \sub{Indhold}
 
 \itemize{
@@ -604,66 +591,64 @@ læring den pågældende algoritme har opnået på de pågældende data.}
 	}
 	\item{Klassifikation}
         \itemize{
-        \item{’demo’ datasæt:  MNIST, iris and moon}
-        \item{fundamental ML supervised lærings-proces,}
-        \itmeize{
-            \item*{i) forbered data: shuffle, stratification, normalization}
-            \item*{ii) train/test split}
-            \item*{iii) træn på træningsdata}
-            \item*{iv) evaluer på test data:  performance metrics}
+	        \item{’demo’ datasæt:  MNIST, iris and moon}
+    	    \item{fundamental ML supervised lærings-proces,}
+       		\enumerate{
+           		 \item{forbered data: shuffle, stratification, normalization}
+           		 \item{train/test split}
+           		 \item{træn på træningsdata}
+           		 \item{evaluer på test data:  performance metrics}
+			}
 		}
     \item{Performance metrics}
     	\itemize{
         	\item{the accuracy paradox,}
-        	\itemize{
-	        	\item{vigtige metrics,}
-				\itemize{
-					\item{accuracy}
-					\item{precision_score}
-					\item{recall_score}
-					\item{f1_score}
-					\item{confusion_matrix}
-				}
+        	\item{vigtige metrics,}
+			\itemize{
+				\item{accuracy}
+				\item{precision_score}
+				\item{recall_score}
+				\item{f1_score}
+				\item{confusion_matrix}
 			}
 		}
 	}
 }
 
-END
 \sub{Litteratur}
 
-§ 2 "End-to-End Machine Learning Project" kapitel "Select a Performance Measure", [HOML]
+\displaystyle{
+	\i{§ 2 "End-to-End Machine Learning Project"} kapitel \i{"Select a
+	Performance Measure"}, [HOML]
 
-Genlæs KUN "Select a Performance Measure" (pp.39-41)
+	[BR] Genlæs KUN "Select a Performance Measure" (pp.39-41)
+}
+\displaystyle{
+	\i{§ 3 Classification} [HOML]}
 
-§ 3 Classification [HOML]
+	[BR] Skim eller spring over: \i{"The ROC Curve"} (pp.97-1o0) \i{"Multilabel
+	Classification"} og \i{"Multioutput Classification"} (pp.106-108).
+}
 
-Skim eller spring over: "The ROC Curve" (pp.97-1o0) "Multilabel Classification" og "Multioutput Classification" (pp.106-108).
+\sub{Forberedelse inden lektionen}
 
+\itemize{
+	\item{Læs litteraturen.}
+}
 
-\sub{Opgaver}
+\sub{På klassen}
 
-Forberedelse inden lektionen
-
-Læs litteraturen.
-
-Tilføjet 5/2: se de fem Offline-lektioner nedenfor.
-På klassen
-
-        'Spørge-minutter' --- online diskussion, kom med din spørgsmål på Zoom'en...
-        [INGEN spil Among-Us ;-]
-        Almindelig forelæsning
-        Exercise (cost funktionen og lineær algebra):
-            cost_function.ipynb Click for more options
-        Exercise (supervised learning og fit-predict interfacet):
-            dummy_classifier.ipynb Click for more options
-        Exercise:
-            performance_metrics.ipynb Click for more options
+\enumerate{
+	\item{Almindelig forelæsning}
+	\item{\b{Opgave} (cost funktionen og lineær algebra):             \link**{[HOME]/L02/cost_function.ipynb}}
+	\item{\b{Opgave} (supervised learning og fit-predict interfacet): \link**{[HOME]/L02/dummy_classifier.ipynb}}
+	\item{\b{Opgave} (performace metrikker):                          \link**{[HOME]/L02/performance_metrics.ipynb}}
+}
 
 \sub{Slides}
 
-\itemize{
-	\item*{\link**{[HOME]/L02/lesson02.pdf}}
+\displaystyle{
+	\link**{[HOME]/L02/lesson02.pdf}
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -702,7 +687,7 @@ processerings-\i{pipeline}.  Programmerings-teknisk ser vi derfor til sidst på 
 
 \sub{Litteratur}
 
-\itemize{
+\enumerate{
 	\item{Genlæs: § 2 "End-to-End Machine Learning Project" [HOML]}
 		\subitem*{(eksklusiv "Create the Workspace" og "Download the Data")}
 	\item{Scikit's dokumentations-side vdr. k-fold CV}
@@ -720,15 +705,15 @@ processerings-\i{pipeline}.  Programmerings-teknisk ser vi derfor til sidst på 
 \itemize{
     \item{Almindelig forelæsning}
 		\subitem*{ekstra materiale: \link**{[HOME]/L03/Extra/k-fold_demo.ipynb}}
-    \item{Exercise: \link**{[HOME]/L03/pipelines.ipynb}}
+    \item{\b{Opgave} (pipelines): \link**{[HOME]/L03/pipelines.ipynb}}
    		\subitem*{Data til pipelines opgaven (bør lige i L03/Data/): \link**{[HOME]/L03/itmal_l01_data.pkl}}
 		\subitem*{(Du har allerede denne data-fil, hvis du pull'er fra [GITMAL])}
 }
 
 \sub{Slides}
 
-\itemize{
-	\item*{\link**{[HOME]/L03/lesson03.pdf}}
+\displaystyle{
+	\link**{[HOME]/L03/lesson03.pdf}
 }
 
 END

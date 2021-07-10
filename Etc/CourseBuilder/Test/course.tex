@@ -40,36 +40,36 @@ dig mere ind i sproget.}
 
 \sub{Installation}
 
-\ul{
-	\li{Installer Anaconda på din PC:}
-	\ul{
-	\li{\link{https://www.anaconda.com/products/individual}}
-		\li{vælg 'Download' (downloader direkte for Windows),}
-		\li{eller vælg Linux eller Mac, 32 eller 64 bit (dit valg),} 
-		\li{nværende nyeste Anaconda3 version er \b{2021.05}}
+\itemize{
+	\item{Installer Anaconda på din PC:}
+	\itemize{
+	\item{\link{https://www.anaconda.com/products/individual}}
+		\item{vælg 'Download' (downloader direkte for Windows),}
+		\item{eller vælg Linux eller Mac, 32 eller 64 bit (dit valg),} 
+		\item{nværende nyeste Anaconda3 version er \b{2021.05}}
 	}
-	\ul{
-		\li{ALTERNATIV 1:}
-		\ul{
-			\li{brug vores ASE GPU Cluster som jupyter hub server,}
-			\li{se info in [KURSUSINFOGPU].}
+	\itemize{
+		\item{ALTERNATIV 1:}
+		\itemize{
+			\item{brug vores ASE GPU Cluster som jupyter hub server,}
+			\item{se info in [KURSUSINFOGPU].}
 		}
-		\li{ALTERNATIV 2:}
-		\ul{
-			\li{Lav en konto på Google's Colaboratory,}
-			\li{\link{https://colab.research.google.com}}
+		\item{ALTERNATIV 2:}
+		\itemize{
+			\item{Lav en konto på Google's Colaboratory,}
+			\item{\link{https://colab.research.google.com}}
 		}
 	}
-	\li{Test at du kan køre jupyter notebooks [JYPYNB] fra [GITHOML], prøv f.eks. \ipynb{index.ipynb}}
+	\item{Test at du kan køre jupyter notebooks [JYPYNB] fra [GITHOML], prøv f.eks. \ipynb{index.ipynb}}
 }
 
 \sub{Forberedelse til Lektion 01}
 
-\ul{
-	\li{Læs materiale i [KURSUSINFORMATION],}
-	\li{få fat i litteratur til kurset,}
-	\li{clone [GITHOML] til din egen PC, se how-to under [KURSUSFORKORTELSER].}
-	\li{skim denne tutorial igennem:}
+\itemize{
+	\item{Læs materiale i [KURSUSINFORMATION],}
+	\item{få fat i litteratur til kurset,}
+	\item{clone [GITHOML] til din egen PC, se how-to under [KURSUSFORKORTELSER].}
+	\item{skim denne tutorial igennem:}
 	\displaystyle{\em{§ Scientific Python tutorials:} NumPy, \ipynb{tools_numpy.ipynb}, [GITHOML]
 		
 		[BR][BR]
@@ -97,11 +97,11 @@ information: en kildekritiks holdning er vigtig!}
 til python, så kan du f.eks.  læse/skimme følgende notebooks, i prioriteret
 rækkefølge:}
 
-\ol{
-	\li{[OPTIONAL] python og vectors/matrices math:            [BR] \indent{\ipynb{math_linear_algebra.ipynb}        [GITHOML],}}
-	\li{[OPTIONAL] python og grafisk plotting:                 [BR] \indent{\ipynb{tools_matplotlib.ipynb}           [GITHOML],}}
-	\li{[OPTIONAL] ekstra, Python og dataværktøjet 'Pandas':   [BR] \indent{\ipynb{tools_pandas.ipynb}               [GITHOML],}}
-	\li{[OPTIONAL] ekstra, mest for de matematik intereserede: [BR] \indent{\ipynb{math_differential_calculus.ipynb} [GITHOML].}}
+\enumerate{
+	\item{[OPTIONAL] python og vectors/matrices math:            [BR] \indent{\ipynb{math_linear_algebra.ipynb}        [GITHOML],}}
+	\item{[OPTIONAL] python og grafisk plotting:                 [BR] \indent{\ipynb{tools_matplotlib.ipynb}           [GITHOML],}}
+	\item{[OPTIONAL] ekstra, Python og dataværktøjet 'Pandas':   [BR] \indent{\ipynb{tools_pandas.ipynb}               [GITHOML],}}
+	\item{[OPTIONAL] ekstra, mest for de matematik intereserede: [BR] \indent{\ipynb{math_differential_calculus.ipynb} [GITHOML].}}
 }
 
 \p{Pandas er et meget populært databehandlingsværktøj, men det
@@ -123,11 +123,11 @@ CONTENT L01
 Denne lektion har til formål at give indledende information om kurset.  Dvs. 
 at vi præsentere de formelle rammer vdr.
 
-\ul{
-	\li{ITMAL gruppetilmelding,}
-	\li{opgavesæt og journalafleveringer,}
-	\li{eksamensform,}
-	\li{Blackboard opbygning og fildeling.}
+\itemize{
+	\item{ITMAL gruppetilmelding,}
+	\item{opgavesæt og journalafleveringer,}
+	\item{eksamensform,}
+	\item{Blackboard opbygning og fildeling.}
 }
 
 \p{Herefter vil vi præsentere machine learning [ML] som koncept overordnet, og
@@ -149,32 +149,32 @@ lektioner..}
 
 \sub{Indhold}
 
-\ul{
-	\li{Formelle rammer vdr. kurset.}
-	\li{Eksamensform, godkendelsesfag via:}
-	\ul{
-		\li{et sæt obligatoriske skriftlige gruppe-journaler med afleveringsdeadlines,}
-		\li{en poster-session, med aflevering af poster og mundtlig præsentation af poster,}
-		\li{en mundtlig gennemgang af den sidste journal med alle medlemmer i ITMAL gruppen, samt evaluering af hver gruppemedlems
+\itemize{
+	\item{Formelle rammer vdr. kurset.}
+	\item{Eksamensform, godkendelsesfag via:}
+	\itemize{
+		\item{et sæt obligatoriske skriftlige gruppe-journaler med afleveringsdeadlines,}
+		\item{en poster-session, med aflevering af poster og mundtlig præsentation af poster,}
+		\item{en mundtlig gennemgang af den sidste journal med alle medlemmer i ITMAL gruppen, samt evaluering af hver gruppemedlems
 		bidrag.}
 		\displaystyle{\b{\style{color: #ff3333, => Endelig godkendelse af kurset sker på en samlet vurdering af de tre punkter ovenfor.}}}
 	}
-	\li{Læringsmål.}
-	\li{Litteratur.}
-	\li{Intro til software, der bruges i ITMAL:}
-	\ul{
-		\li{python generelt (link til mini python intro: \link{[HOME]/L01/demo.ipynb},}
-		\li{anaconda python distribution:}
-		\ul{
-			\li{jupyter notebooks,}
-			\li{spyder developer environment.}
+	\item{Læringsmål.}
+	\item{Litteratur.}
+	\item{Intro til software, der bruges i ITMAL:}
+	\itemize{
+		\item{python generelt (link til mini python intro: \link{[HOME]/L01/demo.ipynb},}
+		\item{anaconda python distribution:}
+		\itemize{
+			\item{jupyter notebooks,}
+			\item{spyder developer environment.}
 		}
-		\li{Scikit-learn,}
-		\li{opgave med python modul og klasser.}
+		\item{Scikit-learn,}
+		\item{opgave med python modul og klasser.}
 	}
-	\li{Intro til machine learning:}
-	\ul{
-		\li{Supervised learning (regression): 'life-satisfactory' [HOML].}
+	\item{Intro til machine learning:}
+	\itemize{
+		\item{Supervised learning (regression): 'life-satisfactory' [HOML].}
 	}
 }
 
@@ -204,19 +204,19 @@ emner, der er for komplekse eller for 'pythoniske', så som 'Stacking arrays' og
 
 \p{Forberedelse inden lektionen}
 
-\ul{
-	\li{Meld dig ind i en ITMAL working-group [G].}
-	\li{Følg installation processen givet i lektion nul ('L00: Forberedelse').}
-	\li{Læs pensum.}
+\itemize{
+	\item{Meld dig ind i en ITMAL working-group [G].}
+	\item{Følg installation processen givet i lektion nul ('L00: Forberedelse').}
+	\item{Læs pensum.}
 }
 
 \sub{På klassen}
 
-\ul{
-	\li{Diskussion om ML (indlejret i forelæsningen).}
-	\li{Opgave: intro.ipynb}
-	\li{HUSK DATA til intro'en (download og udpak så "dataset" dir ligger sammen med intro.ipynb): \link{[HOME]/L01/datasets.zip}}
-	\li{Opgave: modules_and_classes.ipynb}
+\itemize{
+	\item{Diskussion om ML (indlejret i forelæsningen).}
+	\item{Opgave: intro.ipynb}
+	\item{HUSK DATA til intro'en (download og udpak så "dataset" dir ligger sammen med intro.ipynb): \link{[HOME]/L01/datasets.zip}}
+	\item{Opgave: modules_and_classes.ipynb}
 }
 
 \sub{Optionelle opgaver}
