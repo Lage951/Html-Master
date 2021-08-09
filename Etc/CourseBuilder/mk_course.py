@@ -163,7 +163,7 @@ if __name__ == '__main__':
 	
 		@staticmethod	
 		def __isCmd(c):			
-			return isStr(c) in  ["b", "i", "p", "pre", "dl", "dt", "dd", "em", "itemize", "enumerate", "item", "item*", "subitem", "subitem*", "header", "sub", "indent", "code", "ipynb", "quote", "displaystyle", "displaycode", "cite"]
+			return isStr(c) in  ["b", "i", "p", "pre", "dl", "dt", "dd", "em", "itemize", "enumerate", "item", "item*", "subitem", "subitem*", "header", "sub", "subsub", "indent", "code", "ipynb", "quote", "displaystyle", "displaycode", "cite"]
 
 		def __MkCmd(self):
 
@@ -219,6 +219,8 @@ if __name__ == '__main__':
 					c = "h2"
 				elif c=="sub":
 					c = "h3"
+				elif c=="subsub":
+					c = "h4"
 				elif c=="em":
 					c = "i" 
 				elif c=="displaystyle":

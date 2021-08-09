@@ -40,7 +40,7 @@ CONTENT Litteratur
 	\dd{[BR]}
 	\dl{
 		\dt{\i{NOTE 1:}} 
-			\dd{Dette er anden udgave (Second Edition/2.ed) af Géron's " Hands-on",	
+			\dd{Dette er anden udgave (Second Edition/2.ed) af Géron's \i{Hands-on},	
 			undgå at bruge førsteudgaven, idet den benytter TensorFlow direkte istedet for
 			Keras, og desuden har flere mangler.}
 
@@ -220,7 +220,8 @@ CONTENT GPU Cluster
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Der er adgang til en GPU baseret server ifbm kurset. Serveren består af en 'master' som kan tilgås via
+Der er adgang til en GPU baseret server ifbm kurset.  Serveren består af en
+'master' som kan tilgås via
 
 \dl{
 	\dd{\link{http://gpucluster.st.lab.au.dk/}}
@@ -293,8 +294,8 @@ eller blot
 		itmalkernelfuns.EnableGPU()
 	}
 
-\p{så allokeres kun en brøkdel af GPU hukommelsen! Det ser ud til at growth=True ikke virker, så sæt per_process_gpu_memory_fraction op hvis i har
-behov.}
+\p{så allokeres kun en brøkdel af GPU hukommelsen!  Det ser ud til at growth=True ikke virker, så sæt
+per_process_gpu_memory_fraction op hvis i har behov.}
 
 \p{Der kører nu et automatisk startup-script når i logger ind/åbner en nodebook. Se}
 
@@ -345,6 +346,232 @@ frigiver!}
 
 	\displaycode{! pkill <procesnavn>}
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+CONTENT Kriterier for O4
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\sub{Kriterier for O4}
+
+\p{Til den sidst aflevering, O4, skal i præsentere jeres arbejde med jeres eget
+projekt.}
+
+\p{I skal samle arbejdet i rapport-form i en PDF, dog maks.  15 sider.  Dertil
+kan komme evt.  bilag/appendices.  Hvis i kan lave en velformateret/letlæst
+Jupyter Notebook, kan i også aflevere direkete i dette format i stedet for
+PDF.}
+
+\p{Der skal være en oversigt over gruppemedlemmernes bidrag til rapporten. 
+Dvs.  at i skal lave en tabel, der viser, hvilke afsnit (eller sider) de
+enkelte medlemmer primært har stået for.  Er rapportarbejdet evt.  fordelt
+ligeligt mellem gruppemedlemmerne, skriv i at alle har deltaget i alle dele.}
+
+\p{Heruover følger O4 rapporten de almindelige formelle journal krav fra
+O1+2+3, på nær disse to punkter}
+
+\itemize{
+    \item{Overskrifter på de opgaver, der svares på [..] (MUST)}
+    \item{Ingen cut-and-paste af tekst fra opgaveteksten.}
+}
+
+\p{som for O4 ikke giver mening (der er ingen overskrifter elleropgavetekst
+at kopiere fra).}
+
+\p{Rapporten skal opsummere jeres arbejde med jeres problemstilling i et
+'end-to-end' perspektiv (hent inspiration i \i{§ 2 End-to-End Machine Learning
+Project} [HOML]).}
+
+\p{Følgende hovedpunkter skal beskrives}
+
+\itemize{
+	\item{\i{Problemstilling:} hvilket problem førsøger i at løse med ML?}
+    
+    \item{\i{Datasæt:} hvilke data arbejder i med, hvilke features, hvor
+    stammer det fra osv.}
+        
+        \subitem{Tag udgangspunkt i eller genbrug jeres analyse/tekst fra
+       	 afleveringen "Beskrivelse af eget slutprojekt" fra O2 (dvs. i gerne
+       	 må selv-plagiere her!).}
+
+    \item{\i{Valg af ML algoritme(r):} beskriv f.eks.}
+    
+        \subitem{hvilken grundliggende ML algoritmeklasse(r) valgte i
+        (supervised/unsupervised, regression/classifikation)?}
+        
+        \subitem{hvilke kriterier lå til grund for jeres model selection?}
+        
+        \subitem{hvorfor er jeres valgte algoritme god til netop jeres dataset?}
+        
+        \subitem{hvad er fordele og ulemper ved den (eller de) valgte
+        algoritme(r), f.eks.  kompleksitet?}     
+    
+	\item{\i{ML processering:} beskrivelse af hvordan i splitter data i
+        train-test set, preprocessere, træner og tester.}         
+        
+        \subitem{evt. brug af Scikit-learn pipelines i processings-steps
+        (direkte brug af Scikit-learn pipelines: COULD!}
+
+	\item{\i{Performance metrics:} beskrivelse af, hvordan i måler
+	'effektiviteten' af jeres træning og test.}
+        
+    \item{\i{Under- og overfitting:} hvordan sørger i for, at jeres system ikke
+    under- eller overfitter på jeres data?}
+
+    \item{\i{Optimeringer og forbedringer:} hvordan har i forbedret jeres
+    system via optimeringsparametre (optimizers, regulizers) eller afsøgning af
+    hyperparameterrummet?}
+}
+
+\p{I har frie hænder til at lave jeres egen disposition over opgaven, dvs.  at
+de nævnte kriterier ovenfor kan komme i den rækkefølge i selv vælger.}
+
+\p{Sørg herudover for at have en indledning og konklusion på opgaven.}
+
+\subsub{NOTE: vdr. sidetal til O4}
+
+\p{Der står maks.  15 sider til O4,  og det er ment som at hele O4 skal holdes
+til (ca.) 15 sider inklusive figurer og tabeller.}
+
+\p{Det er ikke ment direkte (og formelt) som ’normalsider’ med ”antal anslag,
+figure tæller ikke med..” osv.  Så hold jer til ca.  15 sider med en fornuftig
+font.}
+
+\p{De 15 siders grænser er primært indført for ikke at gøre O4 for omfattende i
+projekt/afleverings tid.}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+CONTENT Journal afleveringsformat
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\sub{Journal afleveringsformat}
+
+\p{I skal uploade opgaverne / journalerne i PDF format.}
+
+\p{Journalen skal være en 'komplet' aflevering, dvs.  at i gerne må vedhæfte
+bilag, men journal skal indeholde al nødvendig information vdr.  print/test af
+kode.  Journal-resultater bør dokumenteres til den grad de kan gentages (af
+andre eller jer selv senere..!).}
+
+\p{Dvs.  at journalen skal bestå af forklarende tekst, figurer, kode og
+test-output, så den danner et forståeligt billede af, hvordan i har løst
+opgaven.}
+
+\p{Men i behøver ikke at inkludere alt kode eller test-output, kun det
+vigtigste, så man via journalen kan forstå og gentage jeres 'forsøg'.}
+
+\p{Som alternativ til PDF kan man aflevere i direkte i Jupyter Notebooks format,
+se note nederst, dog anbefales PDF over \code{.ipynb}.}
+
+\sub{Almindelige formelle journal krav}
+
+\itemize{
+	\item{Forside med information om opgaven (MUST)}
+      
+        \subitem{kursus og opgaveafleveringsnavn,}
+        \subitem{dato,}
+        \subitem{ITMAL gruppe nummer,}
+        \subitem{liste af studerende, der bidrager (med studienummer).}
+	
+	\item{Sidetal på alle sider (PDF aflv.: MUST;  Jupyter Notebooks aflv.:
+	DONT or COULD).}
+	  
+	    \subitem{Evt. indholdsfortegnelse (COULD).}
+	    
+	\item{Overskrifter på de opgaver, der svares på, ala "Qa - Lineær
+	regressions parametre og R2 scoren." (MUST)}
+    
+    \item{Ingen cut-and-paste af tekst fra opgaveteksten (opsummer eller
+    omformuler istedet opgaven med jeres egen ord istedet) (MUST).}
+        
+        \subitem{Ingen direkte genbrug af overskrifter ala "Qa - The Θ
+        parameters and the R2 score"(MUST), omformuler overskrifterne og gør
+        dem til jeres egen overskrifter, sammenfald af tekststykker dog OK.}
+        
+        \subitem{Genbrug og cut-and-paste af formler og figurer fra
+        opgaveteksten dog OK!  (COULD)}
+        
+        \subitem{Essentielle plots og formler bør kopieres fra opgaveteksten og
+        indsættes i jeres journal (SHOULD).}
+        
+        \subitem{Genbrug af enkelte kode stumper fra opgaveteksten også OK
+        (COULD).}
+        
+    \item{Indsættelse af relevant Pyton-kode og output i figurer eller lister,
+    samt ref.  til disse i teksten,}
+    
+        \subitem{Sørg for at kode er læsbar, specielt ved rå screendumps
+        (MUST).}
+        
+        \subitem{Forklarende figurtekster til alle figurer/lister (MUST).}
+    
+    \item{En 'fornuftig' forklarende journaltekst, så resultater kan genskabes
+    (MUST).}
+    
+    \item{Vælg mellem dansk eller engelsk journal sprog (eller norsk eller
+    	 svensk hvis du/I er nordisk(e) studerende) (MUST).}  
+    	 
+    	 \subitem{Skriv kun på eet sprog igennem hele journalen, dvs.  bland
+    	 ikke f.eks.  dansk og engelsk (MUST).}
+    	 
+    	 \subitem{Brug af MANGE engelske fagudtryk, begreber og låneord i den
+    	 danske tekst: no-problem!}
+}
+
+\sub{Journal skrivning}
+
+\p{Husk at det er en journal, ikke en rapport, der afleveres.  Tekst og figurer
+skal være læsbare, og indeholde tilstrækkelig information, så resultater kan
+genskabes, men det behøver ikke at blive en lang udførlig rapport.}
+
+\p{Foruden de alm.  formelle journal-krav ovenfor, skal der svares på alle opgaver
+undervejs.  Skriv i journal, hvis i ikke kan komme igennem en delopgave, og
+beskriv omhyggeligt, hvad i har forsøgt og undersøgt.  Ved evt. 
+gen-aflevering}
+
+\p{Mangler der en væsentlig mængde svar til underopgaver (to eller flere) eller er
+journal for mangelfuldt udført (f.eks.  ved generelt manglende tekst eller at
+en eller flere puntker i de formelle krav er udeladt), sendes journal til
+gen-aflevering.}
+
+\sub{Genafleveringsfrist}
+
+\p{Der er som udgangspunkt ingen tidsfrist for en gen-aflevering.  Dog skal
+alle journaler være godkendt til en kursusdeadline for at kurset kan
+godkendes/bestås (lige omkring O4 afleveringen).}
+
+\subsub{Note vdr. Jupyter Notebooks aflevering}
+
+\p{Som alternativ til en almindelig PDF aflevering kan i også
+aflevere direkte i \code{.ipynb} format.  Dvs.  at i kan lave en Jupyter
+Notebook som kvalitetsmæssigt er lig en PDF afleveringen.}
+
+\p{Med 'kvalitetsmæssigt er lig PDF' menes: overskrifter til afsnit, velformateret
+tekst i markdown celler, ikke alt for store mængder kode celler direkte i
+'hovedrapport', kun få korte output celler (f.eks.  ingen lange listninger af
+trænings iterationer), gerne plots og andre interne (embeddede i Notebook),
+evt.  eksterne figurer som html billeder (læg billeder på en server, så der er
+public adgang, se html embedding metode i f.eks.  L01/intro.ipynb).  Bilag kan
+placeres i slutning af Notebook, og her gælder disse kvalitetskrave ikke.}
+
+\p{Ved aflevering i Jupyter Notebooks skal AL tekst fra opgavebeskrivelse
+fjernes...og i skal skrive jeres helt egen tekst.}
+
+\p{Brug IKKE den indbyggede PDF konverter, men aflever en kørt Notebook, og
+bemærk at indlejring af eksterne billeder (png/jpg) via.  html kan være
+problematisk, se min metode i opgaverne.}
+
+\p{Bemærk at det anbefales at lave en normal PDF aflevering, da det kan være
+svært af få nok typografisk 'kvalitet' i en Jupyter Notebook aflevering.}
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -358,6 +585,15 @@ CONTENT L00
 \sub{Formål}
 
 \p{\i{Gruppe tilmelding:} tilmeld dig til en ITMAL gruppe (find link i Brightspace!).}
+
+\itemize{
+	\item{Antal studerende per grupper er = 3.}
+
+	\item{Grupper med 2 eller 1}
+
+	\item{studerende vil blive sammelagt.  Skriv til undervisere, hvis du har
+	en gyldig grund til at være SOLO i en gruppe.}
+}
 
 \p{\i{Installation}: de obligatoriske værktøjer til ITMAL inden kursusstart (dvs.
 L01).}
@@ -502,11 +738,12 @@ lektioner..}
 
 \sub{Litteratur}
 
-	\displaystyle{§ Preface, p. xv [HOML] (eksklusiv fra Using Code Examples...og resten af intro	kapitlet)}
+	\displaystyle{\i{§ Preface}, p. xv [HOML] (eksklusiv fra \i{Using Code Examples}...og resten af
+	intro kapitlet)}
 	
-	\displaystyle{§ 1 The machine Learning Landscape [HOML]}
+	\displaystyle{\i{§ 1 The machine Learning Landscape} [HOML]}
 
-	\displaystyle{§ 2 End-to-End Machine Learning Project [HOML]}
+	\displaystyle{\i{§ 2 End-to-End Machine Learning Project} [HOML]}
 
 \p{Dette kapitel indeholder mange nye koncepter og en del kode.  Vi vender
 senere tilbage til kapitlet senere, så læs det og prøv at danne dig et overblik
@@ -514,9 +751,9 @@ senere tilbage til kapitlet senere, så læs det og prøv at danne dig et overbl
 
 \p{Når du har installeret anaconda (se L00):}
 
-	\displaystyle{§ Scientific Python tutorials: NumPy}
+	\displaystyle{\i{§ Scientific Python tutorials: NumPy}}
 	
-	\displaystyle{tools_numpy.ipynb [GITHOML]}
+	\displaystyle{\indent{\ipynb{tools_numpy.ipynb} [GITHOML]}}
 
 \p{Læs blot, hvad du finder relevant så som 'iteration', men spring blot over
 emner, der er for komplekse eller for 'pythoniske', så som 'Stacking arrays' og
@@ -535,7 +772,7 @@ emner, der er for komplekse eller for 'pythoniske', så som 'Stacking arrays' og
 \enumerate{
 	\item{Diskussion om ML (indlejret i forelæsningen).}
 	\item{\b{Opgave} (introduktion): \link**{[HOME]/L01/intro.ipynb}}
-	\subitem*{HUSK DATA til intro'en (download og udpak så "dataset" dir ligger sammen med intro.ipynb): \link**{[HOME]/L01/datasets.zip}}
+	\subitem*{HUSK DATA til intro'en (download og udpak så dataset dir ligger sammen med intro.ipynb): \link**{[HOME]/L01/datasets.zip}}
 	\item{\b{Opgave} (python introduktion): \link**{[HOME]/L01/modules_and_classes.ipynb}}
 }
 
@@ -618,16 +855,19 @@ læring den pågældende algoritme har opnået på de pågældende data.}
 \sub{Litteratur}
 
 \displaystyle{
-	\i{§ 2 "End-to-End Machine Learning Project"} kapitel \i{"Select a
-	Performance Measure"}, [HOML]
+	\i{§ 2 End-to-End Machine Learning Project}, \i{Select a Performance Measure}, [HOML]
 
-	[BR] Genlæs KUN "Select a Performance Measure" (pp.39-41)
+	[BR]
+	
+	\indent{Genlæs KUN \i{Select a Performance Measure} (pp.39-41)} 
 }
 \displaystyle{
-	\i{§ 3 Classification} [HOML]}
-
-	[BR] Skim eller spring over: \i{"The ROC Curve"} (pp.97-1o0) \i{"Multilabel
-	Classification"} og \i{"Multioutput Classification"} (pp.106-108).
+	\i{§ 3 Classification} [HOML]
+	
+	[BR]	
+	
+	\indent{Skim eller spring over: \i{The ROC Curve} (pp.97-1o0) \i{Multilabel
+	Classification} og \i{Multioutput Classification} (pp.106-108).}
 }
 
 \sub{Forberedelse inden lektionen}
@@ -651,6 +891,8 @@ læring den pågældende algoritme har opnået på de pågældende data.}
 	\link**{[HOME]/L02/lesson02.pdf}
 }
 
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -663,18 +905,20 @@ CONTENT L03
 
 \sub{Formål}
 
-\p{Opsamlingslektion: vi tager et genblik på \i{§ 2 "End-to-End Machine Learning Project"}, og samler op på dette brede
-kapitel.}
+\p{Opsamlingslektion: vi tager et genblik på \i{§ 2 End-to-End Machine Learning
+Project}, og samler op på dette brede kapitel.}
 
-\p{Vi går først igang med at gennemgå \i{K-fold Cross-validation} (eller K-fold CV), for derefter at bruge \link{"The
-Map", [HOME]/Etc/ml_supervised_map.pdf} til at komme igennem alle grundliggende koncepter i \i{§ 2}.}
+\p{Vi går først igang med at gennemgå \i{K-fold Cross-validation} (eller K-fold
+CV), for derefter at bruge "\link{The Map, [HOME]/Etc/ml_supervised_map.pdf}"
+til at komme igennem alle grundliggende koncepter i \i{§ 2}.}
 
-\p{Da alle kerne-koncepter i supervised ML nu kendes, kan det hele konkret sammensættes i en samlet
-processerings-\i{pipeline}.  Programmerings-teknisk ser vi derfor til sidst på Scikit-learns Pipelines.}
+\p{Da alle kerne-koncepter i supervised ML nu kendes, kan det hele konkret
+sammensættes i en samlet processerings-\i{pipeline}.  Programmerings-teknisk
+ser vi derfor til sidst på Scikit-learns Pipelines.}
 
 \displaystyle{
 	\link{\img{[FIGS]/ml_supervised_map.png, Supervised map image.}, [HOME]/Etc/ml_supervised_map.pdf}
-	[BR] \i{Figur: \link*{Oversigtskortet for Supervised learning.,  [HOME]/Etc/ml_supervised_map.pdf}}
+	[BR] \i{Figur: \link*{Oversigtskortet for Supervised learning (The Map).,  [HOME]/Etc/ml_supervised_map.pdf}}
 }
 
 \sub{Indhold}
@@ -688,8 +932,8 @@ processerings-\i{pipeline}.  Programmerings-teknisk ser vi derfor til sidst på 
 \sub{Litteratur}
 
 \enumerate{
-	\item{Genlæs: § 2 "End-to-End Machine Learning Project" [HOML]}
-		\subitem*{(eksklusiv "Create the Workspace" og "Download the Data")}
+	\item{Genlæs: \i{§ 2 End-to-End Machine Learning Project} [HOML]}
+		\subitem*{(eksklusiv \i{Create the Workspace} og \i{Download the Data})}
 	\item{Scikit's dokumentations-side vdr. k-fold CV}
 		\subitem*{\link{https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.KFold.html}}
 }
@@ -716,4 +960,454 @@ processerings-\i{pipeline}.  Programmerings-teknisk ser vi derfor til sidst på 
 	\link**{[HOME]/L03/lesson03.pdf}
 }
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+CONTENT L04 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\header{Regression og SGD}
+
+\sub{Formål}
+
+\p{sdf}
+
+\sub{Indhold}
+
+\itemize{
+	\item{Generel genlæsning og repetition af § 2}
+	\item{K-fold Cross-validation}
+	\item{Pipelines}
+}
+
+\sub{Litteratur}
+
+\enumerate{
+	\item{\i{§ 4 End-to-End Machine Learning Project} [HOML]}
+		\subitem*{(eksklusiv \i{Create the Workspace} og \i{Download the Data})}
+}
+
+\sub{Forberedelse inden lektionen} 
+
+\itemize{
+	\item{Læs litteraturen.}
+}
+
+\sub{På klassen}
+
+\itemize{
+    \item{Almindelig forelæsning}
+		\subitem*{ekstra materiale: \link**{[HOME]/L03/Extra/k-fold_demo.ipynb}}
+    \item{\b{Opgave} (pipelines): \link**{[HOME]/L03/pipelines.ipynb}}
+   		\subitem*{Data til pipelines opgaven (bør lige i L03/Data/): \link**{[HOME]/L03/itmal_l01_data.pkl}}
+		\subitem*{(Du har allerede denne data-fil, hvis du pull'er fra [GITMAL])}
+}
+
+\sub{Slides}
+
+\displaystyle{
+	\link**{[HOME]/L04/lesson04.pdf}
+}
+
+
+
+
+
+
 END
+
+Formål :
+
+Vi skal se på lineær og logistisk regression, som er to helt basale metoder til
+regression og klassifikation.  De danner byggestenene for mange andre metoder,
+så det er en god start at få en grundig forståelse af begge metoder.  Metoder
+såsom SVM, neural netværk, generaliserede lineær modeller, ..  er udvidelser
+til disse to metoder.
+
+
+Emner :
+
+Lineær (til regression) og logistisk regression (til klassifikation)
+
+Cost function, closed-form vs. iterative solutions, gradient descent, learning rate
+
+
+Litteratur :
+
+Kap. 4  s. 111 - 123 + s. 142 - 148
+
+
+
+Dataanalyse
+
+Formål
+
+En vigtig forudsætning for at kunne vælge den rette machine learning metode til at løse et problem er data analyse, dvs. at få en forståelse af data ved at se på statistikker såsom middelværdi, median, varians, .. og plotte data og histogrammer. Der kan også være korrupte data som skal fjernes eller data værdier, som mangler - det skal håndteres på fornuftig vis, ellers vil man få forkerte/dårlige modeller efterfølgende.
+Emner
+
+Basale termer fra statistik (middelværdi, median, varians, histogram, korrelationskoefficient, percentiler), indledende analyse af data med plots
+
+Data cleaning, standardization / normalisation (feature scaling)
+
+Test-, trænings- og validerings-sæt
+Litteratur
+
+Kap. 2  s. 47 - 70 (især de emner der forelæses omkring) 
+
+
+
+
+
+L07: Generalisering 
+
+Modelkapacitet, under- og overfitting og generalisering
+Formål
+
+Der begyndes med at se på eksisterende ML-systemer, og vi diskuterer om
+løsningerne via ML-systemerne er veldesignede og velgennemtestede.  Herudover
+kommer der en kort "filosofisk" diskussion af ML overordnet set...(kræver ingen
+formel forberedelse fra jeres side)!
+
+Herefter gennemgår vi koncepterne under- og overfitting, der har sammenhæng med
+en ML-models såkaldte kapacitet og dens evne til at generalisere.
+
+    Generelt om ML-systemer, og klasse diskussion vdr. ML
+    Model Capacity
+    Under/overfitting
+    Generalization Error
+
+Der relateres til træning af NN's i \i{§ 11} i [HOML], som vi læser videre i til
+næste lektion...  
+
+Litteratur
+
+\i{§ Overfitting the Training Data} og \i{Underfitting the Training Data},
+pp.27-29 [HOML] i \i{§ 1} (genlæsning).
+
+\i{§ Polynomial Regression} og \i{Learning Curves}, pp128-134 [HOML] i \i{§
+4}, \i{Training Models}.
+
+\i{§ Training Deep Neural Networks} til og eksklusivt \i{Batch Normalization},
+pp 331-338 [HOML] i \i{§ 11}.
+
+[OPTIONAL]: læs videre i \i{§ 11}.  Næste gang går vi i dybden med \i{Fast
+Optimizers}, og \i{Avoiding Overfitting Through Regularization} (mens vi
+springer en del af de meget tekniske sub-kapitler over i \i{§ 11}).
+
+[OPTIONAL]: læs  \i{GPT-3 er ikke stærk AI} på Version2.dk 
+
+Opgaver Forberedelse
+
+inden lektionen
+
+Læs litteraturen
+På klassen
+
+        Demos + diskussion vdr ML (ingen forberedelse).
+        Exercise:
+            capacity_under_overfitting.ipynb Click for more options
+        Exercise:
+            generalization_error_v2.ipynb (v2 fixer krydshenvisningsfejl)
+
+Slides
+
+lesson07.pdf 
+
+
+
+
+L06: Neurale Net
+
+Kunstige neurale netværk
+Attached Files:
+
+    File L06_files.zip Click for more options (749.237 KB) 
+
+Formål
+
+Kunstige neurale netværk (Artificial Neural Networks, ANN) er en af de mest
+kendte machine learning modeller og har en historisk baggrund med inspiration i
+hjernen.  Vi skal se på modellen for det allermest udbredte neural netværk
+(Multi-Layer Perceptron) og se hvorledes det blot er en udvidelse af lineær og
+logistisk regression.  Vi taler også lidt om træning af neurale netværk, som
+igen er basalt set magen til de tidligere metoder (gradient descent-baseret) vi
+har set.
+
+Vi starter med øvelser i Scikit learn framework, da det er simplere og
+velkendt.  I senere uger og til jeres slutprojekt, vil det oftest give mening
+at skifte til framework Keras.  Emner
+
+Kunstige neurale netværk - model og historie, træning af netværk (cost
+function, optimeringsmetoder), grafisk illustration af netværk,
+backpropagation, Keras / Tensorflow Litteratur
+
+\i{§ 10 Introduction to Artificial Neural Networks with Keras} [HOML]
+
+fra s. 289 til s. 307 (dvs. til og eksklusiv kapitel Building a Regression MLP Using the Sequential API).
+
+
+
+
+
+L09: Deep learning og CNN's
+Content
+
+    Item
+    Deep Learning: Convolutional Neural Networks
+    Formål
+
+    Vi slutter behandlingen af neurale net af med at kigge på 'Deep-learning' og de meget populære Convolutional Neural Networks; meget brugt til processering af billeder.
+
+    Der kommer også en introduktion til brug af hardware (GPU'er og andet) i forbindelse med CNNs.
+    Indhold
+        Deep-learning,
+        CNNs (Convolutional Neural Networks),
+        Intro til GPU og andet hardware til Deep Learning.
+    Litteratur
+
+    \i{§ 14 Deep Computer Vision Using Convolutional Neural Networks} [HOML]
+
+    Spring meget gerne over kapitler med TensorFlow kode og gennemgang af meget specifikke  Net's.
+
+    Dvs.  skim eller spring over:
+
+    \i{§  TensorFlow Implementation},  pp. 453-455 [HOML]
+
+    \i{§  GoogLeNet , VGGNet, ResNet, "Xception, SENet, Implementing a
+    ResNet-34 CNN Using Keras}, pp.  463-481 [HOML]
+
+    \i{§ You Only Look Once (YOLO)} og resten af § 14, pp.489-496 [HOML].
+    
+    Opgaver
+    Forberedelse inden lektionen
+
+    Læs litteraturen.
+    På klassen
+
+    INGEN opgaver.
+    Slides
+
+     lesson09.pdf 
+
+
+ L10: Probabilistiske modeller
+Content
+
+    Item
+    Probabilistiske modeller
+    Attached Files:
+        File L10_filer.zip Click for more options (976.494 KB) 
+
+    Formål :
+
+    Sandsynlighedsteori danner et meget solidt fundament for machine learning og indgår i rigtigt mange sammenhænge. Selvom man godt kan bygge machine learning modeller uden særligt kendskab til sandsynlighedsregning, får I her lidt introduktion til emnet. Det vil sætte jer lidt bedre i stand til at forstå mange af de beskrivelser, som findes i fx. Scikit dokumentation og på nettet. Derudover er mange modeller direkte "probabilistiske modeller" - dvs. at de direkte modellerer data med funktioner fra sandsynlighedsteorien (såkaldte sandsynlighedsfordelinger).
+
+
+    Emner :
+
+    Introduktion til sandsynlighed i machine learning, probabilistiske classifiers, LDA/QDA, decision theory
+
+
+    Litteratur :
+
+    Følgende links kan være nyttige :
+
+    https://en.wikipedia.org/wiki/Probabilistic_classification
+
+    https://en.wikipedia.org/wiki/Naive_Bayes_classifier
+
+    https://machinelearningmastery.com/how-to-calculate-joint-marginal-and-conditional-probability/
+
+    https://machinelearningmastery.com/how-to-develop-an-intuition-for-probability-with-worked-examples/
+
+    https://scikit-learn.org/stable/modules/lda_qda.html#lda-qda 
+
+
+
+
+     
+     
+ L11: Unsupervised I - PCA
+Content
+
+    Item
+    Unsupervised learning 1 - PCA
+    Attached Files:
+        File L11_filer.zip Click for more options (2.577 MB) 
+
+    Formål :
+
+    Vi skal især se på måder at få færre features / dimensioner i vores data. Det ønsker vi fx. for at undgå overfitting af en model eller for bedre at kunne visualisere data (i 2D/3D). Det kan også være for at komprimere data mængden. Vi skal især se på metoden Principal Component Analysis (PCA).
+
+    Emner :
+
+    Supervised vs. unsupervised learning, Curse of dimensionality, dimensionsreduktion, manifold (mangfoldighed)
+
+    Principal Component Analysis (PCA)
+
+    Anvendelser - præprocessering, visualisering og kompression
+
+
+    Litteratur :
+
+    Kap. 8  s. 213- 225
+
+
+ L12: Unsupervised II - Kmeans og GMM
+Content
+
+    Item
+    Unsupervised learning 2 - Kmeans og GMM
+    Attached Files:
+        File L12_filer.zip Click for more options (840.417 KB) 
+    Yderliger i denne lektion (CEF):
+
+    ITMAL AU-kursus-evaluering...husk at svare på evalueringen inden lektionsgangen.
+
+
+    Formål :
+
+    To hovedkategorier i machine learning er unsupervised og supervised learning. Regression og klassifikation er eksempler på supervised learning - dvs. vi kan træne en model da vi har både input data (feature værdier) og output data (= target data = labels for klasser). I nogle tilfælde har vi ikke output/target data - fx.  kunne en virksomhed opsamle data fra en masse brugere af deres udstyr og være interesserede i at vide om der er nogle mønstre i disse data, som fx. nogle "clusters" (sammenhængende områder/klumper) af brugere, men uden at vide det med sikkerhed. Denne form for machine learning kaldes unsupervised learning. Vi vil især se på de to meget almindelige metoder - Kmeans og Gaussian Mixture Models (GMM), som kan benyttes til clustering af data.
+
+
+    Emner :
+
+    Clustering, distance metrics, K-means og Gaussian Mixture Model algoritmerne
+
+    Anvendelser - clustering, anomaly detection / outlier detection, density estimation
+
+
+    Litteratur :
+
+    Kapitel 9, om clustering - og især læs om K-means (s. 238-249).
+
+    Optional : Gaussian Mixture Model - s. 260-269
+
+    https://en.wikipedia.org/wiki/Cluster_analysis 
+
+    https://en.wikipedia.org/wiki/K-means_clustering
+
+    https://scikit-learn.org/stable/modules/mixture.html
+
+    https://scikit-learn.org/stable/modules/clustering.html#k-means 
+    
+    
+LXX: Poster-session
+Content
+
+    Item
+    Poster-session
+    Poster session aflyst, forår 2021!
+    Sted
+
+    Foregår på Zoom og Discord i ITMAL E20 gruppen. Først kursus-evaluering på Zoom (se link ovenfor) og derefter poster session på Discord - dvs. ren online undervisning.
+
+    Poster-session foregår ved at Carsten og Peter "går rundt" til de forskellige grupper på Discord. Hver gruppe fortæller lidt om deres arbejde udfra poster (uformelt). De andre studerende opfordres til at "følge med rundt" og høre om de andre gruppers projekter.
+    Indhold
+    i) Fælles kursusevaluering
+
+    Kursus evaluering på 'klassen': 8:15 til ca. 8:45
+    ii) Poster-session
+
+    Poster-session på 'klassen'  fra ca. 8:45.
+
+    (ca. 10 til 15 min per gruppe: Peter tager ITMAL Grp01+02+..., Carsten tager med ITMAL Grp30+29+...)
+
+    Kriterier for poster - se menupunkt om Poster 
+
+    Husk at det er obligatorisk at deltage i poster-session.
+    Forberedelse
+        Upload en JPEG (eller lign) af jeres poster på Discorden, ITMAL, i jeres #Gruppe tekst kanal.Hav en eller flere personer i gruppen klar på at give en (uformel) mundtlig præsentation af posteren.
+            Husk at jeres upload skal være i høj opløsning, f.eks. 2048 x 1048 eller højere.
+            Discord viser et formindsket billede, men der er en "Åbn original" link nede i venstre hjørne, så man kan se billede i fuld opløsning!
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+O4 mundtlig præsentation og evaluering
+O4 mundtlig præsentation og evaluering
+
+Hver gruppe skal vælge en dato, og i kan vælge i dato-listen nedenfor. I skal emaile til Carsten (cef@ase.au.dk) eller Peter  (pah@ase.au.dk) om jeres valg af dato, og vi tilføjer herefter til rækkefølge-listen (med et tilføjet tidspunkt).
+
+Den mundlige evaluering foregå på Zoom. Mød gerne op i god tid på Zoom: vi bruger breakout-room til evalueringen, så i kan snakke med de andre studerende 'på gangen udenfor breakout-room' inden i 'kommer ind'.
+
+Hver gruppe vil 'komme ind' og skulle præsentere deres projekt. Det er kun underviser og gruppe som er til stede i 'lokalet' og det er her afgørende at ALLE deltagere i hver gruppe præsenterer deres individuelle bidrag til projektet.
+
+Der er afsat ialt 15 minutter til hver gruppe, hvoraf jeres egen fremlæggelse forventes at være ca 6-8 min. - herefter har underviser tid til at stille spørgsmål. 
+
+I skal ikke forberede en power point præsentation - I skal derimod hver især kort forklare om en del af projektet, som I har arbejdet med (fx. hvilken metode blev valgt, hvilke udfordringer var der, hvorfor blev denne metode valgt, noget om data analysen, etc.).
+
+Efter hver gruppes præsentation og dialogen, vil hver enkelt gruppemedlem få at vide om kurset er "bestået/ikke bestået" samt feedback på O4 rapporten. 
+
+HUSK: Check at video udstyr/webcam og mikrofon virker - det er krav for at deltage.
+Dato-listen
+
+PAH:
+
+    Fredag d. 21/5 - 8.00 - 12.00
+    Tirsdag d. 25/5 - 12.00 - 16.00
+
+CEF:
+
+    torsdag d. 20/5   (tidsrum 08:30 til 11:30) FYLDT OP
+    fredag d. 21/5      (tidsrum 10:00 til 13:00)
+    tirsdag d. 25/5    (tidsrum 08:30 til 16:00)
+    onsdag d. 26/5    (tidsrum 08:30 til 14:00)
+    torsdag d. 27/5   (tidsrum 08:30 til 16:00)
+
+Rækkefølgeliste 
+
+PAH :
+
+(ZOOM LINK for begge PAH dage :  https://aarhusuniversity.zoom.us/j/69161795618)
+
+Fredag d. 21/5 :
+
+    Kl. 8:00 - Grp 29
+    Kl. 8:15 - Grp 24
+    Kl. 8:30 - Grp 31
+    Kl. 8:45 - Grp 27
+    Kl. 9:00 - Grp 13
+    Kl. 9:15 - Grp 2
+    Kl. 9:30 - Grp 34  
+    Kl. 10:00 - Grp 7
+
+Tirsdag d. 25/5 :
+
+    Kl. 12:00 - Grp 4 
+    Kl. 12:15 - Grp 33
+    Kl. 12:30 - Grp 15
+    Kl. 12:45 - Grp 30
+    Kl. 13:00 - Grp 6  
+    Kl. 13:15 - Grp 16
+    Kl. 13:30 - Grp 41
+    Kl. 13:45 - Grp 12
+    Kl. 14:00 - Grp 3
+    Kl. 14:15 - Grp 20
+    Kl. 14:30 - Grp 35    
+
+(CEF: se nedenfor)
