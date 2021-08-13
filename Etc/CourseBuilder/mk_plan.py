@@ -19,7 +19,7 @@ if __name__ == '__main__':
 		def ParseWidths(headers):
 			w = []
 			h = []
-			for i in isList(headers):
+			for i in List(headers):
 				curr = 65
 				if i[-1]=="}":
 					n = i.find("{")
@@ -30,13 +30,13 @@ if __name__ == '__main__':
 				else:
 					h.append(i)
 					
-				w.append(isInt(curr, 0))
+				w.append(Int(curr, 0))
 			
 			assert len(w)==len(headers) and len(w)==len(h)
 			return w, h		
 				
 		def ParseLine(h, expectedlen):
-			s = isStr(h).split("|")
+			s = Str(h).split("|")
 			N = len(s)
 			
 			if N != expectedlen:
@@ -59,8 +59,15 @@ if __name__ == '__main__':
 		def CheckLine(i, expected):
 			Check(i<len(planlist),        "i={i} < len of planlist={len(planlist}") 
 			Check(planlist[i]==expected, f"planlist missing tag '{expected}' at line {i}, got='{planlist[i]}'")
+		
+		def CheckContent(elem):
+			if Str(elem)!=elem.lower():
+				ERR(f"elem '{elem}' must be all-lower-case")
+				
+			t = s.get(Str(elem))
+			Check(isinstance(t, list), f"planlist missing {elem.upper()} structure")
 						
-		N = len(isList(planlist))
+		N = len(List(planlist))
 		if N < 7:
 			ERR("planlist too short, expected at least three lines with COUSEPLAN/HEAD/CONTENT/REFS/END")
 		
@@ -79,7 +86,7 @@ if __name__ == '__main__':
 		curr = []
 		
 		for j in range(4, N):
-			i = isStr(Trim(planlist[j]))
+			i = Str(Trim(planlist[j]))
 			
 			if i=="NOTES":
 				assert not s.get('content')
@@ -100,10 +107,10 @@ if __name__ == '__main__':
 			curr.append(i)
 		
 		Check(curr is None, 	"plainlist missing END tag")
-		Check(s.get('content'), "planlist missing CONTENT structure")
-		Check(s.get('notes'),   "planlist missing NOTES structure")
-		Check(s.get('refs'),    "planlist missing REFS structure")
-
+		CheckContent('content')
+		CheckContent('notes')
+		CheckContent('refs')
+		
 		parsed = []
 		for i in s['content']:
 			l = ParseLine(i, M)
@@ -116,31 +123,31 @@ if __name__ == '__main__':
 
 	def GenerateHtml(headers, widths, parsed, notes, fullhtmldoc):
 		def HtmlEncode(s):
-			return escape(isStr(s, False))
+			return escape(Str(s, False))
 		
-		M = len(isList(headers))
+		M = len(List(headers))
 		html = ""
 
-		for i in isList(notes):
+		for i in List(notes):
 			html += i + "<br>\n"
 		if len(notes)>0:
 			html += "<br>\n"
 
 		html += '<table cellspacing="0px" cellpadding="1px" border="1px" align="center">\n<tbody>\n<tr style="background-color: #000000;" align="center">\n'		
 			
-		for i in zip(isList(headers), isList(widths)):
-			isTuple(i)
-			html += f'<td width="{isInt(i[1])}"><span style="background-color: #000000; color: #ffffff;"><strong>{HtmlEncode(i[0])}</strong></span></td>\n'
+		for i in zip(List(headers), List(widths)):
+			Tuple(i)
+			html += f'<td width="{Int(i[1])}"><span style="background-color: #000000; color: #ffffff;"><strong>{HtmlEncode(i[0])}</strong></span></td>\n'
 		html += '</tr>\n'
 
-		for j in isList(parsed):
-			assert len(isList(j))==M
+		for j in List(parsed):
+			assert len(List(j))==M
 			html += '<tr align="center">\n'
 			
 			assert len(j)==len(widths)
 			for k in zip(j, widths):
-				isTuple(k)
-				html += f'<td width="{isInt(k[1])}">{HtmlEncode(k[0])}</td>\n'
+				Tuple(k)
+				html += f'<td width="{Int(k[1])}">{HtmlEncode(k[0])}</td>\n'
 			html += '</tr>'
 		
 		html += '</table>\n'
@@ -162,7 +169,7 @@ if __name__ == '__main__':
 		parser.add_argument("-o", default=outputfile, type=str,            help=f"outputfilt, default='{outputfile}\n")
 		args = parser.parse_args()
 				
-		verbose = isInt(args.v)
+		verbose = Int(args.v)
 				
 		planfile = args.p
 		Dbg(verbose, f"{Col('PURPLE')}GENERATING html plan from file '{planfile}..{ColEnd()}")

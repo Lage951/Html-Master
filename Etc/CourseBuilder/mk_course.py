@@ -17,13 +17,13 @@ if __name__ == '__main__':
 	RIGHT= '>'
 
 	def HtmlEncode(s):
-		return escape(isStr(s, False))    
+		return escape(Str(s, False))    
 
 	def HtmlDecode(s):
-		return unescape(isStr(s, False))
+		return unescape(Str(s, False))
 
 	def _mkHtml(tag, style=""):
-		if len(isStr(style, False)) > 0:
+		if len(Str(style, False)) > 0:
 			if style[0]!=" ":
 				style = " " + style
 				if style.find("'") >= 0:
@@ -31,7 +31,7 @@ if __name__ == '__main__':
 				if style.find('"') >= 0:
 					ERR(f"no quotes in style, please, got style = '{style}'")
 					
-		return f"{LEFT}{isStr(tag)}{style}{RIGHT}"
+		return f"{LEFT}{Str(tag)}{style}{RIGHT}"
 
 	class Cmd:
 		__cmdstate = 0 # 0: txt, 1: cmd, 2: args
@@ -59,11 +59,11 @@ if __name__ == '__main__':
 			
 		def Ok(self):
 			assert Cmd.isCmd(self)
-			assert isInt(self.__cmdstate)>=0 and self.__cmdstate<=2
+			assert Int(self.__cmdstate)>=0 and self.__cmdstate<=2
 
-			isStr(self.__st, False)
-			isStr(self.__cmd, False)
-			isStr(self.__args, False)
+			Str(self.__st, False)
+			Str(self.__cmd, False)
+			Str(self.__args, False)
 			
 			#if self.__cmdstate==0:
 			#	assert self.__args==""
@@ -79,7 +79,7 @@ if __name__ == '__main__':
 		@staticmethod	
 		def __MkParseArg(a, checknonempty0=True, checknonempty1=True):
 
-			args = isStr(a).split(",")
+			args = Str(a).split(",")
 			assert len(args)==2
 			
 			arg0 = Trim(args[0], checknonempty0)
@@ -92,16 +92,16 @@ if __name__ == '__main__':
 		@staticmethod	
 		def __MkLink(a, isstar, uselinkfilename, left, right):
 			
-			if isStr(a).find(",")<=0:
+			if Str(a).find(",")<=0:
 				Dbg(verbose, f"one argument link command '{a}'..", 2)
 	
 				arg0 = ""				
 				arg1 = Trim(a)
 			else:
-				args = isStr(a).split(",")
+				args = Str(a).split(",")
 				assert len(args)==2
 			
-				arg0 = isStr(args[0], False)
+				arg0 = Str(args[0], False)
 				arg1 = Trim(args[1])
 			
 			if len(arg1)==0:
@@ -145,25 +145,25 @@ if __name__ == '__main__':
 			else:
 				Dbg(verbose, f"exernal link = '{arg1}'..",  2)
 	
-			extra = " rel='noopener' target='_blank'" if isBool(exlink) else ""
-			style = " style='font-family: courier new, courier;'" if not isBool(isstar) else ""
-			return f"{isStr(left)}span{style}{isStr(right)}{left}a href='{arg1}'{extra}{right}{arg0}{left}/a{right}{left}/span{right}"		
+			extra = " rel='noopener' target='_blank'" if Bool(exlink) else ""
+			style = " style='font-family: courier new, courier;'" if not Bool(isstar) else ""
+			return f"{Str(left)}span{style}{Str(right)}{left}a href='{arg1}'{extra}{right}{arg0}{left}/a{right}{left}/span{right}"		
 
 		@staticmethod	
 		def __MkStyle(a, left, right):
 			arg0, arg1 = Cmd.__MkParseArg(a)
-			return f"{isStr(left)}span style='{arg0}'{isStr(right)}{arg1}{left}/span{right}"		
+			return f"{Str(left)}span style='{arg0}'{Str(right)}{arg1}{left}/span{right}"		
 	
 		@staticmethod	
 		def __MkImg(a, left, right):		
 			arg0, arg1 = Cmd.__MkParseArg(a, True, False)
 			if arg1=="":
 				arg1="the-missing-link: " + arg0
-			return f"{isStr(left)}img src='{arg0}' alt='{arg1}'{isStr(right)}"		
+			return f"{Str(left)}img src='{arg0}' alt='{arg1}'{Str(right)}"		
 	
 		@staticmethod	
 		def __isCmd(c):			
-			return isStr(c) in  ["b", "i", "p", "pre", "dl", "dt", "dd", "em", "itemize", "enumerate", "item", "item*", "subitem", "subitem*", "header", "sub", "subsub", "indent", "code", "ipynb", "quote", "displaystyle", "displaycode", "cite"]
+			return Str(c) in  ["b", "i", "p", "pre", "dl", "dt", "dd", "em", "itemize", "itemize*", "enumerate", "item", "item*", "subitem", "subitem*", "header", "sub", "subsub", "indent", "code", "ipynb", "quote", "displaystyle", "displaycode", "cite"]
 
 		def __MkCmd(self):
 
@@ -195,6 +195,9 @@ if __name__ == '__main__':
 					pass
 				elif c=="itemize":
 					c = "ul"
+				elif c=="itemize*":
+					c = "ul"
+					style =  " style='list-style-type:none;'"
 				elif c=="enumerate":
 					c = "ol"
 					style = " type='i'"
@@ -269,7 +272,7 @@ if __name__ == '__main__':
 	
 		def Add(self, text):
 			assert self.State()==2
-			self.__st += isStr(text)
+			self.__st += Str(text)
 			
 		def Parse(self, c):
 			assert self.Ok()
@@ -281,7 +284,7 @@ if __name__ == '__main__':
 				if c=='}':	
 					self.__cmdstate = 0	
 					assert self.__args==""
-					self.__args = isStr(self.__st, False)
+					self.__args = Str(self.__st, False)
 					self.__st = ""
 					return True, self.__MkCmd()
 				else:
@@ -290,7 +293,7 @@ if __name__ == '__main__':
 				if c=='{':
 					self.__cmdstate = 2
 					assert self.__cmd==""
-					self.__cmd = isStr(self.__st)
+					self.__cmd = Str(self.__st)
 					self.__st = ""
 				else:
 					if c=='(' or c=='[':
@@ -315,8 +318,8 @@ if __name__ == '__main__':
 			curr = Cmd()
 			st = [] 
 			
-			for j in isList(elems):					
-				N = len(isStr(j, False))
+			for j in List(elems):					
+				N = len(Str(j, False))
 				
 				for i in range(N):		
 					Cmd.isCmd(curr)
@@ -343,7 +346,7 @@ if __name__ == '__main__':
 				ERR(f"still {len(st)} elements on stack, expected zero")
 			
 			txt = curr.Text()		
-			Dbg(verbose, f"{Col('CYAN')}{isStr(txt)}{ColEnd()}", 3)		
+			Dbg(verbose, f"{Col('CYAN')}{Str(txt)}{ColEnd()}", 3)		
 			return txt
 			
 
@@ -351,7 +354,7 @@ if __name__ == '__main__':
 			r = {}
 			for i in refs.split("\n"):					
 				if len(Trim(i, False))>0:						
-					n = isStr(i).find(']')
+					n = Str(i).find(']')
 					
 					if n<=0 or i[0]!='[':
 						ERR(f"refs need to be of the form '[key] value', got='{i}'")
@@ -371,10 +374,10 @@ if __name__ == '__main__':
 			
 		def ParseDefs2(defs):
 			r = {}
-			for i in isList(defs):				
+			for i in List(defs):				
 				d = HtmlDecode(Trim(i, False))	
 				if len(d) > 0:						
-					n = isStr(d).find(']')
+					n = Str(d).find(']')
 					
 					if n<=0 or d[0]!='[':
 						ERR(f"refs need to be of the form '[key] value', got='{i}'")
@@ -393,7 +396,7 @@ if __name__ == '__main__':
 			return r
 
 		def ParseBasetructure(courselist):
-			N = len(isList(courselist))
+			N = len(List(courselist))
 			
 			if N<=0:
 				ERR("file seems to be empty")
@@ -427,24 +430,24 @@ if __name__ == '__main__':
 		
 		# 2: preprocess, search and replace defs
 		defs = {} 
-		if isDict(s).get("DEFS"):
+		if Dict(s).get("DEFS"):
 			r =s["DEFS"]
 			del s["DEFS"]			
 			defs = ParseDefs2(r)
 		
 		for i in s:
-			n = isStr(i).find("CONTENT")
+			n = Str(i).find("CONTENT")
 
 			if n>0:
 				ERR("CONTENT tag not in column 1, but in column {n} for entry '{i}'")
 			elif n==0:
 				l = []
-				for line in isList(s[i]):
+				for line in List(s[i]):
 					for key in defs:
-						assert isStr(key)[0]=='[' and key[-1]==']'			
-						val = isStr(defs[key])
+						assert Str(key)[0]=='[' and key[-1]==']'			
+						val = Str(defs[key])
 						line = line.replace(key, val)			
-					l.append(isStr(line, False))
+					l.append(Str(line, False))
 				s[i] = l
 		
 		# 3: parse structure and generate html code
@@ -456,18 +459,18 @@ if __name__ == '__main__':
 			Dbg(verbose, f"  {Col('YELLOW')}FOUND '{i}' {ColEnd()} {' => ' + h if verbose>2 else ''}", 2)
 
 		#defs = {} 
-		#if isDict(htmlstructure).get("DEFS"):
+		#if Dict(htmlstructure).get("DEFS"):
 		#	r = unescape(htmlstructure["DEFS"])
 		#	del htmlstructure["DEFS"]			
 		#	defs = ParseDefs(r)
 		#
 		#for i in htmlstructure:
-		#	html = isStr(htmlstructure[isStr(i)])
+		#	html = Str(htmlstructure[Str(i)])
 		#	for key in defs:
-		#		assert isStr(key)[0]=='[' and key[-1]==']'			
-		#		val = isStr(defs[key])
+		#		assert Str(key)[0]=='[' and key[-1]==']'			
+		#		val = Str(defs[key])
 		#		html = html.replace(key, val)			
-		#	htmlstructure[i] = isStr(html)
+		#	htmlstructure[i] = Str(html)
 		#			
 		
 		return htmlstructure
@@ -475,24 +478,24 @@ if __name__ == '__main__':
 	try:
 		def MkHtml(htmlstructure, addhtmlheaders, filenamebase):		
 			for i in htmlstructure:
-				assert isStr(i).find("CONTENT")==0
+				assert Str(i).find("CONTENT")==0
 				
 				sublesson = i[7:].strip()
 				if len(sublesson)<=0:
 					ERR("sublesson name empty (or just whitespace)")
 				
-				outputfilename = isStr(filenamebase) + sublesson + ".html" 
-				htmlcontent = isStr(htmlstructure[i]) 
+				outputfilename = Str(filenamebase) + sublesson + ".html" 
+				htmlcontent = Str(htmlstructure[i]) 
 				
 				Dbg(verbose, f"  {Col('YELLOW')}WRITING '{i}' => '{outputfilename}'{ColEnd()}", 1)
-				html = MkHtmlPage(htmlcontent) if isBool(addhtmlheaders) else htmlcontentl 
+				html = MkHtmlPage(htmlcontent) if Bool(addhtmlheaders) else htmlcontentl 
 				
 				with Outputfile(outputfilename) as f:
 					f.write(html)				
 					
 		def LoadCourseFile(coursefile):
 			r = []
-			for i in LoadText(isStr(coursefile)):
+			for i in LoadText(Str(coursefile)):
 				n = i.find('%')
 				if n>=0:
 					r.append(i[0:n])
@@ -514,8 +517,8 @@ if __name__ == '__main__':
 		
 		args = parser.parse_args()
 				
-		verbose = isInt(args.v)				
-		coursefile = isStr(args.c)
+		verbose = Int(args.v)				
+		coursefile = Str(args.c)
 		
 		Dbg(verbose, f"{Col('PURPLE')}GENERATING html course from file '{coursefile}'..{ColEnd()}")
 

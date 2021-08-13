@@ -255,7 +255,7 @@ class Diagnostics:
 							linetag = '", line '
 							m = ii.find(linetag)
 							if  m>=0:
-								ii = FiltPwd(ii[0:m]) + Col('BLUE') + str(linetag) + ii[m+len(linetag):]
+								ii = FiltPwd(ii[0:m]) + Col('LCYAN') + str(linetag) + ii[m+len(linetag):]
 							t =  Col('CYAN') + str(ii) + ColEnd()
 							if n==0:
 								maxlen = len(t) if len(t)>maxlen else maxlen

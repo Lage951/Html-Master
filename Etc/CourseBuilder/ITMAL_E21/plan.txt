@@ -21,6 +21,7 @@ CONTENT
 NOTES
 	Tidpunkt: Fredage 08:15 til 12:00
 	Lokale: 5106-110
+	BA: 15/12 aflevering af bachelorprojekt 
 REFS 
 	[1] sdf
 	[2] sfd zdf

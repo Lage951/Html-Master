@@ -8,16 +8,18 @@ PWD = $(shell pwd)
 COURSEFILES = ITMAL_E21
 MKDIFF=colordiff -dw Refs/$1 $1 && echo "DIFF OK" && rm $1
 
-sync: build
-	@ echo "SYNC.."
-	@ ssh si "cd ITMAL_E21 && rm -f Html/*.html && git pull"
-	@ cd ../../ && scp  -q -C -r Html si:ITMAL_E21/
-	@ echo "SYNC..DONE"
-	
 build:
 	@ $(PYCOURSE) -c $(COURSEFILES)/course.tex  -v  -o ../../Html/
 	@ $(PYPLAN)   -p $(COURSEFILES)/plan.txt    -v  -o ../../Html/plan.html
-	@ cd ../.. && $ $(PWD)/$(PYFILETREE)        -v  -o Html/filetree.html
+	@ cd ../.. &&    $(PWD)/$(PYFILETREE)       -v  -o Html/filetree.html
+
+sync: build
+	@ echo "SYNC.."
+	@ #nmap -T5  -p 22 si | grep -v "Note: Host seems down" >/dev/null
+	@ ssh si "cd ITMAL_E21 && rm -f Html/*.html && git pull" 
+	@ cd ../../ && scp  -q -C -r Html si:ITMAL_E21/
+	@ echo "SYNC..DONE"
+	
 
 TESTARGS=-v -v
 test:
@@ -26,7 +28,7 @@ test:
 	@ $(call MKDIFF,L01.html)
 	@ $(PYPLAN) -p Test/plan.txt       $(TESTARGS) -o plan.html
 	@ $(call MKDIFF,plan.html)
-	@ cd Test && $(PWD)/$(PYFILETREE)  $(TESTARGS) -o $(PWD)/tree.html
+	@ cd Test && $(PWD)/$(PYFILETREE)  $(TESTARGS) -header "ITMAL Backend File Structure" -o $(PWD)/tree.html
 	@ $(call MKDIFF,tree.html)
 
 edit:
