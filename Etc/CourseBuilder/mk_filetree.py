@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 
-from Utils.dbg import ERR, WARN, isBool, isStr, isInt, isNatural, isTuple, isList, isDict
 from Utils.colors import Col, ColEnd
 from Utils.mkutils import *
 
@@ -15,14 +14,17 @@ if __name__ == '__main__':
 
 	outputstr = ""
 
+	def CheckTuple(t, secondisstr=False):
+		Check(len(Tuple(t)) ==2, "not a tuple with len=2")
+		Check(len(Str(t[0], False))>=0, "tuple first not of string type")
+		Check(isinstance(t[1], str) or (not secondisstr and isinstance(t[1], dict)), f"tuple second not of expected type(s), type={type(t[1])}") 
+		return True
+
 	def Print(msg, outputfile):
 		global outputstr
-		assert isStr(msg)
-		outputstr += msg + "\n"
+		outputstr += Str(msg) + "\n"
     
 	def Find(root, excludepat):
-		assert isList(excludepat)
-
 		tree = {}
 		tree['trees'] = []
 		tree['files'] = []
@@ -34,7 +36,7 @@ if __name__ == '__main__':
 					d = d[2:]
 				
 				skip = False
-				for j in excludepat:
+				for j in List(excludepat):
 					if d.find(j)>=0:
 						skip = True
 						break
@@ -48,17 +50,9 @@ if __name__ == '__main__':
 
 	def PrintItem(i, level, isDir):
 		def Tab(level, tab):			
-			assert isNatural(level)
-			assert isStr(tab)
-			assert isBool(isDir)
-			
-			#if htmlmode:
-			#	return "", ""
-			#	#return f"<p style='padding-left: {(level+1)*40}px;'>", "</p>"
-		
 			t = ""
-			for n in range(level):
-				t += tab
+			for n in range(Int(level)):
+				t += Str(tab)
 		
 			return t, ""
 			
@@ -68,8 +62,7 @@ if __name__ == '__main__':
 		def Link(i, isDir):
 			def CheckUrl(linkurl):
 				assert Str(linkurl).find("'") < 0
-
-				if testurls:
+				if Bool(testurls):
 					sfx = linkurl.split(".")[-1]
 					if sfx!="py":
 						#print(f"WEB GET test {linkurl}..")
@@ -78,42 +71,31 @@ if __name__ == '__main__':
 							urlretrieve(linkurl, filename=None)
 						except Exception as ex:
 							#PrettyPrintTracebackDiagnostics(ex)
-							print(f"{Col('LRED UNDERLINE')}EXCEPTION:{ColEnd()}{Col('LRED')} {ex}{ColEnd()}", stderr)
-							WARN(f"ignore test on link {linkurl}")
+							Warn(f"{Col('LRED UNDERLINE')}EXCEPTION:{ColEnd()}{Col('LRED')} {ex}{ColEnd()}")
+							Warn(f"ignore test on link {linkurl}")
 				
 				return linkurl
 			
-			assert isStr(url)
-			assert isBool(isDir)
-			assert isTuple(i)
-			assert isBool(bsfileidmode)
-			
-			if isDir:
-				return i[0]
+			CheckTuple(i)
+						
+			if Bool(isDir):
+				return Str(i[0])
 
-			assert isStr(i[0])
-			assert isStr(i[1])
+			if Bool(bsfileidmode):
+				filename = UrlQuote(Str(i[1]))
+	
+				orgUnitId = Str(str(ouid) if Int(ouid>0) else "{orgUnitId}")
 			
-			if bsfileidmode:
-				filename = Str(i[1].replace("/","%2f").replace(" ","%20"))
-				assert filename.find("'") < 0
-				assert filename.find('"') < 0				
-				#    <a href="/d2l/common/dialogs/quickLink/quickLink.d2l?ou={orgUnitId}&amp;type=coursefile&amp;fileId=Kursusfiler%2fEksamen%2fScreenshot_mathcad_navn-og-studienummer.jpg" target="_self">dsf</a>
-				
-				orgUnitId = "{orgUnitId}"
-				if ouid > 0:
-					orgUnitId = str(ouid)
-				assert isStr(orgUnitId)
+				# From BS:   <a href="/d2l/common/dialogs/quickLink/quickLink.d2l?ou={orgUnitId}&amp;type=coursefile&amp;fileId=Kursusfiler%2fEksamen%2fScreenshot_mathcad_navn-og-studienummer.jpg" target="_self">dsf</a>
 				
 				r = '<a href="/d2l/common/dialogs/quickLink/quickLink.d2l?ou=' + orgUnitId + '&amp;type=coursefile&amp;fileId='+filename+'" target="_self">'+i[0]+'</a>'
 			else:
-				linkurl = CheckUrl(url + "/" + i[1])
+				linkurl = CheckUrl(Str(url) + "/" + i[1])
 				assert linkurl.find("'") < 0
 				r = f"<a href='{linkurl}'>{i[0]}</a>"			
 			return r
 
-		assert isTuple(i)
-		assert isStr(i[0])
+		CheckTuple(i)
 		nbsp = "&nbsp;"
 		
 		tab  = Tab(4*level, nbsp if htmlmode else "  ")
@@ -123,36 +105,28 @@ if __name__ == '__main__':
 		pre  = f"<span style=\"font-family: 'courier new', courier, sans-serif\">" if htmlmode else ""
 		post = "</span>"         if htmlmode else ""
 		
-		assert isTuple(tab)
+		CheckTuple(tab, True)
 		r = pre + tab[0] + link + tab[1] + Newline() + post
 		
 		Print(r, outputfile)
 		return r
 
 	def PrintTree(tree, level=0):
-		assert isDict(tree)	
-		assert isStr(url)		
-		assert isBool(htmlmode)
-
 		files=0
 		dirs=0
 		
 		for j in ['trees', 'files']:
-			t = tree[j]
-			assert isList(t)
-			
-			d = sorted(tree[j])
-			assert isList(d)
+			t = List(Dict(tree)[j])
+			d = List(sorted(tree[j]))
 	
 			for i in d:
+				CheckTuple(i, False)
 				isdict = isinstance(i[1], dict)
-				assert isTuple(i)
 				assert isdict == (j=='trees')
 				PrintItem(i, level, isdict)
 				files += 1
 				if j=='trees':
-					r = (PrintTree(i[1], level+1))
-					assert isTuple(r)		
+					r = Tuple((PrintTree(i[1], level+1)))
 					files += r[0]
 					dirs  += 1 + r[1]
 		
@@ -188,27 +162,21 @@ if __name__ == '__main__':
 		verbose = Int(args.v)
 		
 		testurls = Bool(args.t)
-		if testurls:
-			WARN("test urls not implemented yet")
+		Check(not testurls, "test urls not implemented yet")
 
 		htmlmode = not Bool(args.plain)
 	
 		header = Str(args.header, False)
 
 		url = Str(args.url)
-		if url[-1]=='/':
-			ERR("no trailing '/' in url, please remove")
+		Check(url[-1]!='/',"no trailing '/' in url, please remove")
 
 		outputfile = Str(args.o)
 
 		bsfileidmode = Bool(args.bsfileidmode)
 	
 		ouid = Str(args.ouid, False)
-		if len(ouid)>0:
-			ouid = int(ouid)
-		else:
-			ouid = -1
-		assert isInt(ouid)
+		ouid = Int(Int(int(ouid)) if len(ouid)>0 else -1, -1)
 
 		excludepath += "," + Str(args.excludepath)
 		assert excludepath.find(" ") < 0
@@ -218,8 +186,7 @@ if __name__ == '__main__':
 	
 		#if bsfileidmode and len(url)>0:
 		#	ERR("cannot specify -url and -bsfileidmode at the same time")
-		if ouid>0 and not bsfileidmode:
-			ERR("canot specify -ouid without -bsfileidmode")
+		Check( not( ouid>0 and not bsfileidmode), "canot specify -ouid without -bsfileidmode")
 	
 		root = "./"
 		Dbg(verbose, f"{Col('PURPLE')}GENERATING html file tree from root '{root}'" + (("" if bsfileidmode else f", (url='{url}')")  if verbose > 0 else "") + f"..{ColEnd()}")

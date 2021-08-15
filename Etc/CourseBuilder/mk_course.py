@@ -6,7 +6,6 @@ from Utils.mkutils import *
 
 from sys import argv
 from argparse import ArgumentParser
-from html import escape, unescape
 
 if __name__ == '__main__':
 
@@ -16,20 +15,12 @@ if __name__ == '__main__':
 	LEFT = '<'
 	RIGHT= '>'
 
-	def HtmlEncode(s):
-		return escape(Str(s, False))    
-
-	def HtmlDecode(s):
-		return unescape(Str(s, False))
-
 	def _mkHtml(tag, style=""):
 		if len(Str(style, False)) > 0:
 			if style[0]!=" ":
 				style = " " + style
-				if style.find("'") >= 0:
-					ERR(f"no plings in style, please, got style = '{style}'")
-				if style.find('"') >= 0:
-					ERR(f"no quotes in style, please, got style = '{style}'")
+				Check(style.find("'") < 0, f"no plings in style, please, got style = '{style}'")
+				Check(style.find('"') < 0, f"no quotes in style, please, got style = '{style}'")
 					
 		return f"{LEFT}{Str(tag)}{style}{RIGHT}"
 
@@ -84,8 +75,7 @@ if __name__ == '__main__':
 			
 			arg0 = Trim(args[0], checknonempty0)
 			arg1 = Trim(args[1], checknonempty1)	
-			if arg0.find('"')>=0 or arg0.find("'")>=0:
-				ERR(f"do not use pligs (') or quotes (\") in style command, style='{arg0}'")
+			Check(arg0.find('"') < 0 and arg0.find("'") < 0, f"do not use pligs (') or quotes (\") in style command, style='{arg0}'")
 			
 			return arg0, arg1
 	
@@ -104,18 +94,14 @@ if __name__ == '__main__':
 				arg0 = Str(args[0], False)
 				arg1 = Trim(args[1])
 			
-			if len(arg1)==0:
-				ERR(f"need second link argument or nonempty first argument, currently empty for arguments '{a}'")
+			Check( len(arg1) > 0, f"need second link argument or nonempty first argument, currently empty for arguments '{a}'")
 			
 			n_http  = arg1.find("http://")
 			n_https = arg1.find("https://")
 			m = 7 + (1 if n_https==0 else 0)
 			
-			if not (n_http==0 or n_https==0):
-				ERR(f"link '{arg1}' does not begin with 'http://' or 'https://' as it should")
-				
-			if arg1[m]=="/":
-				ERR(f"link with triple '///', for '{arg1}'")
+			Check(n_http==0 or n_https==0, f"link '{arg1}' does not begin with 'http://' or 'https://' as it should")
+			Check(arg1[m]!="/", f"link with triple '///', for '{arg1}'")
 			
 			if len(arg0)==0:
 				#n = arg1.rfind('/')
@@ -129,14 +115,11 @@ if __name__ == '__main__':
 				
 				if uselinkfilename:
 					k = arg0.rfind("/")
-					if arg0[-1]=="/":
-						ERR(f"can not generate file name, when link argument '{arg0}' ends in a slash '/'")
-					if k<=0:
-						ERR("could not generate filename from link '{arg0}', need at least one slash '/'")
+					Check(arg0[-1]!="/", f"can not generate file name, when link argument '{arg0}' ends in a slash '/'")
+					Check( k > 0,        f"could not generate filename from link '{arg0}', need at least one slash '/'")
 					arg0 = arg0[k+1:]
 			
-			if len(arg0)==0:
-				ERR("link arg0 ends-up empty, this was not the way it should be")
+			Check(len(arg0)>0, "link arg0 ends-up empty, this was not the way it should be")
 			
 			exlink = True
 			if arg1.find("au.dk")>0:
@@ -251,7 +234,7 @@ if __name__ == '__main__':
 					head = "<br>\n<br>\n"
 					tail = "<br>\n<br>\n"
 				else:
-					ERR(f"that odd, an unhandled command '{c}' that seem to be present in isCmd() list")
+					Check(False, f"that odd, an unhandled command '{c}' that seem to be present in isCmd() list")
 					
 				closetags = f"{left}/{c}{right}{tail}" if closing else ""
 				v = f"{head}{left}{c}{style}{right}{a}{closetags}"
@@ -264,7 +247,7 @@ if __name__ == '__main__':
 			elif c=="img":
 				v = Cmd.__MkImg(a, left, right)				
 			else:
-				ERR(f"unknown command '{c}' with argument(s) '{a}'")
+				Check(False, f"unknown command '{c}' with argument(s) '{a}'")
 						
 			self.__txt += v
 			
@@ -339,11 +322,8 @@ if __name__ == '__main__':
 				
 				curr.Parse("\n")
 						
-			if curr.State() != 0:
-				ERR(f"still in command parsing state={curr.State()}")	
-			
-			if len(st) != 0:
-				ERR(f"still {len(st)} elements on stack, expected zero")
+			Check(curr.State()==0, f"still in command parsing state={curr.State()}")	
+			Check(len(st)==0,      f"still {len(st)} elements on stack, expected zero")
 			
 			txt = curr.Text()		
 			Dbg(verbose, f"{Col('CYAN')}{Str(txt)}{ColEnd()}", 3)		
@@ -356,16 +336,13 @@ if __name__ == '__main__':
 				if len(Trim(i, False))>0:						
 					n = Str(i).find(']')
 					
-					if n<=0 or i[0]!='[':
-						ERR(f"refs need to be of the form '[key] value', got='{i}'")
+					Check(not(n<=0 or i[0]!='['), f"refs need to be of the form '[key] value', got='{i}'")
 					
 					key = i[0:n+1].strip()
 					val = i[n+1:].strip()
 					
-					if len(key)==0:
-						ERR(f"empty key in ref element='{i}'")
-					if len(val)==0:
-						ERR(f"empty value in ref element='{i}'")
+					Check(len(key) > 0, f"empty key in ref element='{i}'")
+					Check(len(val) > 0, f"empty value in ref element='{i}'")
 						
 					Dbg(verbose, f"    ParseRef(): found '{key}' => '{val}'", 2)
 					assert not r.get(key)
@@ -520,13 +497,14 @@ if __name__ == '__main__':
 				
 		verbose = Int(args.v)				
 		coursefile = Str(args.c)
+		ouptputfiledir = Str(args.o)
 		
 		Dbg(verbose, f"{Col('PURPLE')}GENERATING html course from file '{coursefile}'..{ColEnd()}")
 
 		htmlencoded   = [HtmlEncode(i) for i in LoadCourseFile(coursefile)]
 		htmlstructure = ParseStructure(htmlencoded)				
 	
-		MkHtml(htmlstructure, not Bool(args.t), Str(args.o))		
+		MkHtml(htmlstructure, not Bool(args.t), outputfiledir)		
 		
 		Dbg(verbose, f"{Col('PURPLE')}DONE{ColEnd()}")
 		

@@ -1,7 +1,10 @@
 #!/usr/bin/env python3
 
 from Utils.dbg import ERR, DiagStdErr, PrettyPrintTracebackDiagnostics
+
 from sys import stdout, stderr
+from html import escape, unescape
+from urllib.parse import quote
 
 def Str(t, checknonempty=True):
 	assert isinstance(t, str),  f"exected string but got type='{type(t)}'"
@@ -34,6 +37,8 @@ def Check(expr, msg):
 	Str(msg)
 	if not Bool(expr):
 		ERR("EXPRESSION NOT FULLFILLED: " + msg)
+		return False
+	return True
 
 def Trim(s, checknonempty=True):
 	s = Str(s, Bool(checknonempty)).replace("\t"," ")
@@ -68,6 +73,22 @@ def LoadText(filename, timeout=4000, split=True):
 		if split:
 			c = c.split("\n")		
 		return c
+
+def HtmlEncode(s): 
+	# for text in html page
+	return escape(Str(s, False))
+
+def HtmlDecode(s):
+	return unescape(Str(s, False))
+
+
+def UrlQuote(s): 
+	# for file names in urls
+	s = quote(Str(s, False), safe='')
+	assert s.find("'") < 0
+	assert s.find('"') < 0
+	assert s.find(" ") < 0
+	return s
 
 def MkHtmlPage(htmlcontent):
 	assert Str(htmlcontent).find("DOCTYPE")<0 and htmlcontent.find("<html>")<=0 and htmlcontent.find("<body>")<=0

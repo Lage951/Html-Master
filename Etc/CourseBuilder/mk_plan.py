@@ -1,15 +1,12 @@
 #!/usr/bin/env python3
 
-from Utils.dbg import ERR
 from Utils.colors import Col, ColEnd
 from Utils.mkutils import *
 
 from sys import argv
 from argparse import ArgumentParser
-from html import escape
  
-if __name__ == '__main__':
-	
+if __name__ == '__main__':	
 		
 	def ParseStructure(planlist):
 
@@ -37,10 +34,8 @@ if __name__ == '__main__':
 			N = len(s)
 			
 			if N != expectedlen:
-				if expectedlen < 0 and N < 2:
-					ERR(f"expected more than one column in header '{h}', but got {N} column(s)")
-				elif expectedlen >= 0:
-					ERR(f"expected exaclty {expectedlen} column(s) in line '{h}', but got {N} column(s)")
+				if not  Check(not(expectedlen < 0 and N < 2), f"expected more than one column in header '{h}', but got {N} column(s)"):
+					Check(expectedlen <= 0,                   f"expected exactly {expectedlen} column(s) in line '{h}', but got {N} column(s)")
 			
 			r = []
 			o = ""
@@ -58,15 +53,13 @@ if __name__ == '__main__':
 			Check(planlist[i]==expected, f"planlist missing tag '{expected}' at line {i}, got='{planlist[i]}'")
 		
 		def CheckContent(elem):
-			if Str(elem)!=elem.lower():
-				ERR(f"elem '{elem}' must be all-lower-case")
+			Check(Str(elem)==elem.lower(), f"elem '{elem}' must be all-lower-case")
 				
 			t = s.get(Str(elem))
 			Check(isinstance(t, list), f"planlist missing {elem.upper()} structure")
 						
 		N = len(List(planlist))
-		if N < 7:
-			ERR("planlist too short, expected at least four lines with COUSEPLAN/HEAD/CONTENT/[REFS]/END")
+		Check(N >= 7, "planlist too short, expected at least four lines with COUSEPLAN/HEAD/CONTENT/[REFS]/END")
 		
 		CheckLine(0, "COUSEPLAN")	
 		CheckLine(1, "HEAD")
@@ -119,8 +112,6 @@ if __name__ == '__main__':
 		return s
 
 	def GenerateHtml(headers, widths, parsed, notes, fullhtmldoc):
-		def HtmlEncode(s):
-			return escape(Str(s, False))
 		
 		def StyleSheet():
 			return """
