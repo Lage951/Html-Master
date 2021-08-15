@@ -508,12 +508,13 @@ if __name__ == '__main__':
 		
 		verbose = 0
 		coursefile = "course.tex"
+		outputfiledir = "./"
 	
 		parser = ArgumentParser(prog=argv[0], epilog="version 0.2")
-		parser.add_argument("-v", default=verbose,     action="count",      help= "increase output verbosity, default={verbose}\n")
-		parser.add_argument("-t", default=False,       action="store_true", help=f"generate simple html (witouth <html> <body> etc tags), default=False\n")
-		parser.add_argument("-o", default="",          type=str,            help=f"outputfilt, default=''\n")
-		parser.add_argument("-c", default=coursefile,  type=str,            help="cause file to be parsed, default='{coursefile}'\n")
+		parser.add_argument("-v", default=verbose,       action="count",      help=f"increase output verbosity, default={verbose}\n")
+		parser.add_argument("-t", default=False,         action="store_true", help=f"generate simple html (witouth <html> <body> etc tags), default=False\n")
+		parser.add_argument("-o", default=outputfiledir, type=str,            help=f"output file dir base, default='{outputfiledir}'\n")
+		parser.add_argument("-c", default=coursefile,    type=str,            help=f"cause file to be parsed, default='{coursefile}'\n")
 		
 		args = parser.parse_args()
 				
@@ -525,7 +526,7 @@ if __name__ == '__main__':
 		htmlencoded   = [HtmlEncode(i) for i in LoadCourseFile(coursefile)]
 		htmlstructure = ParseStructure(htmlencoded)				
 	
-		MkHtml(htmlstructure, not args.t, args.o)		
+		MkHtml(htmlstructure, not Bool(args.t), Str(args.o))		
 		
 		Dbg(verbose, f"{Col('PURPLE')}DONE{ColEnd()}")
 		

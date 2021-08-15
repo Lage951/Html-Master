@@ -2,7 +2,7 @@
 
 from Utils.dbg import ERR, WARN, isBool, isStr, isInt, isNatural, isTuple, isList, isDict
 from Utils.colors import Col, ColEnd
-from Utils.mkutils import HandleException, Dbg, MkHtmlPage, Outputfile, Str
+from Utils.mkutils import *
 
 from sys import argv, stderr
 from os import listdir
@@ -167,7 +167,7 @@ if __name__ == '__main__':
 		htmlmode = True		
 		header = "Backend file structure"
 		url = "https://itundervisning.ase.au.dk/ITMAL_E21"		
-		outputfile = None
+		outputfile = "tree.html"
 		bsfileidmode = False
 		ouid = ""
 		excludepath = "git,Old,ipynb_checkpoints,~,__pycache__"
@@ -185,16 +185,13 @@ if __name__ == '__main__':
 				
 		args = parser.parse_args()
 		
-		assert isInt(args.v)
-		verbose = int(args.v)
+		verbose = Int(args.v)
 		
-		testurls = args.t
-		assert isBool(testurls)
+		testurls = Bool(args.t)
 		if testurls:
 			WARN("test urls not implemented yet")
 
-		htmlmode = not args.plain
-		assert isBool(htmlmode)
+		htmlmode = not Bool(args.plain)
 	
 		header = Str(args.header, False)
 
@@ -202,8 +199,9 @@ if __name__ == '__main__':
 		if url[-1]=='/':
 			ERR("no trailing '/' in url, please remove")
 
-		bsfileidmode = args.bsfileidmode
-		assert isBool(bsfileidmode)
+		outputfile = Str(args.o)
+
+		bsfileidmode = Bool(args.bsfileidmode)
 	
 		ouid = Str(args.ouid, False)
 		if len(ouid)>0:
@@ -228,9 +226,6 @@ if __name__ == '__main__':
 
 		tree = Find(root, excludepat)		
 		
-		outputfile = None
-		#outputfile = Outputfile(args.o)
-		
 		if htmlmode and len(header)>0:
 			Print("<h3>" + header + "</h3>\n", outputfile)
 
@@ -241,7 +236,7 @@ if __name__ == '__main__':
 		if htmlmode:
 			html = MkHtmlPage(html)
 		
-		with Outputfile(args.o) as f:
+		with Outputfile(outputfile) as f:
 			f.write(html)
 				
 		Dbg(verbose, f"{Col('PURPLE')}DONE{ColEnd()}")

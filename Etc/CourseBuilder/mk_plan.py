@@ -10,9 +10,6 @@ from html import escape
  
 if __name__ == '__main__':
 	
-	verbose = 0
-	planfile = "plan.txt"
-	outputfile= None
 		
 	def ParseStructure(planlist):
 
@@ -57,7 +54,7 @@ if __name__ == '__main__':
 			return r
 		
 		def CheckLine(i, expected):
-			Check(i<len(planlist),        "i={i} < len of planlist={len(planlist}") 
+			Check(i<len(planlist),       f"i={i} < len of planlist={len(planlist)}") 
 			Check(planlist[i]==expected, f"planlist missing tag '{expected}' at line {i}, got='{planlist[i]}'")
 		
 		def CheckContent(elem):
@@ -69,7 +66,7 @@ if __name__ == '__main__':
 						
 		N = len(List(planlist))
 		if N < 7:
-			ERR("planlist too short, expected at least three lines with COUSEPLAN/HEAD/CONTENT/REFS/END")
+			ERR("planlist too short, expected at least four lines with COUSEPLAN/HEAD/CONTENT/[REFS]/END")
 		
 		CheckLine(0, "COUSEPLAN")	
 		CheckLine(1, "HEAD")
@@ -125,32 +122,51 @@ if __name__ == '__main__':
 		def HtmlEncode(s):
 			return escape(Str(s, False))
 		
+		def StyleSheet():
+			return """
+			<style type='text/css'> 
+				.ECE_coursebuilder_table                    { background-color:white; border-collapse:collapse; text-align:center }
+				.ECE_coursebuilder_table th                 { background-color:black; color:white;  } 
+				.ECE_coursebuilder_table th, .ECE_coursebuilder_table td { padding:5px; border:1px solid black; }
+				.ECE_coursebuilder_table tr:nth-child(even) { background: #DDD;  }
+				.ECE_coursebuilder_table tr:nth-child(odd)  { background: white; }
+			</style>
+			""".replace("\t\t\t", "")
+		
+		def GenerateRow(headers, widths, type):
+			assert len(List(headers))==len(List(widths))
+			assert Str(type)=="th" or type=="td"
+			
+			html = "\t\t<tr>\n"	
+			for i in zip(List(headers), List(widths)):
+				Tuple(i)
+				elem = HtmlEncode(i[0])
+				assert Int(i[1])>=0
+				w = f" width='{Int(i[1])}'" if type=="th" else ""
+				html += f"\t\t\t<{type}{w}>{elem}</{type}>\n" 
+			html += "\t\t</tr>\n"
+			return html
+		
 		M = len(List(headers))
-		html = ""
+		html = StyleSheet()
 
 		for i in List(notes):
 			html += i + "<br>\n"
+		
 		if len(notes)>0:
 			html += "<br>\n"
 
-		html += '<table cellspacing="0px" cellpadding="1px" border="1px" align="center">\n<tbody>\n<tr style="background-color: #000000;" align="center">\n'		
-			
-		for i in zip(List(headers), List(widths)):
-			Tuple(i)
-			html += f'<td width="{Int(i[1])}"><span style="background-color: #000000; color: #ffffff;"><strong>{HtmlEncode(i[0])}</strong></span></td>\n'
-		html += '</tr>\n'
+		html += "<table class='ECE_coursebuilder_table'>\n"
+		html += "\t<tbody>\n"
+				
+		html += GenerateRow(headers, widths, "th")	
 
 		for j in List(parsed):
 			assert len(List(j))==M
-			html += '<tr align="center">\n'
+			html += GenerateRow(j, widths, "td")	
 			
-			assert len(j)==len(widths)
-			for k in zip(j, widths):
-				Tuple(k)
-				html += f'<td width="{Int(k[1])}">{HtmlEncode(k[0])}</td>\n'
-			html += '</tr>'
-		
-		html += '</table>\n'
+		html += "\t</tbody>\n"
+		html += "</table>\n"
 		
 		if fullhtmldoc:
 			html = MkHtmlPage(html)
@@ -160,9 +176,11 @@ if __name__ == '__main__':
 		return html
 		
 	try:	
+		verbose = 0
 		planfile = "plan.txt"
+		outputfile = "plan.html" 
 		
-		parser = ArgumentParser(prog=argv[0], epilog="version 0.1")
+		parser = ArgumentParser(prog=argv[0], epilog="version 0.2")
 		parser.add_argument("-v", default=verbose,    action="count",      help= "increase output verbosity, default={verbose}\n")
 		parser.add_argument("-t", default=False,      action="store_true", help=f"generate simple table (witouth <html> <body> etc tags), default=False\n")
 		parser.add_argument("-p", default=planfile,   type=str,            help=f"planfile, default='{planfile}'\n")
@@ -171,7 +189,9 @@ if __name__ == '__main__':
 				
 		verbose = Int(args.v)
 				
-		planfile = args.p
+		planfile = Str(args.p)
+		outputfil = Str(args.o)
+		
 		Dbg(verbose, f"{Col('PURPLE')}GENERATING html plan from file '{planfile}..{ColEnd()}")
 
 		structure = ParseStructure(LoadText(planfile))		
@@ -179,10 +199,48 @@ if __name__ == '__main__':
 		Dbg(verbose, str(structure['headers']), 2)
 		html = GenerateHtml(structure['headers'], structure['widths'], structure['parsed'], structure['notes'], not args.t)
 		
-		with Outputfile(args.o) as f:
+		with Outputfile(outputfil) as f:
 			f.write(html)
 		
 		Dbg(verbose, f"{Col('PURPLE')}DONE{ColEnd()}")
 		
 	except Exception as ex:
 		HandleException(ex)
+
+# example from: https://www.html.am/html-codes/tables/table-background-color.cfm
+"""
+<!-- Start Styles. Move the 'style' tags and everything between them to between the 'head' tags -->
+	
+	<style type="text/css">
+	.ECE_coursebuilder_table { background-color:#eee;border-collapse:collapse; }
+	.ECE_coursebuilder_table th { background-color:#000;color:white;width:50%; }
+	.ECE_coursebuilder_table td, .ECE_coursebuilder_table th { padding:5px;border:1px solid #000; }
+	</style>
+	
+	<!-- End Styles -->
+	<table class="ECE_coursebuilder_table">
+	<tr>
+	<th>Table Header</th><th>Table Header</th>
+	</tr>
+	<tr>
+	<td>Table cell 1</td><td>Table cell 2</td>
+	</tr>
+	<tr>
+	<td>Table cell 3</td><td>Table cell 4</td>
+	</tr>
+	</table>
+
+	<table class="ECE_coursebuilder_table">
+		<tbody>
+			<tr>
+				<th>Table Header</th><th>Table Header</th>
+			</tr>
+			<tr>
+				<td>Table cell 1</td><td>Table cell 2</td>
+			</tr>
+			<tr>
+				<td>Table cell 3</td><td>Table cell 4</td>
+			</tr>
+		</tbody>
+	</table>
+	"""		

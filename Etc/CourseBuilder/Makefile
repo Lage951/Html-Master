@@ -6,7 +6,7 @@ PYPLAN      = mk_plan.py
 
 PWD = $(shell pwd)
 COURSEFILES = ITMAL_E21
-MKDIFF=colordiff -dw Refs/$1 $1 && echo "DIFF OK" && rm $1
+MKDIFF=printf "DIFF Ref/%-10s Test/  .. " $1 && colordiff -dw Refs/$1 Test/ && echo "DIFF OK" && rm Test/$1
 
 build:
 	@ $(PYCOURSE) -c $(COURSEFILES)/course.tex  -v  -o ../../Html/
@@ -21,21 +21,21 @@ sync: build
 	@ echo "SYNC..DONE"
 	
 
-TESTARGS=-v -v
-test:
-	@ $(PYCOURSE) -c Test/course.tex   $(TESTARGS) -o ./
+TESTARGS=-v
+test: clean
+	@ cd Test && $(PWD)/$(PYCOURSE) -c course.tex $(TESTARGS)
+	@ cd Test && $(PWD)/$(PYPLAN)   -p plan.txt   $(TESTARGS) 
+	@ cd Test && $(PWD)/$(PYFILETREE)             $(TESTARGS) 
 	@ $(call MKDIFF,L00.html)
 	@ $(call MKDIFF,L01.html)
-	@ $(PYPLAN) -p Test/plan.txt       $(TESTARGS) -o plan.html
 	@ $(call MKDIFF,plan.html)
-	@ cd Test && $(PWD)/$(PYFILETREE)  $(TESTARGS) -header "ITMAL Backend File Structure" -o $(PWD)/tree.html
 	@ $(call MKDIFF,tree.html)
 
 edit:
 	joe course.tex #joe $(PYCOURSE)
 	
 clean:
-	@ rm -f index.html out.html test.html ../Html/L??.html 
+	@ rm -f Test/*.html ../Html/L??.html 
 
 #get:
 #	wget https://gitlab.au.dk/au204573/brightspacemods/-/raw/master/JS/demo.js
