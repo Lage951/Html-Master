@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 
-from Utils.dbg import ERR, WARN
 from Utils.colors import Col, ColEnd
 from Utils.mkutils import *
 
 from sys import argv
 from argparse import ArgumentParser
+from urllib.request import urlopen
 
 if __name__ == '__main__':
 
@@ -14,6 +14,15 @@ if __name__ == '__main__':
 
 	LEFT = '<'
 	RIGHT= '>'
+
+	def TestLink(url):
+		try:
+			contents = urlopen(url).read()
+			Dbg(verbose, f"  {Col('green')}URL OK:{ColEnd()} '{url}'", 1)
+			return True
+		except Exception as ex:
+			Warn(f"exception in TestLink(url={url})..")
+			return False
 
 	def _mkHtml(tag, style=""):
 		if len(Str(style, False)) > 0:
@@ -44,8 +53,7 @@ if __name__ == '__main__':
 		def isCmd(obj):
 			s = str(type(obj))
 			e = "<class '__main__.Cmd'>"
-			if s != e:
-				WARN(f"not correct class of object, got type '{s}', expected '{e}'")
+			Check(s==e,	f"object not correct class of object, got type '{s}', expected '{e}'")
 			return True
 			
 		def Ok(self):
@@ -130,7 +138,9 @@ if __name__ == '__main__':
 	
 			extra = " rel='noopener' target='_blank'" if Bool(exlink) else ""
 			style = " style='font-family: courier new, courier;'" if not Bool(isstar) else ""
-			return f"{Str(left)}span{style}{Str(right)}{left}a href='{arg1}'{extra}{right}{arg0}{left}/a{right}{left}/span{right}"		
+			if testlinks:
+				TestLink(arg1)			
+			return f"{Str(left)}span{style}{Str(right)}{left}a href='{arg1}'{extra}{right}{arg0}{left}/a{right}{left}/span{right}"
 
 		@staticmethod	
 		def __MkStyle(a, left, right):
@@ -280,7 +290,7 @@ if __name__ == '__main__':
 					self.__st = ""
 				else:
 					if c=='(' or c=='[':
-						WARN("found left parathesis '{c}' while in command parsing mode, did you mean '{'?")
+						Warn("found left parathesis '{c}' while in command parsing mode, did you mean '{'?")
 					self.__st += c
 			else:	
 				assert self.__args==""
@@ -330,24 +340,24 @@ if __name__ == '__main__':
 			return txt
 			
 
-		def ParseDefs(refs):
-			r = {}
-			for i in refs.split("\n"):					
-				if len(Trim(i, False))>0:						
-					n = Str(i).find(']')
-					
-					Check(not(n<=0 or i[0]!='['), f"refs need to be of the form '[key] value', got='{i}'")
-					
-					key = i[0:n+1].strip()
-					val = i[n+1:].strip()
-					
-					Check(len(key) > 0, f"empty key in ref element='{i}'")
-					Check(len(val) > 0, f"empty value in ref element='{i}'")
-						
-					Dbg(verbose, f"    ParseRef(): found '{key}' => '{val}'", 2)
-					assert not r.get(key)
-					r[key]=val				
-			return r
+		#def ParseDefs(refs):
+		#	r = {}
+		#	for i in refs.split("\n"):					
+		#		if len(Trim(i, False))>0:						
+		#			n = Str(i).find(']')
+		#			
+		#			Check(not(n<=0 or i[0]!='['), f"refs need to be of the form '[key] value', got='{i}'")
+		#			
+		#			key = i[0:n+1].strip()
+		#			val = i[n+1:].strip()
+		#			
+		#			Check(len(key) > 0, f"empty key in ref element='{i}'")
+		#			Check(len(val) > 0, f"empty value in ref element='{i}'")
+		#				
+		#			Dbg(verbose, f"    ParseRef(): found '{key}' => '{val}'", 2)
+		#			assert not r.get(key)
+		#			r[key]=val				
+		#	return r
 			
 		def ParseDefs2(defs):
 			r = {}
@@ -356,16 +366,13 @@ if __name__ == '__main__':
 				if len(d) > 0:						
 					n = Str(d).find(']')
 					
-					if n<=0 or d[0]!='[':
-						ERR(f"refs need to be of the form '[key] value', got='{i}'")
+					Check(not(n<=0 or d[0]!='['), f"refs need to be of the form '[key] value', got='{i}'")
 					
 					key = d[0:n+1].strip()
 					val = d[n+1:].strip()
 					
-					if len(key)==0:
-						ERR(f"empty key in ref element='{i}'")
-					if len(val)==0:
-						ERR(f"empty value in ref element='{i}'")
+					Check(len(key) > 0, f"empty key in ref element='{i}'")
+					Check(len(val) > 0, f"empty value in ref element='{i}'")
 						
 					Dbg(verbose, f"    ParseRef(): found '{key}' => '{val}'", 2)
 					assert not r.get(key)
@@ -375,10 +382,8 @@ if __name__ == '__main__':
 		def ParseBasetructure(courselist):
 			N = len(List(courselist))
 			
-			if N<=0:
-				ERR("file seems to be empty")
-			if courselist[0]!="COURSE":
-				ERR("missing tag 'COURSE' in course file")
+			Check(N > 0,"file seems to be empty")
+			Check(courselist[0]=="COURSE","missing tag 'COURSE' in course file")
 				
 			s = {}
 			curr = None
@@ -415,17 +420,15 @@ if __name__ == '__main__':
 		for i in s:
 			n = Str(i).find("CONTENT")
 
-			if n>0:
-				ERR("CONTENT tag not in column 1, but in column {n} for entry '{i}'")
-			elif n==0:
-				l = []
-				for line in List(s[i]):
-					for key in defs:
-						assert Str(key)[0]=='[' and key[-1]==']'			
-						val = Str(defs[key])
-						line = line.replace(key, val)			
-					l.append(Str(line, False))
-				s[i] = l
+			Check( n==0, f"CONTENT tag not in column 1, but in column {n} for entry '{i}'")
+			l = []
+			for line in List(s[i]):
+				for key in defs:
+					assert Str(key)[0]=='[' and key[-1]==']'			
+					val = Str(defs[key])
+					line = line.replace(key, val)			
+				l.append(Str(line, False))
+			s[i] = l
 		
 		# 3: parse structure and generate html code
 		htmlstructure = {}		
@@ -458,14 +461,13 @@ if __name__ == '__main__':
 				assert Str(i).find("CONTENT")==0
 				
 				sublesson = i[7:].strip()
-				if len(sublesson)<=0:
-					ERR("sublesson name empty (or just whitespace)")
+				Check(len(sublesson)>0, "sublesson name empty (or just whitespace)")
 				
 				outputfilename = Str(filenamebase) + sublesson + ".html" 
 				htmlcontent = Str(htmlstructure[i]) 
 				
 				Dbg(verbose, f"  {Col('YELLOW')}WRITING '{i}' => '{outputfilename}'{ColEnd()}", 1)
-				html = MkHtmlPage(htmlcontent) if Bool(addhtmlheaders) else htmlcontentl 
+				html = MkHtmlPage(htmlcontent) if Bool(addhtmlheaders) else htmlcontent 
 				
 				with Outputfile(outputfilename) as f:
 					f.write(html)				
@@ -490,6 +492,7 @@ if __name__ == '__main__':
 		parser = ArgumentParser(prog=argv[0], epilog="version 0.2")
 		parser.add_argument("-v", default=verbose,       action="count",      help=f"increase output verbosity, default={verbose}\n")
 		parser.add_argument("-t", default=False,         action="store_true", help=f"generate simple html (witouth <html> <body> etc tags), default=False\n")
+		parser.add_argument("-l", default=False,         action="store_true", help=f"test links, default=False\n")
 		parser.add_argument("-o", default=outputfiledir, type=str,            help=f"output file dir base, default='{outputfiledir}'\n")
 		parser.add_argument("-c", default=coursefile,    type=str,            help=f"cause file to be parsed, default='{coursefile}'\n")
 		
@@ -497,9 +500,10 @@ if __name__ == '__main__':
 				
 		verbose = Int(args.v)				
 		coursefile = Str(args.c)
-		ouptputfiledir = Str(args.o)
+		outputfiledir = Str(args.o)
+		testlinks = Bool(args.t)
 		
-		Dbg(verbose, f"{Col('PURPLE')}GENERATING html course from file '{coursefile}'..{ColEnd()}")
+		Dbg(verbose, f"{Col('PURPLE')}GENERATING html course from file '{coursefile}', outputfiledir={outputfiledir}..{ColEnd()}")
 
 		htmlencoded   = [HtmlEncode(i) for i in LoadCourseFile(coursefile)]
 		htmlstructure = ParseStructure(htmlencoded)				

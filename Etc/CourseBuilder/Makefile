@@ -9,7 +9,7 @@ COURSEFILES = ITMAL_E21
 MKDIFF=printf "DIFF Ref/%-10s Test/  .. " $1 && colordiff -dw Refs/$1 Test/ && echo "DIFF OK" && rm Test/$1
 
 build:
-	@ $(PYCOURSE) -c $(COURSEFILES)/course.tex  -v  -o ../../Html/
+	@ $(PYCOURSE) -c $(COURSEFILES)/course.tex  -v  -o ../../Html/ -t
 	@ $(PYPLAN)   -p $(COURSEFILES)/plan.txt    -v  -o ../../Html/plan.html
 	@ cd ../.. &&    $(PWD)/$(PYFILETREE)       -v  -o Html/filetree.html
 
@@ -23,9 +23,9 @@ sync: build
 
 TESTARGS=-v
 test: clean
-	@ cd Test && $(PWD)/$(PYCOURSE) -c course.tex $(TESTARGS)
-	@ cd Test && $(PWD)/$(PYPLAN)   -p plan.txt   $(TESTARGS) 
-	@ cd Test && $(PWD)/$(PYFILETREE)             $(TESTARGS) 
+	@ cd Test && $(PWD)/$(PYCOURSE)   $(TESTARGS)
+	@ cd Test && $(PWD)/$(PYPLAN)     $(TESTARGS) 
+	@ cd Test && $(PWD)/$(PYFILETREE) $(TESTARGS) 
 	@ $(call MKDIFF,L00.html)
 	@ $(call MKDIFF,L01.html)
 	@ $(call MKDIFF,plan.html)
