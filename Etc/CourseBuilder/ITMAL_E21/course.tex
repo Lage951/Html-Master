@@ -882,9 +882,6 @@ Project}, og samler op på dette brede kapitel.}
 CV), for derefter at bruge "\link{The Map, [HOME]/Etc/ml_supervised_map.pdf}"
 til at komme igennem alle grundliggende koncepter i \i{§ 2}.}
 
-\p{Da alle kerne-koncepter i supervised ML nu kendes, kan det hele konkret
-sammensættes i en samlet processerings-\i{pipeline}.  Programmerings-teknisk
-ser vi derfor til sidst på Scikit-learns Pipelines.}
 
 \itemize*{
 	\item{
@@ -899,7 +896,6 @@ ser vi derfor til sidst på Scikit-learns Pipelines.}
 \itemize{
 	\item{Generel genlæsning og repetition af \i{§ 2}}
 	\item{K-fold Cross-validation}
-	\item{Pipelines}
 }
 
 \sub{Litteratur}
@@ -946,10 +942,13 @@ CONTENT L04
 \sub{Formål} %\header{Regression og SGD}
 
 \p{Vi analysere \i{supervised regressions} modeller i ML i forhold til den nu
-kendte supervised klassifikation metode.}
+kendte supervised klassifikation metode.} 
+
 
 \p{Modellen \i{lineær} regression gennemanalyseres og der angives både
-analytiske og numeriske løsninger til træning af en lineær model.}
+analytiske og numeriske løsninger til træning af en lineær model.  (Den lineære
+regressionsmodel er relativ simple, men yderst vigtig, idet den men danner
+grundlag for en hel del advancerede modeller, f.eks. SVN's og NN's.)}
 
 \p{For den numeriske løsning går vi i dybden med træningsmetoden \i{Stochastic
 Gradient Decent metoden} (SGD).}
@@ -961,7 +960,9 @@ grundlag for neuroner i neurale net.}
 
 \itemize{
 	\item{Lineær regression}
+	\item{Cost function i closed-form løsning vs. numerisk løsning}
 	\item{Stochastic Gradient Decent (SGD)}
+	\item{Learning rates}
 	\item{Logistisk regression}
 }
 
@@ -992,47 +993,88 @@ grundlag for neuroner i neurale net.}
 }
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+CONTENT L05
+
+\sub{Formål} %\header{Dataanalyse}
+
+
+\p{En vigtig forudsætning for at kunne vælge den rette machine learning metode
+til at løse et problem er data analyse, dvs.  at få en forståelse af data ved
+at se på statistikker såsom middelværdi, median, varians, og plotte data og
+histogrammer.}
+
+\p{Der kan også være støjflyldte/korrupte data som skal fjernes eller data
+værdier, som mangler; det skal håndteres på fornuftig vis, ellers vil man få
+forkerte/dårlige modeller efterfølgende.}
+
+\p{\i{The Curse of Dimensionallity} diskuteres og en simple unsupervised
+algoritme til dimensionalitetsreduktion, PCA, undersøges.}
+
+\p{Da alle kerne-koncepter i supervised ML nu kendes, kan det hele konkret
+sammensættes i en samlet processerings-\i{pipeline}.  Programmerings-teknisk
+ser vi derfor til sidst på Scikit-learns Pipelines.}
+
+\p{Lektionen giver endelig også et oplæg til valg af data til brug for O4
+afleveringen.}
+
+\sub{Indhold}
+
+\itemize{
+	\item{Basale termer fra statistik}
+		\subitem{middelværdi, median, varians, histogram}
+	\item{The Curse of Dimensionallity}
+		\subitem{dimensionalitets reduktion vha. PCA modellen}
+	%\item{Korrelationskoefficienter}
+	\item{Pipelines}
+		\subitem{Data cleaning, standardization / normalisation (feature scaling)}
+	\item{Indledende analyse af data med plots}
+}
+
+\sub{Litteratur}
+
+\itemize*{
+	\item{\i{§ 8 Dimensionality Reduction} (pp.213-225) [HOML], kaptitel skimmes kun, men læs grundigt:}
+		\subitem*{\i{Intro} (pp. 213-214)}
+		\subitem*{\i{The Curse of Dimensionality} (pp. 214-215)}
+		\subitem*{\i{PCA} (pp. 219-223)}
+	\item{\i{§ 2 End-to-End ML} (p.38), genlæs  \i{Pipelines} tekstboksen }
+		\subitem*{(herudover der der en hel del genbrug af andet materiale fra \i{§ 2})}
+}
+
+\sub{Forberedelse inden lektionen} 
+
+\itemize{
+	\item{Læs litteraturen.}
+}
+
+\sub{På klassen}
+
+\enumerate{
+    \item{Almindelig forelæsning}
+    \item{\b{Opgave} (dataanalyse): \link**{[HOME]/L054/dataanalyse.ipynb}}
+}
+
+\sub{Slides}
+
+\itemize*{
+	\item{\link**{[HOME]/L05/lesson05.pdf}}
+}
+
+
 END
-
-Formål :
-
-Vi skal se på lineær og logistisk regression, som er to helt basale metoder til
-regression og klassifikation.  De danner byggestenene for mange andre metoder,
-så det er en god start at få en grundig forståelse af begge metoder.  Metoder
-såsom SVM, neural netværk, generaliserede lineær modeller, ..  er udvidelser
-til disse to metoder.
-
-
-Emner :
-
-Lineær (til regression) og logistisk regression (til klassifikation)
-
-Cost function, closed-form vs.  iterative solutions, gradient descent, learning
-rate
-
-
-Litteratur :
-
-Kap. 4  s. 111 - 123 + s. 142 - 148
-
 
 
 Dataanalyse
 
 Formål
 
-En vigtig forudsætning for at kunne vælge den rette machine learning metode til at løse et problem er data analyse, dvs. at få en forståelse af data ved at se på statistikker såsom middelværdi, median, varians, .. og plotte data og histogrammer. Der kan også være korrupte data som skal fjernes eller data værdier, som mangler - det skal håndteres på fornuftig vis, ellers vil man få forkerte/dårlige modeller efterfølgende.
-Emner
 
-Basale termer fra statistik (middelværdi, median, varians, histogram, korrelationskoefficient, percentiler), indledende analyse af data med plots
-
-Data cleaning, standardization / normalisation (feature scaling)
-
-Test-, trænings- og validerings-sæt
 Litteratur
 
 Kap. 2  s. 47 - 70 (især de emner der forelæses omkring) 
-
 
 
 
