@@ -466,7 +466,7 @@ if __name__ == '__main__':
 				outputfilename = Str(filenamebase) + sublesson + ".html" 
 				htmlcontent = Str(htmlstructure[i]) 
 				
-				Dbg(verbose, f"  {Col('YELLOW')}WRITING '{i}' => '{outputfilename}'{ColEnd()}", 1)
+				Dbg(verbose, f"  {Col('YELLOW')}WRITING {i:40s} => '{outputfilename}'{ColEnd()}", 1)
 				html = MkHtmlPage(htmlcontent) if Bool(addhtmlheaders) else htmlcontent 
 				
 				with Outputfile(outputfilename) as f:
