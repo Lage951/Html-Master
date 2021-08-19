@@ -32,17 +32,7 @@ test: clean
 	@ $(call MKDIFF,tree.html)
 
 edit:
-	joe course.tex #joe $(PYCOURSE)
+	joe $(COURSEFILES)/course.tex 
 	
 clean:
 	@ rm -f Test/*.html ../Html/L??.html 
-
-#get:
-#	wget https://gitlab.au.dk/au204573/brightspacemods/-/raw/master/JS/demo.js
-#
-#sshfs:
-#	echo "not implemented yet"	
-#	
-#ae:
-#	sudo tail -f /var/log/apache2/error.log
-

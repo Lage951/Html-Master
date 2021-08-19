@@ -91,7 +91,7 @@ def HtmlDecode(s):
 def UrlQuote(s): 
 	# for file names in urls
 	t = quote(Str(s, False), safe='')
-	assert t==quote(t, safe='')
+	#assert t==quote(t, safe='')
 	assert t.find("'") < 0
 	assert t.find('"') < 0
 	assert t.find(" ") < 0
