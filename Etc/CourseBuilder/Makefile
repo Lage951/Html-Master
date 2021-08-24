@@ -16,8 +16,9 @@ build:
 sync: build
 	@ echo "SYNC.."
 	@ #nmap -T5  -p 22 si | grep -v "Note: Host seems down" >/dev/null
-	@ ssh si "cd ITMAL_E21 && rm -f Html/*.html && git pull" 
-	@ # cd ../../ && scp  -q -C -r Html si:ITMAL_E21/
+	@ #ssh si "cd ITMAL_E21 && rm -f Html/*.html && git pull" 
+	@ #cd ../../ && scp  -q -C -r Html si:ITMAL_E21/
+	@ ssh si "cd ITMAL_E21 && git pull" 
 	@ echo "SYNC..DONE"
 	
 
