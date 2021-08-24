@@ -456,7 +456,7 @@ if __name__ == '__main__':
 		return htmlstructure
 						
 	try:
-		def MkHtml(htmlstructure, addhtmlheaders, filenamebase):		
+		def MkHtml(htmlstructure, filenamebase, testlinks, addexpiremetas, addhtmlheaders=True):		
 			for i in htmlstructure:
 				assert Str(i).find("CONTENT")==0
 				
@@ -467,7 +467,7 @@ if __name__ == '__main__':
 				htmlcontent = Str(htmlstructure[i]) 
 				
 				Dbg(verbose, f"  {Col('YELLOW')}WRITING {i:40s} => '{outputfilename}'{ColEnd()}", 1)
-				html = MkHtmlPage(htmlcontent) if Bool(addhtmlheaders) else htmlcontent 
+				html = MkHtmlPage(htmlcontent, addexpiremetas) if Bool(addhtmlheaders) else htmlcontent 
 				
 				with Outputfile(outputfilename) as f:
 					f.write(html)				
@@ -491,24 +491,26 @@ if __name__ == '__main__':
 	
 		parser = ArgumentParser(prog=argv[0], epilog="version 0.2")
 		parser.add_argument("-v", default=verbose,       action="count",      help=f"increase output verbosity, default={verbose}\n")
-		parser.add_argument("-t", default=False,         action="store_true", help=f"generate simple html (witouth <html> <body> etc tags), default=False\n")
-		parser.add_argument("-l", default=False,         action="store_true", help=f"test links, default=False\n")
+		# parser.add_argument("-s", default=False,         action="store_true", help=f"generate simple html (witouth <html> <body> etc tags), default=False\n")
+		parser.add_argument("-t", default=False,         action="store_true", help=f"test links, default=False\n")
+		parser.add_argument("-x", default=False,         action="store_true", help=f"add html expire headers, default=False\n")
 		parser.add_argument("-o", default=outputfiledir, type=str,            help=f"output file dir base, default='{outputfiledir}'\n")
 		parser.add_argument("-c", default=coursefile,    type=str,            help=f"cause file to be parsed, default='{coursefile}'\n")
 		
 		args = parser.parse_args()
 				
-		verbose = Int(args.v)				
-		coursefile = Str(args.c)
-		outputfiledir = Str(args.o)
-		testlinks = Bool(args.t)
-		
+		verbose        = Int(args.v)				
+		testlinks      = Bool(args.t)
+		addexpiremetas = Bool(args.x)
+		outputfiledir  = Str(args.o)
+		coursefile     = Str(args.c)
+				
 		Dbg(verbose, f"{Col('PURPLE')}GENERATING html course from file '{coursefile}', outputfiledir={outputfiledir}..{ColEnd()}")
 
 		htmlencoded   = [HtmlEncode(i) for i in LoadCourseFile(coursefile)]
 		htmlstructure = ParseStructure(htmlencoded)				
 	
-		MkHtml(htmlstructure, not Bool(args.t), outputfiledir)		
+		MkHtml(htmlstructure, outputfiledir, testlinks, addexpiremetas)		
 		
 		Dbg(verbose, f"{Col('PURPLE')}DONE{ColEnd()}")
 		
