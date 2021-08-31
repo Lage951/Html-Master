@@ -1,4 +1,4 @@
-#!/opt/anaconda3/bin/python
+#!/usr/bin/env python3
 
 def IRIS_GetDataSet():
 	from sklearn import datasets
@@ -159,7 +159,7 @@ def Test_MOON_GetDataSet(debug=False, verbose=False):
 		print("Test_MOON_GetDataSet()..")
 	X, y = MOON_GetDataSet()
 	MOON_Plot(X, y)
-    
+  
 def Test_MNIST_GetDataSet(debug=False, verbose=False):
 	if debug:
 		print("Test_MNIST_GetDataSet()..")
@@ -219,7 +219,7 @@ def Test_MNIST_GetDataSet(debug=False, verbose=False):
 	if verbose:
 		AssertEqual(y1, y7)
 		AssertEqual(y1, y8)
-	       
+    
 	#assert np.array_equal(X1,X3)
 	#assert np.array_equal(X2,X4)
 	#assert np.array_equal(y2,y4)    
