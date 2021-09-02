@@ -1,8 +1,15 @@
 # E21
 
 all:
-	@ echo "Doing nothing, perhaps you want to see Etc/Makefile instead"
-	
+	@ echo "Doing nothing!"
+
+check:
+	@ grep itundervisining L??/* -R || echo "OK, no 'itundervisining'.." $(VERBOSE)
+	@ grep "BB-Cou-UUVA-"  L??/* -R || echo "OK, no 'BB-Cou-UUVA-'.."    $(VERBOSE)
+	@ grep "blackboard.au.dk" L??/* -R  
+	@ #grep "p\." L01/*.ipynb -R
+	@ # 2021-08-02| CEF, update to E21 ITMAL.
+	@ # https://itundervisning.ase.au.dk/GITMAL/		
 # F21
 #
 #DAV = /mnt/Dav/ITMAL
