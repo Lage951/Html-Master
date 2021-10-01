@@ -148,11 +148,11 @@ def AssertInRange(x, expected, eps=1E-9, autoconverttofloat=True, verbose=0):
 	if isinstance(x, collections.Iterable):
 		if isinstance(expected, collections.Iterable):
 			n=len(x)
-			assert n==len(e)
+			#assert n==len(e)
 			for i in range(n):
 				if verbose>2:
 					print(f"range: x[{i}]={x[i]}, e[{i}]={e[i]}")
-				AssertInRange(x[i], exected[i], eps, autoconvert, verbose)
+				AssertInRange(x[i], expected[i], eps, autoconverttofloat, verbose)
 		else:   
 			norm = np.linalg.norm(x)
 			if verbose>2:
