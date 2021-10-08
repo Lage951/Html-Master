@@ -157,7 +157,7 @@ def AssertInRange(x, expected, eps=1E-9, autoconverttofloat=True, verbose=0):
 			norm = np.linalg.norm(x)
 			if verbose>2:
 				print("norm=",norm)
-			AssertInRange(norm, exected, eps, autoconvert, verbose)
+			AssertInRange(norm, expected, eps, autoconverttofloat, verbose)
 	else:
 		assert eps>=0, "eps is less than zero"
 		if autoconverttofloat and (not isFloat(x) or not isFloat(expected) or not isFloat(eps)):
