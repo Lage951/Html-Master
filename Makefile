@@ -4,12 +4,15 @@ all:
 	@ echo "Doing nothing!"
 
 check:
-	@ grep itundervisining L??/* -R || echo "OK, no 'itundervisining'.." $(VERBOSE)
-	@ grep "BB-Cou-UUVA-"  L??/* -R || echo "OK, no 'BB-Cou-UUVA-'.."    $(VERBOSE)
-	@ grep "blackboard.au.dk" L??/* -R  
-	@ #grep "p\." L01/*.ipynb -R
-	@ # 2021-08-02| CEF, update to E21 ITMAL.
-	@ # https://itundervisning.ase.au.dk/GITMAL/		
+	@ grep itundervisining    L??/*.ipynb -R || echo "OK, no 'itundervisining'.." $(VERBOSE)
+	@ grep "BB-Cou-UUVA-"     L??/*.ipynb -R || echo "OK, no 'BB-Cou-UUVA-'.."    $(VERBOSE)
+	@ grep "blackboard.au.dk" L??/*.ipynb -R || echo "OK, no blackboard.au.dk.."  $(VERBOSE)  
+	@ grep "Blackboard"       L??/*.ipynb -R || echo "OK, no Blackboard.."        $(VERBOSE)  
+	@ grep "dk/GITMAL/"       L??/*.ipynb -R || echo "OK, no dk/GITMAL.."         $(VERBOSE)
+	@ grep "ITMAL Exe"        L??/*.ipynb -R || echo "OK, no ITMAL Exe.."         $(VERBOSE)
+	@ grep "27524"            L??/*.ipynb -R || echo "OK, no 27524.."         $(VERBOSE)
+
+
 # F21
 #
 #DAV = /mnt/Dav/ITMAL
