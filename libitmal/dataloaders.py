@@ -152,13 +152,15 @@ def Test_IRIS_GetDataSet(debug=False, verbose=False):
 	if debug:
 		print("Test_IRIS_GetDataSet()..")
 	X, y = IRIS_GetDataSet()
-	IRIS_PlotFeatures(X, y, 0, 1)
+	if verbose:
+		IRIS_PlotFeatures(X, y, 0, 1)
 
 def Test_MOON_GetDataSet(debug=False, verbose=False):
 	if debug:
 		print("Test_MOON_GetDataSet()..")
 	X, y = MOON_GetDataSet()
-	MOON_Plot(X, y)
+	if verbose:
+		MOON_Plot(X, y)
   
 def Test_MNIST_GetDataSet(debug=False, verbose=False):
 	if debug:
@@ -225,7 +227,8 @@ def Test_MNIST_GetDataSet(debug=False, verbose=False):
 	#assert np.array_equal(y2,y4)    
 	#assert (X1.ravel()==X2.ravel()).all()
 	
-	MNIST_PlotDigit(X1[1])
+	if verbose:
+		MNIST_PlotDigit(X1[1])
 
 def TestAll(debug=False, verbose=False):
 	Test_IRIS_GetDataSet (debug=debug, verbose=verbose)
