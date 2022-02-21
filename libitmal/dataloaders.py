@@ -35,7 +35,7 @@ def MNIST_PlotDigit(data):
 
 ## CEF: A production-code ready version of get MNIST
 ##      Can run in four three different modes, 0=auto, 1=tensorflow.keras, 2=keras and 3=fetch_openml (slow and disfavored)
-def MNIST_GetDataSet(reshape784=True, load_mode=2):
+def MNIST_GetDataSet(reshape784=True, load_mode=0):
 	# NOTE: notice that X and y are defined inside if's, not in outer scope as in C++, strange
 	# NOTE: hardcoded sizes, 70000 x 28 x 28 or 70000 x 784
 
@@ -82,7 +82,7 @@ def MNIST_GetDataSet(reshape784=True, load_mode=2):
 	if load_mode==0 or load_mode==3:
 		try:
 			from sklearn.datasets import fetch_openml 
-			d = fetch_openml('mnist_784', version=1, cache=True)
+			d = fetch_openml('mnist_784', version=1, cache=True, as_frame=False) # Note: default as_frame changed from False to 'auto' in 0.24.
 			X, y= d["data"], d["target"]          
 
 			warnings.warn("MNIST_GetDataSet(): fetch openml mode is slow and uses 'float64' instead of 'uint8'")
