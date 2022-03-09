@@ -173,8 +173,8 @@ def AssertInRange(x, expected, eps=1E-9, autoconverttofloat=True, verbose=0):
 		absdiff = np.fabs(x-expected)
 		if verbose > 0:
 			print(f"CheckInRange(x={x}, expected={expected}, eps={eps}: x in [{x0}; {x1}] => {ok}")
-			assert ok, f"x={x} is not within the range [{x0}; {x1}] for eps={eps}, got eps={absdiff}"    
-		
+		assert ok, f"x={x} is not within the range [{x0}; {x1}] for eps={eps}, got eps={absdiff}"    
+
 def InRange(x, expected ,eps=1E-9, verbose=0):
 	try:
 		AssertInRange(x, expected, eps, True, verbose)
