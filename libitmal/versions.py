@@ -30,7 +30,6 @@ def Versions():
 	except:
 		print(f'WARN: could not find cv2 (opencv)!')  
 
-
 def TestAll():
 	Versions()
 	print("ALL OK")
