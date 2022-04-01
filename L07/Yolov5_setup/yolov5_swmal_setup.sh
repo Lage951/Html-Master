@@ -9,7 +9,7 @@ set -ea
 #conda env list
 #conda activate yolov5
 
-test -f yolov5 || git clone https://github.com/ultralytics/yolov5 
+(test ! -d yolov5 && git clone https://github.com/ultralytics/yolov5) || echo "Git-repository already cloned.."
 
 #cd yolov5
 #pip install -r requirements.txt 
