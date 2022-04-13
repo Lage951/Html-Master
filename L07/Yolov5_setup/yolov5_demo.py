@@ -3,15 +3,25 @@
 import torch
 import sys
 
-def Versions():
+def TorchVersions():
     print("VERSIONS:")
-    print(f"  _sys.version                             = { sys.version}")
+    sysver = sys.version.replace("\n", "")
+    print(f"  _sys.version                             = {sysver}")
     print(f"  torch.__version__                        = {torch.__version__}")
     print(f"  torch.cuda.is_available()                = {torch.cuda.is_available()}")
     print(f"  torch.backends.cudnn.enabled             = {torch.backends.cudnn.enabled}")
-    device = torch.device("cuda")
-    print(f"  torch.cuda.get_device_properties(device) = {torch.cuda.get_device_properties(device)}")
-    print(f"  torch.tensor([1.0, 2.0]).cuda()          = {torch.tensor([1.0, 2.0]).cuda()}")
+    try:
+        device = torch.device("cuda")
+        print(f"  torch.cuda.get_device_properties(device) = {torch.cuda.get_device_properties(device)}")
+        print(f"  torch.tensor([1.0, 2.0]).cuda()          = {torch.tensor([1.0, 2.0]).cuda()}")
+        return True
+        
+    except RuntimeError as ex:
+        print(f"EXCEPTION({type(ex)}): {ex}", file=sys.stderr)
+        print(f"WARNING: Sorry mate, it seems your PC is without a CUDA enabled GPU!", file=sys.stderr)
+    except Exception as ex:
+        print(f"EXCEPTION({type(ex)}): {ex}", file=sys.stderr)
+    return False
 
 def PredictDemo():
     # Model
@@ -29,5 +39,5 @@ def PredictDemo():
     #results.show()
     results.save('temp.jpg')
     
-Versions()
+TorchVersions()
 PredictDemo()
