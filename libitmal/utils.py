@@ -2,12 +2,14 @@
 
 import numpy as np
 import contextlib as ctxlib
-import collections
 import sklearn
 import random
 
+from collections.abc import Iterable # fixes Iterable and abc namespace error
+
 from math import inf, nan
 #from numpy import linalg
+
 
 # NOTE: for VarName
 import inspect
@@ -123,7 +125,7 @@ def XyToD(X, y, y_to_int=True):
 def CheckFloat(x, checkrange=False, xmin=1E-200, xmax=1E200, verbose=0):
 	if verbose>1:
 		print(f"CheckFloat({x}, type={type(x)}")
-	if isinstance(x, collections.Iterable):
+	if isinstance(x, Iterable):
 		for i in x:
 			CheckFloat(i, checkrange=checkrange, xmin=xmin, xmax=xmax, verbose=verbose)
 	else:
