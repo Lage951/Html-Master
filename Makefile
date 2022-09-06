@@ -32,6 +32,7 @@ test:
 .PHONY:pull
 pull:
 	@ echo "PULL" | tee -a log_pull.txt
+	@ date        | tee -a log_pull.txt
 	@ git pull 2>>log_pull.err | tee -a log_pull.txt
 
 PARSED=$(foreach f,$(FILES_IPYNB),$(shell (python -m json.tool $(f) 1>/dev/null 2>/dev/null && echo >&2 "OK $(f)")|| (echo >&2 $(f) && python -m json.tool $(f))))
