@@ -21,13 +21,18 @@ check:
 	@ $(call CHECK_FOR_TEXT, "27524")
 	@ echo "DONE: all ok"
 
-.phony:test
+.PHONY:test
 test:
 	@#for var in $(FILES_PY); do echo $$var $@; done
 	@#libitmal/dataloaders.py
 	libitmal/kernelfuns.py
 	libitmal/utils.py
 	libitmal/versions.py
+
+.PHONY:pull
+pull:
+	@ echo "PULL" | tee -a log_pull.txt
+	@ git pull 2>>log_pull.err | tee -a log_pull.txt
 
 PARSED=$(foreach f,$(FILES_IPYNB),$(shell (python -m json.tool $(f) 1>/dev/null 2>/dev/null && echo >&2 "OK $(f)")|| (echo >&2 $(f) && python -m json.tool $(f))))
 .PHONY:parsecheck
