@@ -10,7 +10,6 @@ from collections.abc import Iterable # fixes Iterable and abc namespace error
 from math import inf, nan
 #from numpy import linalg
 
-
 # NOTE: for VarName
 import inspect
 import re
@@ -147,8 +146,8 @@ def CheckFloat(x, checkrange=False, xmin=1E-200, xmax=1E200, verbose=0):
 # Checks that two 'floats' are 'close' 
 def AssertInRange(x, expected, eps=1E-9, autoconverttofloat=True, verbose=0):
 	# NOTE: alternative approach is to use numpy.isclose()    
-	if isinstance(x, collections.Iterable):
-		if isinstance(expected, collections.Iterable):
+	if isinstance(x, Iterable):
+		if isinstance(expected, Iterable):
 			n=len(x)
 			#assert n==len(e)
 			for i in range(n):
@@ -364,7 +363,13 @@ def TestCheckFloat():
 	except:
 		e += 1
 
-	assert e==6,"Test of CheckFloat() failed"
+	AssertInRange([1, 2, 3], [1, 2, 3.1], .2)	
+	try:		
+			AssertInRange([1, 2, 3], [1, 2, 3.1], .01)	
+	except Exception as ex:
+		e += 1
+		
+	assert e==7,"Test of CheckFloat() failed"
 	print("TEST: OK")
 
 def TestVarName():
