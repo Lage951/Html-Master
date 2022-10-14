@@ -1,4 +1,4 @@
-FILES_IPYNB=$(wildcard L??/*.ipynb)
+FILES_IPYNB=$(wildcard L??/*.ipynb) $(wildcard L??/*/*.ipynb)
 FILES_PY=$(wildcard libitmal/*.py)
 
 CHECK_FOR_TEXT=grep "$1" $(FILES_IPYNB) -R || echo "  OK, no '$1'.."
@@ -17,6 +17,7 @@ check:
 	@ $(call CHECK_FOR_TEXT, BB-Cou-UUVA) 
 	@ $(call CHECK_FOR_TEXT, blackboard.au.dk) 
 	@ $(call CHECK_FOR_TEXT, blackboard) 
+	@ $(call CHECK_FOR_TEXT, Blackboard) 
 	@ $(call CHECK_FOR_TEXT, "dk/GITMAL/")
 	@ $(call CHECK_FOR_TEXT, "27524")
 	@ echo "DONE: all ok"
