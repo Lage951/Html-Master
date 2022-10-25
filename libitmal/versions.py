@@ -1,36 +1,31 @@
 #!/usr/bin/env python3
 
-def Versions():    
-	import sys    
-	print(f'{"Python version:":28s} {sys.version_info.major}.{sys.version_info.minor}.{sys.version_info.micro}.')
+def Versions():
+	def PrintVer(libname, version):
+		print(f"{str(libname) + ' version:':28s} {version}")
 
-	try:
-		import sklearn as version_skl 
-		print(f'{"Scikit-learn version:":28s} {version_skl.__version__}.')
-	except:
-		print(f'WARN: could not find sklearn!')  
-	try:
-		import keras as version_kr
-		print(f'{"Keras version:":28s} {version_kr.__version__}')
-	except:
-		print(f'WARN: could not find keras!')  
-	try:
-		import tensorflow as version_tf
-		print(f'{"Tensorflow version:":28s} {version_tf.__version__}')
-	except:
-		print(f'WARN: could not find tensorflow!')  
-	try:
-		import tensorflow.keras as version_tf_kr
-		print(f'{"Tensorflow.keras version:":28s} {version_tf_kr.__version__}')
-	except:
-		print(f'WARN: could not find tensorflow.keras!')  
-	try:
-		import cv2 as version_cv2
-		print(f'{"Opencv2 version:":28s} {version_cv2.__version__}')
-	except:
-		print(f'WARN: could not find cv2 (opencv)!')  
+	def TryImport(libname):
+		import importlib
+		import sys
+		try:
+			lib = importlib.import_module(libname)
+			PrintVer(libname, f"{lib.__version__}")
+		except ModuleNotFoundError:
+			print(f"WARNING: could not find library '{libname}' in path", file=sys.stderr)
+
+	import sys
+	PrintVer("Python", f"{sys.version_info.major}.{sys.version_info.minor}.{sys.version_info.micro}")
+
+	TryImport("numpy")
+	TryImport("sklearn")
+	TryImport("keras")
+	TryImport("tensorflow")
+	TryImport("tensorflow.keras")
+	TryImport("cv2")
+	TryImport("pytorch")
 
 def TestAll():
+	print("Test versions..")
 	Versions()
 	print("ALL OK")
 

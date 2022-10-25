@@ -30,10 +30,14 @@ function Setup()
 function UninstallPips()
 {
 	pip uninstall opencv-python tensorboard tensorboard-data-server thop torch torchaudio torchvision
+	pip list --user
 }
 
 #CreateEnv
-Setup
+#Setup
 #UninstallPips
+
+echo "NOTE: use default setup on GPU-Cluster instead:"
+echo "      module 'anaconda 2022.05' contains all torch libs needed'"
 
 echo "DONE"
