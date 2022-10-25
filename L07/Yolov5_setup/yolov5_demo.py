@@ -29,7 +29,8 @@ def PredictDemo():
 
     # Images
     #img = 'https://ultralytics.com/images/zidane.jpg'  # or file, Path, PIL, OpenCV, numpy, list
-    img = 'Figs/zidane.jpg'
+    #img = 'Figs/zidane.jpg'
+    img = 'Figs/demo.jpg'
 
     # Inference
     results = model(img)
