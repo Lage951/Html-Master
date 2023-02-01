@@ -4,7 +4,9 @@
 .ipynb_checkpoints
 __pycache__
 Old
-Etc/CourseBuilder/Demos
+
+Etc/LaTeX_demo/demo.aux
+Etc/LaTeX_demo/demo.log
 
 L07/Yolov5_setup/temp.jpg
 L07/Yolov5_setup/yolov5
