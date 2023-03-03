@@ -1,5 +1,6 @@
-FILES_IPYNB=$(wildcard L??/*.ipynb) $(wildcard L??/*/*.ipynb)
-FILES_PY=$(wildcard libitmal/*.py)
+FILES_IPYNB=$(sort $(wildcard L??/*.ipynb) $(wildcard L??/*/*.ipynb))
+FILES_PY=$(sort $(wildcard libitmal/*.py))
+FILES_WEB=$(sort $(wildcard Html/*.html))
 
 CHECK_FOR_TEXT=grep "$1" $(FILES_IPYNB) -R || echo "  OK, no '$1'.."
 
@@ -21,6 +22,16 @@ check:
 	@ $(call CHECK_FOR_TEXT, "dk/GITMAL/")
 	@ $(call CHECK_FOR_TEXT, "27524")
 	@ echo "DONE: all ok"
+
+.PHONY:checkpages
+checkpages:
+	@ echo "CHECKING (for pages).."
+	@ egrep --color "p\.\[\ ]+" $(FILES_WEB) $(FILES_IPYNB) || true
+	@ egrep --color "[ ][p]+[ ]+[0-9]+" $(FILES_WEB) $(FILES_IPYNB) || true
+	@ echo "WEBPAGES.."
+	@ egrep --color "p\.[0-9]+" $(FILES_WEB) 
+	@ echo "IPYNB FILES.."
+	@ egrep --color "p\.[0-9]+" $(FILES_IPYNB)
 
 .PHONY:test
 test:
