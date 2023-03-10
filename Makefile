@@ -28,6 +28,7 @@ checkpages:
 	@ echo "CHECKING (for pages).."
 	@ egrep --color "p\.\[\ ]+" $(FILES_WEB) $(FILES_IPYNB) || true
 	@ egrep --color "[ ][p]+[ ]+[0-9]+" $(FILES_WEB) $(FILES_IPYNB) || true
+	@ egrep --color "[ ][p]+[0-9]+" $(FILES_WEB) $(FILES_IPYNB) || true
 	@ echo "WEBPAGES.."
 	@ egrep --color "p\.[0-9]+" $(FILES_WEB) 
 	@ echo "IPYNB FILES.."
