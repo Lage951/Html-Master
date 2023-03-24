@@ -14,13 +14,15 @@ all:
 check:
 	@ echo "CHECKING (for various no-no's in .ipynb files).."
 	@ echo "  FILES: $(FILES_IPYNB)"
-	@ $(call CHECK_FOR_TEXT, itundervisining) 
-	@ $(call CHECK_FOR_TEXT, BB-Cou-UUVA) 
-	@ $(call CHECK_FOR_TEXT, blackboard.au.dk) 
-	@ $(call CHECK_FOR_TEXT, blackboard) 
-	@ $(call CHECK_FOR_TEXT, Blackboard) 
-	@ $(call CHECK_FOR_TEXT, "dk/GITMAL/")
-	@ $(call CHECK_FOR_TEXT, "27524")
+	@ $(call CHECK_FOR_TEXT,itundervisining) 
+	@ $(call CHECK_FOR_TEXT,BB-Cou-UUVA) 
+	@ $(call CHECK_FOR_TEXT,blackboard.au.dk) 
+	@ $(call CHECK_FOR_TEXT,blackboard) 
+	@ $(call CHECK_FOR_TEXT,Blackboard) 
+	@ $(call CHECK_FOR_TEXT,dk/GITMAL/)
+	@ $(call CHECK_FOR_TEXT,27524)# E21
+	@ $(call CHECK_FOR_TEXT,53939)# F22
+	@ $(call CHECK_FOR_TEXT,70628)# E22	
 	@ echo "DONE: all ok"
 
 .PHONY:checkpages
@@ -48,8 +50,12 @@ pull:
 	@ date        | tee -a log_pull.txt
 	@ git pull 2>>log_pull.err | tee -a log_pull.txt
 
-PARSED=$(foreach f,$(FILES_IPYNB),$(shell (python -m json.tool $(f) 1>/dev/null 2>/dev/null && echo >&2 "OK $(f)")|| (echo >&2 $(f) && python -m json.tool $(f))))
-.PHONY:parsecheck
-parsecheck:
-	@#echo PARSE_ERRORS=$(PARSED)
-	@#cat $(PARSED) | tr ' ' '\n' # |  xargs -I % sh -c 'echo %;'
+#PARSED=$(foreach f,$(FILES_IPYNB),$(shell (python -m json.tool $(f) 1>/dev/null 2>/dev/null && echo >&2 "OK $(f)")|| (echo >&2 $(f) && python -m json.tool $(f))))
+#.PHONY:parsecheck
+#parsecheck:
+#	@#echo PARSE_ERRORS=$(PARSED)
+#	@#cat $(PARSED) | tr ' ' '\n' # |  xargs -I % sh -c 'echo %;'
+
+.PHONY:clean
+clean:
+	@ find . -iname ".ipynb_checkpoints" -exec rm -r {} \;
