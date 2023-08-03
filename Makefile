@@ -22,7 +22,8 @@ check:
 	@ $(call CHECK_FOR_TEXT,dk/GITMAL/)
 	@ $(call CHECK_FOR_TEXT,27524)# E21
 	@ $(call CHECK_FOR_TEXT,53939)# F22
-	@ $(call CHECK_FOR_TEXT,70628)# E22	
+	@ $(call CHECK_FOR_TEXT,70628)# E22
+	@ $(call CHECK_FOR_TEXT,91157)# F23
 	@ echo "DONE: all ok"
 
 .PHONY:checkpages
