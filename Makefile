@@ -25,7 +25,8 @@ check:
 	@ $(call CHECK_FOR_TEXT,70628)# E22
 	@ $(call CHECK_FOR_TEXT,91157)# F23
 	@ $(call CHECK_FOR_TEXT,91157)# F23
-	@# $(call CHECK_FOR_TEXT,mbox)
+	@ $(call CHECK_FOR_TEXT,\\\\mbox)# mbox => mathrm og textrm
+	@ $(call CHECK_FOR_TEXT,\\\\newcommand)# => newcommand => renewcommand
 	@ echo "DONE: all ok"
 
 .PHONY:checkpages
@@ -45,7 +46,8 @@ test:
 	@#libitmal/dataloaders.py
 	libitmal/kernelfuns.py
 	libitmal/utils.py
-	libitmal/versions.py
+	libitmal/versions.py	
+	libitmal/nbmerge.py L01/intro.ipynb L02/performance_metrics.ipynb L03/supergruppe_diskussion.ipynb -o testmerge.ipynb
 
 .PHONY:pull
 pull:
