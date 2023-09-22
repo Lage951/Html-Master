@@ -61,6 +61,12 @@ pull:
 #	@#echo PARSE_ERRORS=$(PARSED)
 #	@#cat $(PARSED) | tr ' ' '\n' # |  xargs -I % sh -c 'echo %;'
 
+zoom:
+	@# https://aarhusuniversity.zoom.us/j/4012595210
+	@# /usr/bin/zoom https://aarhusuniversity.zoom.us/j/4012595210
+	@# xdg-open "zoommtg://zoom.us/join?action=join&confno=401259521"
+	xdg-open https://aarhusuniversity.zoom.us/j/4012595210
+
 .PHONY:clean
 clean:
 	@ find . -iname ".ipynb_checkpoints" -exec rm -r {} \;
