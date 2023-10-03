@@ -27,6 +27,7 @@ check:
 	@ $(call CHECK_FOR_TEXT,91157)# F23
 	@ $(call CHECK_FOR_TEXT,\\\\mbox)# mbox => mathrm og textrm
 	@ $(call CHECK_FOR_TEXT,\\\\newcommand)# => newcommand => renewcommand
+	@ $(call CHECK_FOR_TEXT,\\\\renewcommand)
 	@ echo "DONE: all ok"
 
 .PHONY:checkpages
